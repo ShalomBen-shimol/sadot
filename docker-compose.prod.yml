@@ -9,7 +9,8 @@
 services:
   db:
     # Dedicated Postgres for this app; not published to the host (internal only).
-    ports: []
+    # !override replaces the base list instead of appending to it.
+    ports: !reset []
     environment:
       POSTGRES_USER: sadot
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -24,7 +25,7 @@ services:
       FIRST_ADMIN_PASSWORD: ${FIRST_ADMIN_PASSWORD}
       FIRST_ADMIN_NAME: ${FIRST_ADMIN_NAME}
       BACKEND_CORS_ORIGINS: https://sadot.lavit.io
-    ports:
+    ports: !override
       - "127.0.0.1:8001:8000"
 
   frontend:
@@ -35,5 +36,5 @@ services:
     environment:
       NEXT_PUBLIC_API_URL: https://sadot.lavit.io
       INTERNAL_API_URL: http://backend:8000
-    ports:
+    ports: !override
       - "127.0.0.1:3001:3000"

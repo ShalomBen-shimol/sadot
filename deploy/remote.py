@@ -11,6 +11,15 @@ import sys
 
 import paramiko
 
+# Force UTF-8 so Docker progress spinners / Hebrew never crash on a Windows console.
+for _stream in (sys.stdout, sys.stderr):
+    _rc = getattr(_stream, "reconfigure", None)
+    if _rc:
+        try:
+            _rc(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
 
 def run(command: str) -> int:
     host = os.environ["SADOT_SSH_HOST"]
@@ -37,5 +46,11 @@ def run(command: str) -> int:
 
 
 if __name__ == "__main__":
-    cmd = sys.argv[1] if len(sys.argv) > 1 else "echo no-command"
+    # `remote.py -f script.sh` runs a local script file remotely (avoids shell
+    # quoting issues); otherwise the single arg is the command string.
+    if len(sys.argv) > 2 and sys.argv[1] == "-f":
+        with open(sys.argv[2], "r", encoding="utf-8") as fh:
+            cmd = "bash -s <<'SADOT_EOF'\n" + fh.read() + "\nSADOT_EOF\n"
+    else:
+        cmd = sys.argv[1] if len(sys.argv) > 1 else "echo no-command"
     sys.exit(run(cmd))
