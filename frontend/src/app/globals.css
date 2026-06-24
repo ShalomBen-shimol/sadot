@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap");
+
+body {
+  @apply bg-gray-50 text-gray-900 font-sans;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium transition;
+}
+.btn-primary {
+  @apply btn bg-brand text-white hover:bg-brand-dark;
+}
+.btn-outline {
+  @apply btn border border-brand text-brand hover:bg-brand-light;
+}
+.card {
+  @apply rounded-xl bg-white p-5 shadow-sm border border-gray-100;
+}
+.input {
+  @apply w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-brand focus:ring-1 focus:ring-brand;
+}
+.label {
+  @apply mb-1 block text-sm font-medium text-gray-700;
+}
+.badge {
+  @apply inline-block rounded-full bg-brand-light px-3 py-1 text-xs font-medium text-brand-dark;
+}
