@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>פנסיון בשדות — מוקאפים לאישור לקוח</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+  *{font-family:'Heebo',system-ui,sans-serif}
+  body{background:#eef2f6}
+  .desktop-viewport{width:794px;overflow:hidden;border-radius:0 0 10px 10px;background:#fff}
+  .desktop-ifr{width:1280px;height:900px;border:0;transform:scale(.62);transform-origin:top right;display:block}
+  .mobile-ifr{width:390px;border:0;display:block;background:#fff}
+  .phone{width:414px;background:#0f172a;border-radius:42px;padding:12px;box-shadow:0 20px 45px -15px rgba(2,6,23,.45)}
+  .phone-screen{border-radius:32px;overflow:hidden;background:#fff;position:relative}
+  .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:140px;height:22px;background:#0f172a;border-radius:0 0 16px 16px;z-index:10}
+  .browser{background:#fff;border-radius:10px 10px 0 0;box-shadow:0 20px 45px -18px rgba(2,6,23,.4)}
+  .dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+  @media (max-width:1180px){
+    .devices{flex-direction:column;align-items:center}
+  }
+</style>
+</head>
+<body class="text-slate-800">
+
+<header class="bg-slate-900 text-white">
+  <div class="max-w-6xl mx-auto px-5 py-8">
+    <div class="flex items-center gap-3 text-2xl font-extrabold">
+      <span class="text-3xl">🌾</span> פנסיון בשדות — מוקאפים לאישור לקוח
+    </div>
+    <p class="text-slate-300 mt-3 max-w-3xl leading-relaxed">
+      תצוגה מקדימה של כל המסכים במערכת — אתר ציבורי, דפי אימוץ ומסירה, דף חתימה דיגיטלית בנייד, וכל מסכי הניהול הפנימיים.
+      כל מסך מוצג <b>בשתי גרסאות זו לצד זו: מחשב 💻 ונייד 📱</b>, כדי לראות בדיוק איך התצוגה מסתגלת. זהו מוקאפ עיצובי בלבד — לדיון ואישור, ללא נתונים אמיתיים.
+    </p>
+  </div>
+</header>
+
+<nav class="bg-white border-b sticky top-0 z-30 shadow-sm">
+  <div class="max-w-6xl mx-auto px-5 py-3 flex flex-wrap gap-2 text-sm" id="toc"></div>
+</nav>
+
+<main class="max-w-[1200px] mx-auto px-4 py-8" id="screens"></main>
+
+<footer class="text-center text-slate-400 text-sm py-10">פנסיון בשדות · מוקאפים · גרסה לדיון</footer>
+
+<script>
+/* ---------- shared building blocks ---------- */
+function pub(active, body){
+  const link=(k,t)=>`<a class="${active===k?'text-emerald-700 font-bold':'text-slate-600'} hover:text-emerald-700 cursor-pointer">${t}</a>`;
+  return `
+  <header class="bg-white/95 backdrop-blur sticky top-0 z-20 border-b border-emerald-100">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2 font-extrabold text-emerald-700 text-lg"><span class="text-2xl">🌾</span> פנסיון בשדות</div>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">${link('home','בית')}${link('adopt','כלבים לאימוץ')}<a class="text-slate-600 hover:text-emerald-700 cursor-pointer">שירותים</a>${link('surrender','מסירת כלב')}<a class="text-slate-600 hover:text-emerald-700 cursor-pointer">צור קשר</a></nav>
+      <div class="flex items-center gap-3">
+        <span class="hidden md:inline text-sm text-slate-400">כניסת צוות</span>
+        <button class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-sm">מצא כלב לאימוץ</button>
+        <button class="md:hidden text-2xl text-slate-700">☰</button>
+      </div>
+    </div>
+  </header>
+  ${body}
+  <footer class="bg-emerald-900 text-emerald-100 mt-16">
+    <div class="max-w-6xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-3 text-sm">
+      <div><div class="font-extrabold text-lg flex items-center gap-2 mb-3"><span>🌾</span> פנסיון בשדות</div><p class="text-emerald-200/80 leading-relaxed">בית חם לכלבים — אימוץ אחראי, מסירה בכבוד והעברת בעלות מול הרשויות.</p></div>
+      <div><div class="font-bold mb-3">ניווט</div><ul class="space-y-2 text-emerald-200/80"><li>כלבים לאימוץ</li><li>מסירת כלב</li><li>שירותים</li><li>שאלות נפוצות</li></ul></div>
+      <div><div class="font-bold mb-3">צור קשר</div><ul class="space-y-2 text-emerald-200/80"><li>📞 052-000-0000</li><li>✉️ hello@sadot.co.il</li><li>📍 השדות, השרון</li></ul></div>
+    </div>
+    <div class="border-t border-emerald-800 text-center py-4 text-emerald-300/70 text-xs">© פנסיון בשדות · כל הזכויות שמורות</div>
+  </footer>`;
+}
+
+function adm(active, title, body){
+  const items=[['dash','📊','סקירה'],['dogs','🐕','כלבים'],['surr','🏠','מסירות'],['adopt','❤️','אימוצים'],['own','📋','העברות בעלות'],['tasks','✅','משימות'],['msg','💬','הודעות']];
+  const side=items.map(([k,i,t])=>`<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm ${active===k?'bg-emerald-600 text-white font-semibold':'text-slate-300 hover:bg-slate-800'} cursor-pointer"><span class="text-lg">${i}</span>${t}</a>`).join('');
+  const tabs=items.slice(0,5).map(([k,i,t])=>`<a class="flex flex-col items-center gap-0.5 text-[10px] ${active===k?'text-emerald-600 font-bold':'text-slate-400'} cursor-pointer"><span class="text-xl">${i}</span>${t}</a>`).join('');
+  return `
+  <div class="min-h-screen bg-slate-50 flex">
+    <aside class="hidden md:flex w-60 shrink-0 bg-slate-900 text-white flex-col">
+      <div class="h-16 flex items-center gap-2 px-5 font-extrabold border-b border-slate-800"><span class="text-xl">🌾</span> פנסיון בשדות</div>
+      <nav class="flex-1 p-3 space-y-1">${side}</nav>
+      <div class="p-4 border-t border-slate-800 flex items-center gap-3"><div class="w-9 h-9 rounded-full bg-emerald-500 grid place-items-center font-bold">מ</div><div class="text-sm"><div class="font-semibold">מאור לוי</div><div class="text-slate-400 text-xs">מנהל</div></div></div>
+    </aside>
+    <div class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b flex items-center justify-between px-4 md:px-6 sticky top-0 z-10">
+        <div class="flex items-center gap-3"><button class="md:hidden text-2xl">☰</button><h1 class="text-lg md:text-xl font-bold">${title}</h1></div>
+        <div class="flex items-center gap-4"><button class="relative text-xl">🔔<span class="absolute -top-1 -left-1 bg-red-500 text-white text-[10px] w-4 h-4 grid place-items-center rounded-full">3</span></button><div class="md:hidden w-9 h-9 rounded-full bg-emerald-500 text-white grid place-items-center font-bold">מ</div></div>
+      </header>
+      <main class="p-4 md:p-6 pb-24 md:pb-6">${body}</main>
+      <nav class="md:hidden fixed bottom-0 inset-x-0 bg-white border-t flex justify-around py-2 z-20">${tabs}</nav>
+    </div>
+  </div>`;
+}
+
+const badge=(t,c)=>`<span class="inline-block text-xs font-semibold px-2.5 py-1 rounded-full ${c}">${t}</span>`;
+const dogPhoto=(g,e)=>`<div class="w-full h-full grid place-items-center text-5xl" style="background:linear-gradient(135deg,${g})">${e}</div>`;
+
+function dogCard(name,info,g,e,tag){
+  return `<div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 group">
+    <div class="h-44 relative overflow-hidden">${dogPhoto(g,e)}<div class="absolute top-3 right-3">${tag}</div></div>
+    <div class="p-4">
+      <div class="flex items-center justify-between"><h3 class="font-bold text-lg">${name}</h3><span class="text-emerald-600 text-xl">♡</span></div>
+      <p class="text-slate-500 text-sm mt-1">${info}</p>
+      <button class="mt-3 w-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 font-semibold text-sm py-2 rounded-lg">לפרטים ואימוץ</button>
+    </div></div>`;
+}
+const field=(label,ph,type='text')=>`<label class="block"><span class="text-sm font-medium text-slate-600">${label}</span><input type="${type}" placeholder="${ph}" class="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-emerald-400 outline-none"></label>`;
+
+/* ---------- screens ---------- */
+const dogs = `
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    ${dogCard('רקס','זכר · 3 שנים · בינוני','#34d399,#059669','🐕',badge('זמין','bg-emerald-600 text-white'))}
+    ${dogCard('לונה','נקבה · 2 שנים · קטן','#fbbf24,#f59e0b','🐩',badge('זמין','bg-emerald-600 text-white'))}
+    ${dogCard("צ'ארלי",'זכר · 5 שנים · גדול','#60a5fa,#2563eb','🦮',badge('מסירה מהבית','bg-amber-500 text-white'))}
+    ${dogCard('מילה','נקבה · 1 שנה · קטן','#f472b6,#db2777','🐕‍🦺',badge('חדש','bg-rose-500 text-white'))}
+  </div>`;
+
+const screens = [
+  {id:'home', name:'דף הבית', kind:'אתר ציבורי', desc:'דף נחיתה ראשי — הסבר על השירות, כלבים מומלצים לאימוץ ושלבי התהליך.', html: pub('home',`
+    <section class="bg-gradient-to-bl from-emerald-50 via-white to-amber-50">
+      <div class="max-w-6xl mx-auto px-4 py-14 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="inline-block bg-emerald-100 text-emerald-700 text-sm font-semibold px-3 py-1 rounded-full">בית חם לכל כלב 🐾</span>
+          <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mt-4">מאמצים, מוסרים<br>ודואגים — <span class="text-emerald-600">באהבה</span></h1>
+          <p class="text-slate-600 mt-4 text-lg leading-relaxed">פנסיון בשדות מלווה אתכם בכל תהליך: אימוץ אחראי, מסירת כלב בכבוד והעברת בעלות מסודרת מול הרשות הווטרינרית.</p>
+          <div class="flex flex-wrap gap-3 mt-7">
+            <button class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-full shadow">מצא כלב לאימוץ</button>
+            <button class="bg-white border border-slate-200 hover:border-emerald-400 font-semibold px-6 py-3 rounded-full">מסירת כלב</button>
+          </div>
+        </div>
+        <div class="relative"><div class="rounded-3xl h-64 md:h-80 grid place-items-center text-8xl shadow-xl" style="background:linear-gradient(135deg,#34d399,#059669)">🐕</div>
+          <div class="absolute -bottom-5 right-5 bg-white rounded-2xl shadow-lg px-5 py-3 flex items-center gap-3"><span class="text-2xl">❤️</span><div><div class="font-bold">+240</div><div class="text-xs text-slate-500">כלבים אומצו</div></div></div></div>
+      </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-4 py-14">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm"><div class="text-3xl">🐾</div><h3 class="font-bold text-lg mt-3">אימוץ כלב</h3><p class="text-slate-500 text-sm mt-2 leading-relaxed">מצאו את החבר המושלם. תהליך מלווה כולל התאמה, חתימה דיגיטלית והעברת בעלות.</p></div>
+        <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm"><div class="text-3xl">🏡</div><h3 class="font-bold text-lg mt-3">מסירה לפנסיון</h3><p class="text-slate-500 text-sm mt-2 leading-relaxed">לא יכולים להמשיך לטפל? אנחנו דואגים לכלב ומחפשים לו בית אוהב חדש.</p></div>
+        <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm relative"><span class="absolute top-4 left-4 text-xs bg-amber-100 text-amber-700 font-semibold px-2 py-1 rounded-full">1,000 ₪ לחודש</span><div class="text-3xl">🏠</div><h3 class="font-bold text-lg mt-3">מסירה מהבית</h3><p class="text-slate-500 text-sm mt-2 leading-relaxed">הכלב נשאר אצלכם ומפורסם לאימוץ. צוברים זכות מעבר לפנסיון לאחר כ-7 חודשים.</p></div>
+      </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-4 pb-14">
+      <div class="flex items-end justify-between mb-6"><h2 class="text-2xl font-extrabold">כלבים שמחכים לבית</h2><a class="text-emerald-600 font-semibold text-sm cursor-pointer">לכל הכלבים ←</a></div>
+      ${dogs}
+    </section>`)},
+
+  {id:'adopt', name:'גלריית אימוץ', kind:'אתר ציבורי', desc:'רשימת כל הכלבים הזמינים לאימוץ, עם סינון לפי גודל/גיל/מין.', html: pub('adopt',`
+    <section class="max-w-6xl mx-auto px-4 py-10">
+      <h1 class="text-3xl font-extrabold">כלבים לאימוץ</h1>
+      <p class="text-slate-500 mt-2">בחרו את החבר הבא שלכם — כל כלב מגיע עם בדיקה וטרינרית וליווי מלא.</p>
+      <div class="flex flex-wrap gap-2 mt-6">
+        ${['הכל','קטן','בינוני','גדול','גורים','בוגרים','זכר','נקבה'].map((t,i)=>`<button class="text-sm px-4 py-2 rounded-full border ${i===0?'bg-emerald-600 text-white border-emerald-600':'bg-white border-slate-200 text-slate-600'}">${t}</button>`).join('')}
+      </div>
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        ${dogCard('רקס','זכר · 3 שנים · בינוני · מחוסן','#34d399,#059669','🐕',badge('זמין','bg-emerald-600 text-white'))}
+        ${dogCard('לונה','נקבה · 2 שנים · קטן · מסורס','#fbbf24,#f59e0b','🐩',badge('זמין','bg-emerald-600 text-white'))}
+        ${dogCard("צ'ארלי",'זכר · 5 שנים · גדול','#60a5fa,#2563eb','🦮',badge('מסירה מהבית','bg-amber-500 text-white'))}
+        ${dogCard('מילה','נקבה · 1 שנה · קטן','#f472b6,#db2777','🐕‍🦺',badge('חדש','bg-rose-500 text-white'))}
+        ${dogCard('בלאקי','זכר · 4 שנים · בינוני','#475569,#0f172a','🐕',badge('זמין','bg-emerald-600 text-white'))}
+        ${dogCard('נלה','נקבה · 6 חודשים · קטן','#a78bfa,#7c3aed','🐶',badge('גור','bg-rose-500 text-white'))}
+      </div>
+    </section>`)},
+
+  {id:'dog', name:'עמוד כלב + טופס אימוץ', kind:'אתר ציבורי', desc:'עמוד פרטי כלב עם תמונות, תיאור וטופס בקשת אימוץ.', html: pub('adopt',`
+    <section class="max-w-5xl mx-auto px-4 py-8">
+      <a class="text-sm text-slate-500 cursor-pointer">→ חזרה לכל הכלבים</a>
+      <div class="grid md:grid-cols-2 gap-8 mt-4">
+        <div>
+          <div class="rounded-2xl h-72 grid place-items-center text-8xl shadow-sm" style="background:linear-gradient(135deg,#34d399,#059669)">🐕</div>
+          <div class="grid grid-cols-4 gap-2 mt-2">${['#10b981','#34d399','#6ee7b7','#a7f3d0'].map(c=>`<div class="h-16 rounded-lg grid place-items-center text-2xl" style="background:${c}">🐾</div>`).join('')}</div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">${badge('זמין לאימוץ','bg-emerald-600 text-white')}${badge('מחוסן','bg-slate-100 text-slate-600')}</div>
+          <h1 class="text-3xl font-extrabold mt-3">רקס</h1>
+          <p class="text-slate-500">זכר · 3 שנים · בינוני (18 ק"ג)</p>
+          <p class="text-slate-600 mt-4 leading-relaxed">רקס הוא כלב מלא אנרגיה וחיבה, מסתדר מצוין עם ילדים וכלבים אחרים. מאומן לצרכים וממתין למשפחה אוהבת.</p>
+          <div class="grid grid-cols-3 gap-3 mt-5 text-center">
+            <div class="bg-slate-50 rounded-xl py-3"><div class="text-xl">⚡</div><div class="text-xs text-slate-500 mt-1">אנרגטי</div></div>
+            <div class="bg-slate-50 rounded-xl py-3"><div class="text-xl">👶</div><div class="text-xs text-slate-500 mt-1">ידידותי לילדים</div></div>
+            <div class="bg-slate-50 rounded-xl py-3"><div class="text-xl">🦴</div><div class="text-xs text-slate-500 mt-1">מאולף</div></div>
+          </div>
+          <div class="bg-white border border-slate-100 shadow-sm rounded-2xl p-5 mt-6">
+            <h3 class="font-bold">מעוניינים לאמץ את רקס?</h3>
+            <div class="grid gap-3 mt-3">${field('שם מלא','ישראל ישראלי')}${field('טלפון','050-0000000','tel')}${field('עיר מגורים','רעננה')}
+              <label class="block"><span class="text-sm font-medium text-slate-600">ספרו לנו עליכם</span><textarea rows="3" class="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2 text-sm" placeholder="ניסיון עם כלבים, סביבת מגורים..."></textarea></label>
+              <button class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-lg">שליחת בקשת אימוץ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>`)},
+
+  {id:'surrender', name:'מסירת כלב', kind:'אתר ציבורי', desc:'הסבר שני המסלולים (פנסיון / מסירה מהבית) וטופס פנייה.', html: pub('surrender',`
+    <section class="max-w-4xl mx-auto px-4 py-10">
+      <h1 class="text-3xl font-extrabold text-center">מסירת כלב</h1>
+      <p class="text-slate-500 mt-2 text-center max-w-2xl mx-auto">אנחנו כאן כדי לעזור. בחרו את המסלול המתאים לכם — ונלווה אתכם, כולל הסדרת העברת הבעלות מול הרשות.</p>
+      <div class="grid md:grid-cols-2 gap-5 mt-8">
+        <label class="bg-white border-2 border-emerald-500 rounded-2xl p-5 cursor-pointer ring-2 ring-emerald-100">
+          <div class="flex items-center justify-between"><div class="text-3xl">🏡</div><span class="w-5 h-5 rounded-full border-4 border-emerald-500"></span></div>
+          <h3 class="font-bold text-lg mt-3">מסירה לפנסיון</h3><p class="text-slate-500 text-sm mt-1 leading-relaxed">הכלב עובר אלינו, מקבל טיפול ובית זמני, ואנו מחפשים לו משפחה חדשה.</p></label>
+        <label class="bg-white border-2 border-slate-200 rounded-2xl p-5 cursor-pointer">
+          <div class="flex items-center justify-between"><div class="text-3xl">🏠</div><span class="w-5 h-5 rounded-full border-2 border-slate-300"></span></div>
+          <h3 class="font-bold text-lg mt-3">מסירה מהבית <span class="text-amber-600 text-sm">· 1,000 ₪/חודש</span></h3><p class="text-slate-500 text-sm mt-1 leading-relaxed">הכלב נשאר אצלכם ומפורסם לאימוץ. נצברת זכות מעבר לפנסיון לאחר ~7 חודשים.</p></label>
+      </div>
+      <div class="bg-white border border-slate-100 shadow-sm rounded-2xl p-6 mt-6">
+        <h3 class="font-bold mb-4">פרטי הפנייה</h3>
+        <div class="grid sm:grid-cols-2 gap-4">${field('שם הבעלים','ישראל ישראלי')}${field('טלפון','050-0000000','tel')}${field('עיר','כפר סבא')}${field('שם הכלב','בלאקי')}${field('גזע / תיאור','מעורב, בינוני')}${field('גיל משוער','4 שנים')}</div>
+        <label class="block mt-4"><span class="text-sm font-medium text-slate-600">סיבת המסירה</span><textarea rows="3" class="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2 text-sm"></textarea></label>
+        <div class="bg-amber-50 text-amber-800 text-sm rounded-lg p-3 mt-4">ℹ️ מסירת כלב מחייבת העברת בעלות רשמית מול הרשות הווטרינרית — נדריך אתכם בתהליך.</div>
+        <button class="mt-5 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-lg">שליחת הפנייה</button>
+      </div>
+    </section>`)},
+
+  {id:'thankyou', name:'דף תודה', kind:'אתר ציבורי', desc:'אישור קבלת פנייה והסבר על השלבים הבאים.', html: pub('',`
+    <section class="max-w-xl mx-auto px-4 py-20 text-center">
+      <div class="w-20 h-20 mx-auto rounded-full bg-emerald-100 grid place-items-center text-4xl">✅</div>
+      <h1 class="text-3xl font-extrabold mt-6">תודה! קיבלנו את הפנייה</h1>
+      <p class="text-slate-500 mt-3 leading-relaxed">נציג מהצוות יחזור אליכם תוך 1-2 ימי עסקים בוואטסאפ או בטלפון. בינתיים אתם מוזמנים להכיר את שאר הכלבים.</p>
+      <div class="bg-white border border-slate-100 rounded-2xl p-5 mt-8 text-right space-y-3">
+        <div class="flex gap-3"><span class="text-emerald-600">①</span><div><div class="font-semibold text-sm">יצירת קשר</div><div class="text-slate-500 text-sm">נחזור אליכם לתיאום פרטים</div></div></div>
+        <div class="flex gap-3"><span class="text-emerald-600">②</span><div><div class="font-semibold text-sm">חתימה דיגיטלית</div><div class="text-slate-500 text-sm">תקבלו קישור לחתימה בנייד</div></div></div>
+        <div class="flex gap-3"><span class="text-emerald-600">③</span><div><div class="font-semibold text-sm">העברת בעלות</div><div class="text-slate-500 text-sm">נסדיר הכל מול הרשות</div></div></div>
+      </div>
+      <button class="mt-8 bg-emerald-600 text-white font-semibold px-6 py-3 rounded-full">חזרה לדף הבית</button>
+    </section>`)},
+
+  {id:'sign', name:'חתימה דיגיטלית (נייד)', kind:'דף נחיתה לנייד ⭐', desc:'דף הנחיתה שהמוסר/המאמץ מקבל בקישור SMS/וואטסאפ — מותאם לחתימה מהנייד. מוצג גם במחשב.', html: `
+    <div class="min-h-screen bg-slate-100">
+      <div class="bg-emerald-600 text-white px-5 py-4 flex items-center gap-2 font-bold"><span class="text-xl">🌾</span> פנסיון בשדות</div>
+      <div class="max-w-md mx-auto px-4 py-6">
+        <div class="bg-white rounded-2xl shadow-sm p-5">
+          <span class="inline-block bg-emerald-50 text-emerald-700 text-xs font-semibold px-2 py-1 rounded-full">מסמך לחתימה</span>
+          <h1 class="text-xl font-extrabold mt-2">טופס העברת בעלות על כלב</h1>
+          <p class="text-slate-500 text-sm mt-1">נדרשת חתימתך כדי להשלים את העברת הבעלות מול הרשות הווטרינרית.</p>
+          <div class="border border-slate-100 rounded-xl divide-y mt-4 text-sm">
+            <div class="flex justify-between px-3 py-2.5"><span class="text-slate-500">חותם</span><span class="font-semibold">ישראל ישראלי</span></div>
+            <div class="flex justify-between px-3 py-2.5"><span class="text-slate-500">כלב</span><span class="font-semibold">רקס · שבב 990001234</span></div>
+            <div class="flex justify-between px-3 py-2.5"><span class="text-slate-500">מעביר</span><span class="font-semibold">ישראל ישראלי</span></div>
+            <div class="flex justify-between px-3 py-2.5"><span class="text-slate-500">מקבל</span><span class="font-semibold">פנסיון בשדות</span></div>
+            <div class="flex justify-between px-3 py-2.5"><span class="text-slate-500">רשות</span><span class="font-semibold">עיריית כפר סבא</span></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-5 mt-4">
+          <h2 class="font-bold text-sm">תנאי ההעברה</h2>
+          <div class="h-24 overflow-y-auto text-xs text-slate-500 leading-relaxed bg-slate-50 rounded-lg p-3 mt-2">הריני מאשר/ת כי אני מעביר/ה את הבעלות על הכלב המתואר לעיל מרצוני החופשי, וכי כל הפרטים נכונים. ידוע לי כי ההעברה מדווחת לרשות הווטרינרית בהתאם לחוק. אני מאשר/ת קבלת עדכונים בנוגע לתהליך...</div>
+          <label class="flex items-start gap-2 mt-3 text-sm"><input type="checkbox" class="mt-1"> <span class="text-slate-600">קראתי ואני מאשר/ת את תנאי העברת הבעלות</span></label>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-5 mt-4">
+          <div class="flex items-center justify-between"><h2 class="font-bold text-sm">חתימה</h2><button class="text-xs text-slate-400">נקה</button></div>
+          <div class="border-2 border-dashed border-slate-300 rounded-xl h-32 grid place-items-center mt-2 bg-slate-50 relative">
+            <span class="text-slate-300 text-sm">חתום/חתמי כאן באצבע ✍️</span>
+            <span class="absolute text-3xl text-emerald-600/70" style="font-family:cursive;transform:rotate(-6deg)">ישראל</span>
+          </div>
+        </div>
+        <button class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl mt-4 shadow">אישור וחתימה ←</button>
+        <p class="text-center text-xs text-slate-400 mt-3">🔒 החתימה מאובטחת ומתועדת עם חותמת זמן</p>
+      </div>
+    </div>`},
+
+  {id:'login', name:'כניסת צוות', kind:'מערכת ניהול', desc:'מסך התחברות לצוות הניהול.', html: `
+    <div class="min-h-screen grid place-items-center bg-gradient-to-bl from-emerald-50 to-slate-100 p-4">
+      <div class="w-full max-w-sm bg-white rounded-2xl shadow-lg p-7">
+        <div class="text-center"><div class="text-4xl">🌾</div><h1 class="text-xl font-extrabold mt-2">פנסיון בשדות</h1><p class="text-slate-400 text-sm">מערכת ניהול — כניסת צוות</p></div>
+        <div class="grid gap-4 mt-6">${field('דוא"ל','admin@sadot.co.il','email')}${field('סיסמה','••••••••','password')}
+          <div class="flex items-center justify-between text-sm"><label class="flex items-center gap-2 text-slate-500"><input type="checkbox"> זכור אותי</label><a class="text-emerald-600">שכחתי סיסמה</a></div>
+          <button class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-lg">התחברות</button>
+        </div>
+      </div>
+    </div>`},
+
+  {id:'dash', name:'לוח בקרה', kind:'מערכת ניהול', desc:'סקירת מצב — כלבים, תיקים פתוחים, מעקבים להיום והכנסות.', html: adm('dash','לוח בקרה',`
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      ${[['כלבים זמינים','24','🐕','text-emerald-600'],['תיקים פתוחים','11','📂','text-blue-600'],['מעקבים להיום','5','🔔','text-amber-600'],['הכנסה החודש','18,000 ₪','💰','text-violet-600']].map(([t,v,i,c])=>`<div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100"><div class="text-2xl">${i}</div><div class="text-2xl font-extrabold mt-2 ${c}">${v}</div><div class="text-slate-500 text-sm">${t}</div></div>`).join('')}
+    </div>
+    <div class="grid lg:grid-cols-3 gap-4 mt-4">
+      <div class="lg:col-span-2 bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+        <div class="flex items-center justify-between"><h3 class="font-bold">פעילות אחרונה</h3><a class="text-sm text-emerald-600">הכל</a></div>
+        <div class="divide-y mt-2 text-sm">
+          ${[['💚','בקשת אימוץ חדשה לרקס','לפני 12 דק׳'],['📧','נשלח מייל לרשות — תיק #1043','לפני שעה'],['💳','חיוב חודשי בוצע — מסירה מהבית','לפני 3 שעות'],['✅','העברת בעלות אושרה — לונה','אתמול']].map(([i,t,w])=>`<div class="flex items-center gap-3 py-3"><span class="text-lg">${i}</span><div class="flex-1">${t}</div><span class="text-slate-400 text-xs">${w}</span></div>`).join('')}
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+        <h3 class="font-bold">משימות להיום</h3>
+        <div class="space-y-2 mt-3 text-sm">
+          ${[['מעקב רשות — תיק #1043','אדום'],['התקשרות למאמץ של מילה','כתום'],['חיוב חודשי — בלאקי','ירוק']].map(([t,c])=>`<label class="flex items-center gap-2 bg-slate-50 rounded-lg px-3 py-2"><input type="checkbox"><span class="flex-1">${t}</span><span class="w-2 h-2 rounded-full ${c==='אדום'?'bg-red-500':c==='כתום'?'bg-amber-500':'bg-emerald-500'}"></span></label>`).join('')}
+        </div>
+      </div>
+    </div>`)},
+
+  {id:'dogs', name:'ניהול כלבים', kind:'מערכת ניהול', desc:'רשימת כל הכלבים במערכת עם סטטוסים — טבלה במחשב, כרטיסים בנייד.', html: adm('dogs','כלבים',`
+    <div class="flex items-center justify-between mb-4"><div class="flex gap-2"><input placeholder="🔍 חיפוש כלב..." class="border border-slate-200 rounded-lg px-3 py-2 text-sm w-48"><select class="border border-slate-200 rounded-lg px-3 py-2 text-sm"><option>כל הסטטוסים</option></select></div><button class="bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-lg">+ כלב חדש</button></div>
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hidden md:block">
+      <table class="w-full text-sm text-right">
+        <thead class="bg-slate-50 text-slate-500"><tr><th class="px-4 py-3 font-medium">כלב</th><th class="px-4 py-3 font-medium">גזע / גיל</th><th class="px-4 py-3 font-medium">מיקום</th><th class="px-4 py-3 font-medium">סטטוס</th><th></th></tr></thead>
+        <tbody class="divide-y">
+          ${[['רקס','🐕','מעורב · 3 ש׳','פנסיון',badge('זמין','bg-emerald-100 text-emerald-700')],['לונה','🐩','פודל · 2 ש׳','פנסיון',badge('זמין','bg-emerald-100 text-emerald-700')],["צ'ארלי",'🦮','לברדור · 5 ש׳','בית הבעלים',badge('מסירה מהבית','bg-amber-100 text-amber-700')],['מילה','🐕‍🦺','מעורב · 1 ש׳','פנסיון',badge('בתהליך אימוץ','bg-blue-100 text-blue-700')],['נלה','🐶','מעורב · 6 ח׳','פנסיון',badge('אומץ','bg-slate-100 text-slate-500')]].map(([n,e,b,l,s])=>`<tr class="hover:bg-slate-50"><td class="px-4 py-3 flex items-center gap-2"><span class="w-8 h-8 rounded-full bg-emerald-100 grid place-items-center">${e}</span><b>${n}</b></td><td class="px-4 py-3 text-slate-500">${b}</td><td class="px-4 py-3 text-slate-500">${l}</td><td class="px-4 py-3">${s}</td><td class="px-4 py-3 text-left"><button class="text-slate-400">⋯</button></td></tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="md:hidden space-y-3">
+      ${[['רקס','🐕','מעורב · 3 ש׳ · פנסיון',badge('זמין','bg-emerald-100 text-emerald-700')],['לונה','🐩','פודל · 2 ש׳ · פנסיון',badge('זמין','bg-emerald-100 text-emerald-700')],["צ'ארלי",'🦮','לברדור · 5 ש׳ · בית',badge('מסירה מהבית','bg-amber-100 text-amber-700')],['מילה','🐕‍🦺','מעורב · 1 ש׳',badge('בתהליך','bg-blue-100 text-blue-700')]].map(([n,e,b,s])=>`<div class="bg-white rounded-xl border border-slate-100 p-3 flex items-center gap-3"><span class="w-10 h-10 rounded-full bg-emerald-100 grid place-items-center text-lg">${e}</span><div class="flex-1"><div class="font-bold">${n}</div><div class="text-slate-500 text-xs">${b}</div></div>${s}</div>`).join('')}
+    </div>`)},
+
+  {id:'surr', name:'מסירה מהבית — תיק', kind:'מערכת ניהול', desc:'תיק מסירה מהבית: צבירת קרדיט לעבר 7,000 ₪, חיוב חודשי והמרה לפנסיון.', html: adm('surr','תיק מסירה — צ\'ארלי',`
+    <div class="grid lg:grid-cols-3 gap-4">
+      <div class="lg:col-span-2 space-y-4">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+          <div class="flex items-center justify-between"><div class="flex items-center gap-3"><span class="w-12 h-12 rounded-full bg-amber-100 grid place-items-center text-2xl">🦮</span><div><h2 class="font-bold text-lg">צ'ארלי</h2><p class="text-slate-500 text-sm">מסירה מהבית · בעלים: דנה כהן · רעננה</p></div></div>${badge('פעיל','bg-emerald-100 text-emerald-700')}</div>
+          <div class="mt-5">
+            <div class="flex justify-between text-sm mb-1"><span class="text-slate-500">קרדיט שנצבר</span><span class="font-bold">5,000 ₪ / 7,000 ₪</span></div>
+            <div class="h-3 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-amber-500" style="width:71%"></div></div>
+            <p class="text-xs text-slate-400 mt-1">עוד 2 חיובים חודשיים ניתן יהיה להמיר למסירה לפנסיון</p>
+          </div>
+          <div class="flex flex-wrap gap-2 mt-5"><button class="bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-lg">חיוב חודש נוכחי</button><button class="bg-slate-100 text-slate-400 text-sm font-semibold px-4 py-2 rounded-lg cursor-not-allowed">המרה לפנסיון (טרם זמין)</button></div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+          <h3 class="font-bold mb-3">היסטוריית תשלומים</h3>
+          <table class="w-full text-sm text-right"><thead class="text-slate-400 text-xs"><tr><th class="py-2 font-medium">חודש</th><th class="font-medium">סכום</th><th class="font-medium">סטטוס</th></tr></thead>
+          <tbody class="divide-y">${[['ינואר','1,000 ₪'],['פברואר','1,000 ₪'],['מרץ','1,000 ₪'],['אפריל','1,000 ₪'],['מאי','1,000 ₪']].map(([m,s])=>`<tr><td class="py-2.5">${m} 2026</td><td>${s}</td><td>${badge('שולם','bg-emerald-100 text-emerald-700')}</td></tr>`).join('')}</tbody></table>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5"><h3 class="font-bold mb-3">פרטי הכלב</h3><div class="text-sm space-y-2 text-slate-600"><div class="flex justify-between"><span class="text-slate-400">שבב</span><span>990001234</span></div><div class="flex justify-between"><span class="text-slate-400">פורסם לאימוץ</span><span>✅ כן</span></div><div class="flex justify-between"><span class="text-slate-400">מיקום</span><span>בית הבעלים</span></div></div></div>
+        <div class="bg-emerald-50 rounded-2xl p-5 text-sm text-emerald-800">💡 לאחר צבירת 7,000 ₪ (≈ עלות 7 חודשי פנסיון), ניתן להמיר את התיק למסירה מלאה לפנסיון ללא תשלום נוסף.</div>
+      </div>
+    </div>`)},
+
+  {id:'adopt2', name:'ניהול אימוצים', kind:'מערכת ניהול', desc:'לוח לידים ותיקי אימוץ לפי שלב — אישור, מסמכים, השלמה.', html: adm('adopt','אימוצים',`
+    <div class="grid md:grid-cols-3 gap-4">
+      ${[['לידים חדשים','bg-slate-50',[['רקס','משה לוי','052-...'],['לונה','שרה כהן','053-...']]],['ממתין לאישור','bg-blue-50',[['מילה','דוד אבני','054-...']]],['בהשלמה / חתימה','bg-amber-50',[['בלאקי','נועה גל','050-...']]]].map(([t,bg,rows])=>`
+        <div><div class="flex items-center justify-between mb-2"><h3 class="font-bold text-sm">${t}</h3><span class="text-xs text-slate-400">${rows.length}</span></div>
+        <div class="space-y-2">${rows.map(([d,n,p])=>`<div class="${bg} rounded-xl p-3 border border-slate-100"><div class="font-semibold text-sm">${d} 🐾</div><div class="text-slate-500 text-xs mt-0.5">${n} · ${p}</div><div class="flex gap-1.5 mt-2"><button class="text-xs bg-emerald-600 text-white px-2.5 py-1 rounded">אישור</button><button class="text-xs bg-white border px-2.5 py-1 rounded">פרטים</button></div></div>`).join('')}</div></div>`).join('')}
+    </div>`)},
+
+  {id:'own', name:'העברת בעלות + מעקב רשות', kind:'מערכת ניהול', desc:'תיק העברת בעלות: צ׳קליסט מסמכים, שליחה לרשות ומנגנון follow-up אוטומטי.', html: adm('own','העברת בעלות — תיק #1043',`
+    <div class="grid lg:grid-cols-3 gap-4">
+      <div class="lg:col-span-2 space-y-4">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+          <div class="flex items-center justify-between"><h2 class="font-bold text-lg">רקס → פנסיון בשדות</h2>${badge('נשלח לרשות — ממתין לאישור','bg-amber-100 text-amber-700')}</div>
+          <div class="grid sm:grid-cols-2 gap-3 mt-4 text-sm">
+            <div class="bg-slate-50 rounded-lg p-3"><div class="text-slate-400 text-xs">רשות מוסר</div><div class="font-semibold">עיריית כפר סבא</div></div>
+            <div class="bg-slate-50 rounded-lg p-3"><div class="text-slate-400 text-xs">רשות מקבל</div><div class="font-semibold">פנסיון בשדות (השרון)</div></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+          <h3 class="font-bold mb-3">מסמכים נדרשים</h3>
+          <div class="space-y-2 text-sm">${[['טופס העברת בעלות חתום',true],['צילום תעודת זהות',true],['אישור חיסון כלבת',true],['תמונת שבב',false]].map(([t,ok])=>`<div class="flex items-center gap-2 ${ok?'text-slate-700':'text-slate-400'}"><span class="${ok?'text-emerald-600':'text-slate-300'}">${ok?'☑':'☐'}</span>${t}</div>`).join('')}</div>
+          <button class="mt-4 bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-lg">שליחה לרשות 📧</button>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+          <h3 class="font-bold mb-3">מעקב מול הרשות</h3>
+          <div class="relative pr-4 border-r-2 border-slate-100 space-y-4 text-sm">
+            ${[['📧','נשלח מייל ראשון לרשות','14.6'],['🔔','תזכורת follow-up אוטומטית','21.6'],['🔔','תזכורת נוספת נשלחה','24.6 · היום']].map(([i,t,d])=>`<div class="relative"><span class="absolute -right-[26px] bg-white">${i}</span><div class="font-medium">${t}</div><div class="text-slate-400 text-xs">${d}</div></div>`).join('')}
+          </div>
+          <div class="bg-amber-50 text-amber-800 text-xs rounded-lg p-3 mt-3">⏰ המעקב הבא מתוזמן ל-1.7. המערכת תמשיך לפתוח תזכורות עד אישור הרשות.</div>
+          <div class="flex gap-2 mt-3"><button class="bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-lg">סמן כאושר ✅</button><button class="bg-slate-100 text-slate-600 text-sm px-4 py-2 rounded-lg">עצור מעקב</button></div>
+        </div>
+      </div>
+      <div class="space-y-4"><div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5"><h3 class="font-bold mb-2">המוסר</h3><p class="text-sm text-slate-600">ישראל ישראלי<br>ת.ז 0000000<br>כפר סבא</p></div></div>
+    </div>`)},
+
+  {id:'tasks', name:'משימות ומעקבים', kind:'מערכת ניהול', desc:'רשימת משימות הצוות, כולל תזכורות follow-up אוטומטיות.', html: adm('tasks','משימות',`
+    <div class="flex gap-2 mb-4">${['היום','השבוע','הכל','הושלמו'].map((t,i)=>`<button class="text-sm px-4 py-2 rounded-full ${i===0?'bg-emerald-600 text-white':'bg-white border border-slate-200 text-slate-600'}">${t}</button>`).join('')}</div>
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 divide-y">
+      ${[['🔴','מעקב רשות — תיק #1043','העברת בעלות · רקס','היום'],['🟠','התקשרות למאמץ של מילה','אימוץ','היום'],['🟢','חיוב חודשי — בלאקי','מסירה מהבית','מחר'],['🟢','תיאום בדיקה וטרינרית — נלה','כללי','מחר'],['⚪','עדכון תמונות לונה באתר','כללי','השבוע']].map(([c,t,tag,w])=>`<label class="flex items-center gap-3 px-4 py-3.5 hover:bg-slate-50"><input type="checkbox"><span>${c}</span><div class="flex-1"><div class="font-medium text-sm">${t}</div><div class="text-slate-400 text-xs">${tag}</div></div><span class="text-slate-400 text-xs">${w}</span></label>`).join('')}
+    </div>`)},
+
+  {id:'msg', name:'הודעות + עוזר AI', kind:'מערכת ניהול · עתידי', desc:'מרכז שיחות וואטסאפ עם פאנל עוזר AI: זיהוי כוונה, הצעת תשובה והעברה לנציג.', html: adm('msg','הודעות',`
+    <div class="grid lg:grid-cols-3 gap-4 h-[560px]">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hidden md:block">
+        <div class="p-3 border-b"><input placeholder="🔍 חיפוש שיחה" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm"></div>
+        <div class="divide-y text-sm">${[['דנה כהן','מתי אפשר לבוא לראות את רקס?','2',true],['משה לוי','תודה רבה!','',false],['נועה גל','שלחתי את המסמכים','',false]].map(([n,m,b,a])=>`<div class="px-4 py-3 ${a?'bg-emerald-50':''} cursor-pointer"><div class="flex justify-between"><b>${n}</b>${b?`<span class="bg-emerald-600 text-white text-xs w-5 h-5 grid place-items-center rounded-full">${b}</span>`:''}</div><div class="text-slate-500 truncate">${m}</div></div>`).join('')}</div>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-100 flex flex-col">
+        <div class="p-3 border-b flex items-center gap-2"><span class="w-8 h-8 rounded-full bg-emerald-100 grid place-items-center">👤</span><b class="text-sm">דנה כהן</b></div>
+        <div class="flex-1 p-4 space-y-3 text-sm bg-slate-50">
+          <div class="bg-white rounded-2xl rounded-tr-sm px-3 py-2 max-w-[80%] shadow-sm">היי, ראיתי את רקס באתר 🐕</div>
+          <div class="bg-white rounded-2xl rounded-tr-sm px-3 py-2 max-w-[80%] shadow-sm">מתי אפשר לבוא לראות אותו?</div>
+        </div>
+        <div class="p-3 border-t flex gap-2"><input placeholder="כתבו הודעה..." class="flex-1 border border-slate-200 rounded-full px-4 py-2 text-sm"><button class="bg-emerald-600 text-white w-10 h-10 rounded-full">➤</button></div>
+      </div>
+      <div class="bg-white rounded-2xl shadow-sm border border-violet-100 p-4">
+        <div class="flex items-center gap-2 font-bold text-violet-700"><span>✨</span> עוזר AI</div>
+        <div class="mt-3 text-sm space-y-3">
+          <div><div class="text-xs text-slate-400">כוונה שזוהתה</div>${badge('תיאום ביקור לאימוץ','bg-violet-100 text-violet-700')}</div>
+          <div><div class="text-xs text-slate-400">תשובה מוצעת</div><div class="bg-slate-50 rounded-lg p-3 text-slate-600">היי דנה! נשמח לארח אתכם. אנחנו פתוחים א׳-ה׳ 16:00-19:00. איזה יום נוח לך? 🐾</div></div>
+          <button class="w-full bg-violet-600 text-white font-semibold py-2 rounded-lg text-sm">שלח תשובה מוצעת</button>
+          <button class="w-full bg-white border border-slate-200 text-slate-600 py-2 rounded-lg text-sm">העבר לנציג אנושי 🙋</button>
+        </div>
+      </div>
+    </div>`)},
+];
+
+/* ---------- renderer ---------- */
+function wrap(html, fid){
+  return `<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
+  <script src="https://cdn.tailwindcss.com"><\/script>
+  <style>@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');*{font-family:'Heebo',sans-serif}body{margin:0}</style>
+  </head><body>${html}
+  <script>
+    function send(){try{parent.postMessage({fid:'${fid}',h:document.documentElement.scrollHeight},'*')}catch(e){}}
+    window.addEventListener('load',function(){send();setTimeout(send,120);setTimeout(send,400);setTimeout(send,900)});
+    if(window.ResizeObserver){new ResizeObserver(send).observe(document.body)}
+  <\/script></body></html>`;
+}
+
+const toc=document.getElementById('toc');
+const main=document.getElementById('screens');
+screens.forEach((s,idx)=>{
+  toc.insertAdjacentHTML('beforeend',`<a href="#${s.id}" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-emerald-100 text-slate-600 hover:text-emerald-700">${idx+1}. ${s.name}</a>`);
+  const dFid='d_'+s.id, mFid='m_'+s.id;
+  const sec=document.createElement('section');
+  sec.id=s.id;
+  sec.className='scroll-mt-20 mb-14';
+  sec.innerHTML=`
+    <div class="flex items-center gap-3 mb-1"><span class="bg-emerald-600 text-white w-8 h-8 grid place-items-center rounded-lg font-bold">${idx+1}</span><h2 class="text-2xl font-extrabold">${s.name}</h2><span class="text-xs font-semibold bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full">${s.kind}</span></div>
+    <p class="text-slate-500 mb-5 pr-11">${s.desc}</p>
+    <div class="devices flex gap-8 items-start justify-center">
+      <div>
+        <div class="text-center text-sm font-semibold text-slate-500 mb-2">💻 מחשב</div>
+        <div class="browser">
+          <div class="flex items-center gap-2 px-4 py-2.5 border-b border-slate-100"><span class="dot bg-red-400"></span><span class="dot bg-amber-400"></span><span class="dot bg-emerald-400"></span><div class="flex-1 mx-3 bg-slate-100 rounded-md text-xs text-slate-400 text-center py-1">sadot.co.il</div></div>
+          <div class="desktop-viewport"><iframe class="desktop-ifr" data-fid="${dFid}"></iframe></div>
+        </div>
+      </div>
+      <div>
+        <div class="text-center text-sm font-semibold text-slate-500 mb-2">📱 נייד</div>
+        <div class="phone"><div class="phone-screen"><div class="notch"></div><iframe class="mobile-ifr" data-fid="${mFid}"></iframe></div></div>
+      </div>
+    </div>`;
+  main.appendChild(sec);
+  sec.querySelector('.desktop-ifr').srcdoc=wrap(s.html,dFid);
+  sec.querySelector('.mobile-ifr').srcdoc=wrap(s.html,mFid);
+});
+
+window.addEventListener('message',function(ev){
+  const d=ev.data; if(!d||!d.fid) return;
+  const ifr=document.querySelector('[data-fid="'+d.fid+'"]');
+  if(!ifr) return;
+  ifr.style.height=d.h+'px';
+  if(ifr.classList.contains('desktop-ifr')){
+    const vp=ifr.closest('.desktop-viewport');
+    if(vp) vp.style.height=(d.h*0.62)+'px';
+  }
+});
+</script>
+</body>
+</html>
