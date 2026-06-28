@@ -35,6 +35,7 @@ tasks_router = build_crud_router(
     update_schema=TaskUpdateSchema,
     prefix="/tasks",
     tag="tasks",
+    filter_fields=["status", "is_followup"],
 )
 
 messages_router = build_crud_router(

@@ -4,6 +4,7 @@ from fastapi import APIRouter
 from app.api.v1 import (
     adoption,
     auth,
+    backoffice,
     dashboard,
     documents,
     dogs,
@@ -41,3 +42,6 @@ api_router.include_router(documents.router)
 api_router.include_router(signatures.router)
 api_router.include_router(messages_router)
 api_router.include_router(qr.router)
+
+# Back-office aggregate case-file endpoints (people/dogs/transfers)
+api_router.include_router(backoffice.router)
