@@ -625,6 +625,48 @@ export async function getDogFile(token: string, dogId: number): Promise<DogFile>
   return authGet<DogFile>(`/api/v1/dogs/${dogId}/file`, token);
 }
 
+// Editable basics for a dog (PATCH /dogs/{id}). All fields optional.
+export type DogUpdate = {
+  name?: string | null;
+  breed?: string | null;
+  age?: number | null;
+  gender?: DogGender | null;
+  size?: DogSize | null;
+  color?: string | null;
+  chip_number?: string | null;
+  is_neutered?: boolean | null;
+  is_vaccinated?: boolean | null;
+  medical_notes?: string | null;
+  behavior_notes?: string | null;
+  good_with_children?: boolean | null;
+  good_with_dogs?: boolean | null;
+  good_with_cats?: boolean | null;
+  suitable_for_apartment?: boolean | null;
+  suitable_for_first_time_owner?: boolean | null;
+  status?: DogStatus | null;
+  current_location_type?: LocationType | null;
+  current_owner_person_id?: number | null;
+  public_description?: string | null;
+  internal_notes?: string | null;
+  public_area?: string | null;
+};
+
+export async function updateDog(
+  token: string,
+  dogId: number,
+  payload: DogUpdate
+): Promise<Dog> {
+  return authPatch<Dog>(`/api/v1/dogs/${dogId}`, token, payload);
+}
+
+export async function setDogStatus(
+  token: string,
+  dogId: number,
+  transition: StatusTransition
+): Promise<Dog> {
+  return authPost<Dog>(`/api/v1/dogs/${dogId}/status`, token, transition);
+}
+
 // ============================================================================
 // People
 // ============================================================================
