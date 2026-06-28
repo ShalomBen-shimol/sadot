@@ -1,3 +1,4 @@
 -r requirements.txt
 pytest==8.3.4
-# httpx is pulled in transitively by starlette's TestClient
+# httpx is required by starlette's TestClient (not a transitive dep of fastapi)
+httpx==0.28.1
