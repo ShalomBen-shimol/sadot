@@ -17,7 +17,11 @@ router = APIRouter(prefix="/qr", tags=["qr"])
 
 
 def _site_base() -> str:
-    return settings.public_site_url.rstrip("/")
+    # public_site_url + frontend_base_path = where the Next.js forms actually live
+    # (e.g. https://sadot.lavit.io/crm). Both are trimmed of trailing/leading slashes.
+    base = settings.public_site_url.rstrip("/")
+    prefix = "/" + settings.frontend_base_path.strip("/") if settings.frontend_base_path.strip("/") else ""
+    return base + prefix
 
 
 def _surrender_url() -> str:

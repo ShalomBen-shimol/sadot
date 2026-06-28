@@ -1,7 +1,8 @@
 """QR intake-link endpoint tests: auth required, PNG bytes, expected URLs."""
 
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
-BASE = "https://sadot.lavit.io"
+# Forms live on the Next.js app mounted under /crm (config.frontend_base_path).
+BASE = "https://sadot.lavit.io/crm"
 
 
 def test_qr_endpoints_require_auth(client):

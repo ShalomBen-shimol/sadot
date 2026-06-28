@@ -30,8 +30,10 @@ class Settings(BaseSettings):
     # CORS
     backend_cors_origins: str = "http://localhost:3000,http://127.0.0.1:3000"
 
-    # Public-facing site (used for QR intake links)
+    # Public-facing site (used for QR intake links) + where the Next.js
+    # frontend is mounted under nginx (matches next.config.js basePath).
     public_site_url: str = "https://sadot.lavit.io"
+    frontend_base_path: str = "/crm"
 
     # External integration tokens (empty -> use mock adapters)
     whatsapp_api_token: str = ""
