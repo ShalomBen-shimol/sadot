@@ -27,6 +27,9 @@ class Settings(BaseSettings):
     # CORS
     backend_cors_origins: str = "http://localhost:3000,http://127.0.0.1:3000"
 
+    # Public-facing site (used for QR intake links)
+    public_site_url: str = "https://sadot.lavit.io"
+
     # External integration tokens (empty -> use mock adapters)
     whatsapp_api_token: str = ""
     payment_provider_key: str = ""
