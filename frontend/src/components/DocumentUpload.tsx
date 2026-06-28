@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { DocumentType } from "@/lib/api";
 
 // Reusable document picker for the public QR intake forms.
@@ -38,6 +38,14 @@ export default function DocumentUpload({
   );
 
   const canUpload = publicUploadEnabled && !!uploadFn;
+
+  // Revoke the object URL of the previous preview when it changes / on unmount,
+  // so picking several files (or leaving the page) doesn't leak blob URLs.
+  useEffect(() => {
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
 
   async function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0] ?? null;
