@@ -10,13 +10,13 @@ from app.api.v1 import (
     ownership,
     public,
     qr,
+    signatures,
     surrender,
 )
 from app.api.v1.generic_routers import (
     messages_router,
     municipalities_router,
     people_router,
-    signatures_router,
     tasks_router,
 )
 
@@ -38,6 +38,6 @@ api_router.include_router(ownership.router)
 api_router.include_router(municipalities_router)
 api_router.include_router(tasks_router)
 api_router.include_router(documents.router)
-api_router.include_router(signatures_router)
+api_router.include_router(signatures.router)
 api_router.include_router(messages_router)
 api_router.include_router(qr.router)

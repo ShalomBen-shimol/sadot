@@ -2,14 +2,13 @@
 from app.api.v1.crud import build_crud_router
 from app.models.municipality import Municipality
 from app.models.person import Person
-from app.models.support import Message, SignatureRequest, Task
+from app.models.support import Message, Task
 from app.schemas.entities import (
     MessageCreate,
     MunicipalityCreate,
     MunicipalityUpdate,
     PersonCreate,
     PersonUpdate,
-    SignatureRequestCreate,
     TaskCreateSchema,
     TaskUpdateSchema,
 )
@@ -36,14 +35,6 @@ tasks_router = build_crud_router(
     update_schema=TaskUpdateSchema,
     prefix="/tasks",
     tag="tasks",
-)
-
-signatures_router = build_crud_router(
-    model=SignatureRequest,
-    create_schema=SignatureRequestCreate,
-    update_schema=SignatureRequestCreate,
-    prefix="/signatures",
-    tag="signatures",
 )
 
 messages_router = build_crud_router(
