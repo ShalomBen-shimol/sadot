@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Query, status
 
 from app.api.deps import CurrentUser, SessionDep
-from app.models.enums import SurrenderType
+from app.models.enums import SurrenderStatus, SurrenderType
 from app.models.surrender import SubscriptionPayment, SurrenderCase
 from app.repositories.base import CRUDRepository
 from app.schemas.entities import SurrenderCreate, SurrenderUpdate
@@ -12,8 +12,15 @@ repo = CRUDRepository(SurrenderCase)
 
 
 @router.get("", response_model=list[SurrenderCase])
-def list_cases(session: SessionDep, _: CurrentUser, offset: int = 0, limit: int = Query(100, le=500)):
-    return repo.list(session, offset=offset, limit=limit)
+def list_cases(
+    session: SessionDep,
+    _: CurrentUser,
+    status_filter: SurrenderStatus | None = Query(default=None, alias="status"),
+    offset: int = 0,
+    limit: int = Query(100, le=500),
+):
+    filters = {"status": status_filter} if status_filter else None
+    return repo.list(session, offset=offset, limit=limit, filters=filters)
 
 
 @router.get("/{case_id}", response_model=SurrenderCase)

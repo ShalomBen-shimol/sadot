@@ -41,6 +41,21 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
+## בדיקות (Tests)
+
+חבילת בדיקות pytest מקצה-לקצה מכסה את ה-workflows המרכזיים (מסירה, אימוץ, העברת בעלות,
+מנגנון follow-up), אימות/הרשאות, ופרטיות ה-API הציבורי. כל בדיקה רצה על בסיס נתונים
+SQLite נקי בזיכרון.
+
+```bash
+cd backend
+pip install -r requirements-dev.txt
+python -m pytest
+```
+
+הבדיקות רצות אוטומטית ב-CI לפני כל פריסה (`.github/workflows/deploy.yml`); פריסה לא תתבצע
+אם בדיקה נכשלת.
+
 ראה `docs/ARCHITECTURE.md` לפירוט הארכיטקטורה והרחבות עתידיות.
 
 ## סטטוס שלב 1 (MVP)

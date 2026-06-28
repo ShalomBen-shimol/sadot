@@ -1,5 +1,5 @@
 """Adoption workflow: lead -> case -> approval -> ownership transfer -> done."""
-from sqlmodel import Session
+from sqlmodel import Session, select
 
 from app.adapters import get_signature_provider
 from app.models.adoption import AdoptionCase, AdoptionLead
@@ -106,6 +106,42 @@ def approve(session: Session, case: AdoptionCase, actor_user_id: int | None = No
         entity_type="adoption_case",
         entity_id=case.id,
         metadata={"ownership_transfer_id": transfer.id},
+    )
+    return case
+
+
+def advance_after_signatures(
+    session: Session, case: AdoptionCase, actor_user_id: int | None = None
+) -> AdoptionCase:
+    """State machine: once every signature request for the case is signed,
+    move the case from waiting_for_signatures to waiting_for_documents.
+
+    Idempotent and a no-op while signatures are outstanding or the case is in
+    any other state.
+    """
+    if case.status != AdoptionStatus.waiting_for_signatures:
+        return case
+
+    sigs = session.exec(
+        select(SignatureRequest).where(
+            SignatureRequest.related_entity_type == EntityType.adoption_case,
+            SignatureRequest.related_entity_id == case.id,
+        )
+    ).all()
+    if not sigs or not all(s.status == SignatureStatus.signed for s in sigs):
+        return case
+
+    case.status = AdoptionStatus.waiting_for_documents
+    session.add(case)
+    session.commit()
+    session.refresh(case)
+    audit.log(
+        session,
+        action="adoption_case.signatures_completed",
+        actor_user_id=actor_user_id,
+        entity_type="adoption_case",
+        entity_id=case.id,
+        metadata={"signature_count": len(sigs)},
     )
     return case
 

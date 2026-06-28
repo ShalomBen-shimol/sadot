@@ -9,6 +9,7 @@ from app.adapters.messaging import MessagingProvider, get_messaging_provider
 from app.adapters.monday import MondayAdapter, get_monday_adapter
 from app.adapters.payment import PaymentProvider, get_payment_provider
 from app.adapters.signature import SignatureProvider, get_signature_provider
+from app.adapters.storage import StorageProvider, get_storage_provider
 
 __all__ = [
     "EmailProvider",
@@ -16,9 +17,11 @@ __all__ = [
     "MondayAdapter",
     "PaymentProvider",
     "SignatureProvider",
+    "StorageProvider",
     "get_email_provider",
     "get_messaging_provider",
     "get_monday_adapter",
     "get_payment_provider",
     "get_signature_provider",
+    "get_storage_provider",
 ]

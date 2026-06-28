@@ -2,79 +2,175 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import ConsentNotice from "@/components/ConsentNotice";
+import DocumentUpload from "@/components/DocumentUpload";
 import { submitAdoptionLead } from "@/lib/api";
+
+// Adoption interest form. Used from a dog page (pass `dogId`) or standalone for a
+// general "looking to adopt" lead. Collects adopter-matching info + consents and
+// calls submitAdoptionLead.
+
+type FormState = {
+  first_name: string;
+  last_name: string;
+  phone: string;
+  email: string;
+  city: string;
+  home_type: string;
+  experience_level: string;
+  hours_alone: string;
+  has_children: boolean;
+  has_other_dogs: boolean;
+  notes: string;
+  consent_messages: boolean;
+  consent_privacy: boolean;
+};
+
+const INITIAL: FormState = {
+  first_name: "",
+  last_name: "",
+  phone: "",
+  email: "",
+  city: "",
+  home_type: "apartment",
+  experience_level: "none",
+  hours_alone: "",
+  has_children: false,
+  has_other_dogs: false,
+  notes: "",
+  consent_messages: false,
+  consent_privacy: false,
+};
+
+function isValidPhone(raw: string): boolean {
+  const digits = raw.replace(/\D/g, "");
+  return /^0\d{8,9}$/.test(digits);
+}
 
 export default function AdoptionForm({ dogId }: { dogId?: number }) {
   const router = useRouter();
+  const [form, setForm] = useState<FormState>(INITIAL);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  function set<K extends keyof FormState>(key: K, value: FormState[K]) {
+    setForm((prev) => ({ ...prev, [key]: value }));
+  }
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!form.first_name.trim()) {
+      setError("נא למלא שם פרטי");
+      return;
+    }
+    if (!isValidPhone(form.phone)) {
+      setError("מספר הטלפון אינו תקין");
+      return;
+    }
+    if (!form.consent_privacy) {
+      setError("יש לאשר את הודעת הפרטיות כדי לשלוח");
+      return;
+    }
     setSubmitting(true);
     setError(null);
-    const f = new FormData(e.currentTarget);
     try {
-      if (!f.get("consent_privacy")) throw new Error("יש לאשר את מדיניות הפרטיות");
       await submitAdoptionLead({
-        dog_id: dogId,
-        first_name: f.get("first_name"),
-        last_name: f.get("last_name"),
-        phone: f.get("phone"),
-        email: f.get("email") || null,
-        city: f.get("city"),
-        home_type: f.get("home_type"),
-        experience_level: f.get("experience_level"),
-        has_children: f.get("has_children") === "on",
-        has_other_dogs: f.get("has_other_dogs") === "on",
-        hours_alone: f.get("hours_alone"),
-        consent_messages: f.get("consent_messages") === "on",
-        consent_privacy: f.get("consent_privacy") === "on",
+        dog_id: dogId ?? null,
+        first_name: form.first_name.trim(),
+        last_name: form.last_name.trim() || null,
+        phone: form.phone.trim(),
+        email: form.email.trim() || null,
+        city: form.city.trim() || null,
+        home_type: form.home_type,
+        experience_level: form.experience_level,
+        hours_alone: form.hours_alone.trim() || null,
+        has_children: form.has_children,
+        has_other_dogs: form.has_other_dogs,
+        consent_messages: form.consent_messages,
+        consent_privacy: form.consent_privacy,
         source: "website",
-        notes: f.get("notes"),
+        notes: form.notes.trim() || null,
       });
       router.push("/thank-you?type=adoption");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "אירעה שגיאה");
-    } finally {
+      setError(err instanceof Error ? err.message : "אירעה שגיאה, נסו שוב");
       setSubmitting(false);
     }
   }
 
   return (
-    <form onSubmit={onSubmit} className="card space-y-4">
+    <form onSubmit={onSubmit} className="card space-y-5">
       <h3 className="text-lg font-bold text-brand-dark">השארת פנייה לאימוץ</h3>
-      <div className="grid gap-3 sm:grid-cols-2">
+
+      <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="label">שם פרטי *</label>
-          <input name="first_name" required className="input" />
+          <input
+            className="input py-3 text-base"
+            value={form.first_name}
+            onChange={(e) => set("first_name", e.target.value)}
+            autoComplete="given-name"
+          />
         </div>
         <div>
           <label className="label">שם משפחה</label>
-          <input name="last_name" className="input" />
+          <input
+            className="input py-3 text-base"
+            value={form.last_name}
+            onChange={(e) => set("last_name", e.target.value)}
+            autoComplete="family-name"
+          />
         </div>
         <div>
           <label className="label">טלפון *</label>
-          <input name="phone" required className="input" />
+          <input
+            className="input py-3 text-base"
+            type="tel"
+            inputMode="tel"
+            value={form.phone}
+            onChange={(e) => set("phone", e.target.value)}
+            autoComplete="tel"
+            placeholder="050-0000000"
+          />
         </div>
         <div>
           <label className="label">אימייל</label>
-          <input name="email" type="email" className="input" />
+          <input
+            className="input py-3 text-base"
+            type="email"
+            value={form.email}
+            onChange={(e) => set("email", e.target.value)}
+            autoComplete="email"
+          />
         </div>
         <div>
           <label className="label">יישוב</label>
-          <input name="city" className="input" />
+          <input
+            className="input py-3 text-base"
+            value={form.city}
+            onChange={(e) => set("city", e.target.value)}
+            autoComplete="address-level2"
+          />
         </div>
         <div>
-          <label className="label">סוג בית</label>
-          <select name="home_type" className="input">
+          <label className="label">סוג מגורים</label>
+          <select
+            className="input py-3 text-base"
+            value={form.home_type}
+            onChange={(e) => set("home_type", e.target.value)}
+          >
             <option value="apartment">דירה</option>
             <option value="house">בית פרטי</option>
+            <option value="house_with_yard">בית עם חצר</option>
           </select>
         </div>
         <div>
           <label className="label">ניסיון עם כלבים</label>
-          <select name="experience_level" className="input">
+          <select
+            className="input py-3 text-base"
+            value={form.experience_level}
+            onChange={(e) => set("experience_level", e.target.value)}
+          >
             <option value="none">ללא ניסיון</option>
             <option value="some">מעט ניסיון</option>
             <option value="experienced">מנוסה</option>
@@ -82,32 +178,87 @@ export default function AdoptionForm({ dogId }: { dogId?: number }) {
         </div>
         <div>
           <label className="label">כמה שעות הכלב יישאר לבד?</label>
-          <input name="hours_alone" className="input" placeholder="לדוגמה: 4-6 שעות" />
+          <input
+            className="input py-3 text-base"
+            value={form.hours_alone}
+            onChange={(e) => set("hours_alone", e.target.value)}
+            placeholder="לדוגמה: 4-6 שעות"
+          />
         </div>
       </div>
 
       <div className="flex flex-wrap gap-4 text-sm">
-        <label className="flex items-center gap-2"><input type="checkbox" name="has_children" /> יש ילדים בבית</label>
-        <label className="flex items-center gap-2"><input type="checkbox" name="has_other_dogs" /> יש כלבים נוספים</label>
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            className="h-5 w-5"
+            checked={form.has_children}
+            onChange={(e) => set("has_children", e.target.checked)}
+          />
+          יש ילדים בבית
+        </label>
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            className="h-5 w-5"
+            checked={form.has_other_dogs}
+            onChange={(e) => set("has_other_dogs", e.target.checked)}
+          />
+          יש כלבים נוספים
+        </label>
       </div>
 
       <div>
         <label className="label">הערות</label>
-        <textarea name="notes" className="input" rows={3} />
+        <textarea
+          className="input"
+          rows={3}
+          value={form.notes}
+          onChange={(e) => set("notes", e.target.value)}
+        />
       </div>
 
-      <div className="space-y-2 text-sm">
-        <label className="flex items-center gap-2">
-          <input type="checkbox" name="consent_messages" /> אני מאשר/ת קבלת הודעות
+      <ConsentNotice variant="adoption" />
+
+      <div className="space-y-3 text-sm">
+        <label className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            className="mt-1 h-5 w-5"
+            checked={form.consent_messages}
+            onChange={(e) => set("consent_messages", e.target.checked)}
+          />
+          <span>אני מאשר/ת קבלת הודעות עדכון בנוגע לאימוץ</span>
         </label>
-        <label className="flex items-center gap-2">
-          <input type="checkbox" name="consent_privacy" required /> קראתי ואני מאשר/ת את מדיניות הפרטיות *
+        <label className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            className="mt-1 h-5 w-5"
+            checked={form.consent_privacy}
+            onChange={(e) => set("consent_privacy", e.target.checked)}
+          />
+          <span>קראתי ואני מאשר/ת את הודעת הפרטיות *</span>
         </label>
       </div>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
-      <button type="submit" disabled={submitting} className="btn-primary w-full disabled:opacity-60">
-        {submitting ? "שולח..." : "שליחת פנייה"}
+      <div className="space-y-3">
+        <p className="text-sm font-semibold text-brand-dark">
+          מסמכים (לא חובה כעת)
+        </p>
+        <DocumentUpload
+          label="תמונה שלכם עם הכלב / בבית"
+          documentType="adopter_with_dog_photo"
+          hint="עוזר לנו להכיר אתכם ולוודא התאמה. נבקש זאת גם בהמשך התהליך."
+        />
+      </div>
+
+      {error && <p className="text-sm font-medium text-red-600">{error}</p>}
+      <button
+        type="submit"
+        disabled={submitting}
+        className="btn-primary w-full py-3 text-base disabled:opacity-60"
+      >
+        {submitting ? "שולח…" : "שליחת פנייה"}
       </button>
     </form>
   );

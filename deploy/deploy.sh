@@ -42,8 +42,10 @@ sleep 3
 fail=0
 # CRM-owned services (fatal if down):
 curl -fsS -o /dev/null -w "backend  127.0.0.1:8001/health -> %{http_code}\n" http://127.0.0.1:8001/health || fail=1
-curl -fsS -o /dev/null -w "frontend 127.0.0.1:3001/       -> %{http_code}\n" http://127.0.0.1:3001/ || fail=1
+# Frontend uses basePath=/crm, so it answers at /crm (root returns 404 by design).
+curl -fsS -o /dev/null -w "frontend 127.0.0.1:3001/crm    -> %{http_code}\n" http://127.0.0.1:3001/crm || fail=1
 curl -fsSk -o /dev/null -w "https /api/v1/public/dogs -> %{http_code}\n" --resolve sadot.lavit.io:443:127.0.0.1 https://sadot.lavit.io/api/v1/public/dogs || fail=1
+curl -fsSk -o /dev/null -w "https /crm (frontend)     -> %{http_code}\n" --resolve sadot.lavit.io:443:127.0.0.1 https://sadot.lavit.io/crm || fail=1
 curl -fsSk -o /dev/null -w "https /mockups/           -> %{http_code}\n" --resolve sadot.lavit.io:443:127.0.0.1 https://sadot.lavit.io/mockups/ || fail=1
 # WordPress at / lives in the separate basadot-wp compose project; warn (don't fail) if it's down:
 curl -fsSk -o /dev/null -w "https / (WordPress)       -> %{http_code}\n" --resolve sadot.lavit.io:443:127.0.0.1 https://sadot.lavit.io/ || echo "WARN: WordPress (/) not responding -- check basadot-wp containers"

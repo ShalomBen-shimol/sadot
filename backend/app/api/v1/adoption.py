@@ -26,8 +26,15 @@ def create_lead(payload: AdoptionLeadCreate, session: SessionDep, _: CurrentUser
 
 # ---- Adoption cases ----
 @router.get("/adoption-cases", response_model=list[AdoptionCase])
-def list_cases(session: SessionDep, _: CurrentUser, offset: int = 0, limit: int = Query(100, le=500)):
-    return case_repo.list(session, offset=offset, limit=limit)
+def list_cases(
+    session: SessionDep,
+    _: CurrentUser,
+    status_filter: AdoptionStatus | None = Query(default=None, alias="status"),
+    offset: int = 0,
+    limit: int = Query(100, le=500),
+):
+    filters = {"status": status_filter} if status_filter else None
+    return case_repo.list(session, offset=offset, limit=limit, filters=filters)
 
 
 @router.get("/adoption-cases/{case_id}", response_model=AdoptionCase)

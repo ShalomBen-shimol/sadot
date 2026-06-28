@@ -1,31 +1,58 @@
 import Link from "next/link";
 import type { DogPublic } from "@/lib/api";
-
-const SIZE_LABELS: Record<string, string> = {
-  small: "קטן",
-  medium: "בינוני",
-  large: "גדול",
-  xlarge: "גדול מאוד",
-};
+import { ageLabel, dogPhoto, positiveTraits, sizeLabel } from "@/lib/dogLabels";
 
 export default function DogCard({ dog }: { dog: DogPublic }) {
-  const photo = dog.photos[0] || "https://placedog.net/600/400";
+  const photo = dogPhoto(dog);
+  const traits = positiveTraits(dog).slice(0, 3);
+  const meta = [dog.breed || "מעורב", ageLabel(dog.age), sizeLabel(dog.size)]
+    .filter(Boolean)
+    .join(" · ");
+
   return (
-    <Link href={`/adopt/${dog.id}`} className="card block transition hover:shadow-md">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={photo} alt={dog.name || "כלב"} className="mb-3 h-44 w-full rounded-lg object-cover" />
-      <div className="flex items-center justify-between">
-        <h3 className="font-bold">{dog.name || "כלב ללא שם"}</h3>
+    <Link
+      href={`/adopt/${dog.id}`}
+      className="card group flex flex-col overflow-hidden p-0 transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+    >
+      <div className="relative h-48 w-full overflow-hidden bg-gray-100">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={photo}
+          alt={dog.name || "כלב לאימוץ"}
+          loading="lazy"
+          className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+        />
         {dog.current_location_type === "home" && (
-          <span className="badge">נמצא בבית המוסר</span>
+          <span className="badge absolute right-2 top-2 bg-white/90 shadow-sm">
+            נמצא בבית המוסר
+          </span>
         )}
       </div>
-      <p className="mt-1 text-sm text-gray-600">
-        {dog.breed || "מעורב"}
-        {dog.age != null ? ` · ${dog.age} שנים` : ""}
-        {dog.size ? ` · ${SIZE_LABELS[dog.size] ?? dog.size}` : ""}
-      </p>
-      {dog.public_area && <p className="mt-1 text-xs text-gray-500">אזור: {dog.public_area}</p>}
+
+      <div className="flex flex-1 flex-col p-4">
+        <h3 className="text-lg font-bold text-brand-dark">{dog.name || "כלב ללא שם"}</h3>
+        <p className="mt-1 text-sm text-gray-600">{meta}</p>
+        {dog.public_area && (
+          <p className="mt-1 text-xs text-gray-500">אזור: {dog.public_area}</p>
+        )}
+
+        {traits.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {traits.map((t) => (
+              <span
+                key={t.key}
+                className="rounded-full bg-brand-light px-2.5 py-0.5 text-xs font-medium text-brand-dark"
+              >
+                {t.label}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand group-hover:underline">
+          לפרטים והשארת פנייה ←
+        </span>
+      </div>
     </Link>
   );
 }

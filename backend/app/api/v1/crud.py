@@ -1,12 +1,30 @@
 """Factory that builds a standard CRUD router for a SQLModel table."""
 from typing import Type
 
-from fastapi import APIRouter, HTTPException, Query, status
-from pydantic import BaseModel
+from fastapi import APIRouter, HTTPException, Query, Request, status
+from pydantic import BaseModel, TypeAdapter, ValidationError
 from sqlmodel import SQLModel
 
 from app.api.deps import CurrentUser, SessionDep
 from app.repositories.base import CRUDRepository
+
+
+def _coerce_filters(
+    model: Type[SQLModel], filter_fields: list[str], request: Request
+) -> dict:
+    """Read whitelisted filter fields from the query string and validate each
+    value against the model's own field type (enum / bool / int ...)."""
+    filters: dict = {}
+    for field in filter_fields:
+        raw = request.query_params.get(field)
+        if raw is None:
+            continue
+        annotation = model.model_fields[field].annotation
+        try:
+            filters[field] = TypeAdapter(annotation).validate_python(raw)
+        except ValidationError:
+            raise HTTPException(status_code=422, detail=f"Invalid value for filter '{field}'")
+    return filters
 
 
 def build_crud_router(
@@ -24,12 +42,14 @@ def build_crud_router(
 
     @router.get("", response_model=list[model])
     def list_items(
+        request: Request,
         session: SessionDep,
         _: CurrentUser,
         offset: int = 0,
         limit: int = Query(default=100, le=500),
     ):
-        return repo.list(session, offset=offset, limit=limit)
+        filters = _coerce_filters(model, filter_fields, request) if filter_fields else None
+        return repo.list(session, offset=offset, limit=limit, filters=filters or None)
 
     @router.get("/{item_id}", response_model=model)
     def get_item(item_id: int, session: SessionDep, _: CurrentUser):
