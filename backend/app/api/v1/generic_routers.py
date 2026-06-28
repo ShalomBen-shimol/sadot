@@ -2,9 +2,8 @@
 from app.api.v1.crud import build_crud_router
 from app.models.municipality import Municipality
 from app.models.person import Person
-from app.models.support import Document, Message, SignatureRequest, Task
+from app.models.support import Message, SignatureRequest, Task
 from app.schemas.entities import (
-    DocumentCreate,
     MessageCreate,
     MunicipalityCreate,
     MunicipalityUpdate,
@@ -37,14 +36,6 @@ tasks_router = build_crud_router(
     update_schema=TaskUpdateSchema,
     prefix="/tasks",
     tag="tasks",
-)
-
-documents_router = build_crud_router(
-    model=Document,
-    create_schema=DocumentCreate,
-    update_schema=DocumentCreate,
-    prefix="/documents",
-    tag="documents",
 )
 
 signatures_router = build_crud_router(

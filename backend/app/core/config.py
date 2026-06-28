@@ -19,6 +19,9 @@ class Settings(BaseSettings):
     # Database
     database_url: str = "sqlite:///./sadot.db"
 
+    # Object storage (local filesystem in phase 1; relative to the backend cwd)
+    media_root: str = "media"
+
     # First admin (seeded on startup if missing)
     first_admin_email: str = "admin@sadot.local"
     first_admin_password: str = "admin1234"
