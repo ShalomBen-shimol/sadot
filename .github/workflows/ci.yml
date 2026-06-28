@@ -1,0 +1,42 @@
+name: CI
+
+# Verify backend tests + frontend build on every branch push and PR.
+# Does NOT deploy (deploy.yml handles that on push to main).
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+  workflow_dispatch: {}
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-dev.txt
+      - name: pytest
+        env:
+          DATABASE_URL: "sqlite://"
+        run: python -m pytest
+
+  frontend-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm install
+      - name: next build (type-check + compile)
+        env:
+          NEXT_PUBLIC_API_URL: https://sadot.lavit.io
+        run: npm run build
