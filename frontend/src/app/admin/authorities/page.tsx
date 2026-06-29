@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   assignLocality,
+  createMunicipality,
   listLocalities,
   listMunicipalities,
   resolveLocality,
@@ -86,6 +87,16 @@ export default function AuthoritiesPage() {
 }
 
 /* ----------------------------- Authorities tab ----------------------------- */
+function isIncomplete(m: Municipality): boolean {
+  return !m.email || !m.phone || !m.vet_name;
+}
+
+// A red "חסר" placeholder for an empty required field.
+function MissingCell({ value }: { value: string | null }) {
+  if (value) return <span className="text-gray-700">{value}</span>;
+  return <span className="rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">חסר</span>;
+}
+
 function AuthoritiesTab({
   token,
   munis,
@@ -96,22 +107,36 @@ function AuthoritiesTab({
   onSaved: () => Promise<void>;
 }) {
   const [q, setQ] = useState("");
+  const [onlyIncomplete, setOnlyIncomplete] = useState(false);
   const [editing, setEditing] = useState<Municipality | null>(null);
+  const [adding, setAdding] = useState(false);
+
+  const noEmail = munis.filter((m) => !m.email).length;
+  const noPhone = munis.filter((m) => !m.phone).length;
+  const incomplete = munis.filter(isIncomplete).length;
 
   const filtered = useMemo(() => {
     const s = q.trim();
-    if (!s) return munis;
-    return munis.filter((m) =>
-      [m.city_name, m.authority_name, m.vet_name, m.district, m.email].some(
+    return munis.filter((m) => {
+      if (onlyIncomplete && !isIncomplete(m)) return false;
+      if (!s) return true;
+      return [m.city_name, m.authority_name, m.vet_name, m.district, m.email].some(
         (v) => v && v.includes(s)
-      )
-    );
-  }, [q, munis]);
-
-  const missing = munis.filter((m) => !m.email).length;
+      );
+    });
+  }, [q, munis, onlyIncomplete]);
 
   return (
     <div className="space-y-4">
+      {/* Gap summary — what the customer needs to complete */}
+      <div className="card flex flex-wrap items-center gap-3 bg-gray-50">
+        <span className="text-sm font-medium text-gray-700">השלמת פרטים:</span>
+        <Badge tone={noEmail ? "red" : "green"}>{noEmail} ללא מייל</Badge>
+        <Badge tone={noPhone ? "red" : "green"}>{noPhone} ללא טלפון</Badge>
+        <Badge tone={incomplete ? "amber" : "green"}>{incomplete} רשויות לא שלמות</Badge>
+        <span className="text-xs text-gray-400">מתוך {munis.length} רשויות</span>
+      </div>
+
       <div className="flex flex-wrap items-center gap-3">
         <input
           className="input max-w-xs"
@@ -119,8 +144,18 @@ function AuthoritiesTab({
           value={q}
           onChange={(e) => setQ(e.target.value)}
         />
+        <label className="flex items-center gap-2 text-sm text-gray-600">
+          <input
+            type="checkbox"
+            checked={onlyIncomplete}
+            onChange={(e) => setOnlyIncomplete(e.target.checked)}
+          />
+          הצג רק חסרי פרטים
+        </label>
         <span className="text-sm text-gray-500">{filtered.length} תוצאות</span>
-        {missing > 0 && <Badge tone="amber">{missing} רשויות ללא מייל</Badge>}
+        <button className="btn-primary text-sm" onClick={() => setAdding(true)}>
+          + הוסף רשות
+        </button>
       </div>
 
       <div className="card overflow-x-auto p-0">
@@ -136,15 +171,13 @@ function AuthoritiesTab({
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {filtered.slice(0, 300).map((m) => (
-              <tr key={m.id} className="hover:bg-gray-50">
+            {filtered.map((m) => (
+              <tr key={m.id} className={isIncomplete(m) ? "bg-red-50/50 hover:bg-red-50" : "hover:bg-gray-50"}>
                 <td className="px-3 py-2 font-medium text-gray-900">{m.city_name}</td>
                 <td className="px-3 py-2 text-gray-600">{m.district ?? "—"}</td>
-                <td className="px-3 py-2 text-gray-600">{m.vet_name ?? "—"}</td>
-                <td className="px-3 py-2 text-gray-600">
-                  {m.email ?? <Badge tone="amber">חסר</Badge>}
-                </td>
-                <td className="px-3 py-2 text-gray-600">{m.phone ?? "—"}</td>
+                <td className="px-3 py-2"><MissingCell value={m.vet_name} /></td>
+                <td className="px-3 py-2"><MissingCell value={m.email} /></td>
+                <td className="px-3 py-2"><MissingCell value={m.phone} /></td>
                 <td className="px-3 py-2">
                   <button className="text-xs text-brand-dark hover:underline" onClick={() => setEditing(m)}>
                     עריכה
@@ -167,6 +200,88 @@ function AuthoritiesTab({
           }}
         />
       )}
+      {adding && (
+        <CreateAuthorityModal
+          token={token}
+          onClose={() => setAdding(false)}
+          onSaved={async () => {
+            setAdding(false);
+            await onSaved();
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+function CreateAuthorityModal({
+  token,
+  onClose,
+  onSaved,
+}: {
+  token: string;
+  onClose: () => void;
+  onSaved: () => Promise<void>;
+}) {
+  const [f, setF] = useState({
+    city_name: "",
+    authority_name: "",
+    district: "",
+    vet_name: "",
+    license_number: "",
+    email: "",
+    phone: "",
+  });
+  const [err, setErr] = useState<string | null>(null);
+  const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement>) =>
+    setF({ ...f, [k]: e.target.value });
+
+  async function save() {
+    setErr(null);
+    if (!f.city_name.trim()) {
+      setErr("שם הרשות חובה");
+      return;
+    }
+    try {
+      await createMunicipality(token, {
+        city_name: f.city_name.trim(),
+        authority_name: f.authority_name || null,
+        district: f.district || null,
+        vet_name: f.vet_name || null,
+        license_number: f.license_number || null,
+        email: f.email || null,
+        phone: f.phone || null,
+      });
+      await onSaved();
+    } catch (e) {
+      setErr(errorMessage(e));
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={onClose}>
+      <div className="card w-full max-w-md space-y-3" onClick={(e) => e.stopPropagation()}>
+        <h2 className="text-lg font-bold text-brand-dark">הוספת רשות וטרינרית</h2>
+        {err && <ErrorBox message={err} />}
+        {([
+          ["city_name", "שם הרשות *"],
+          ["authority_name", "גוף (עירייה / מועצה)"],
+          ["district", "לשכה"],
+          ["vet_name", "שם הווטרינר"],
+          ["license_number", "מס' רישיון"],
+          ["email", "מייל"],
+          ["phone", "טלפון"],
+        ] as [keyof typeof f, string][]).map(([k, label]) => (
+          <label key={k} className="block text-sm">
+            <span className="text-gray-600">{label}</span>
+            <input className="input mt-1" value={f[k]} onChange={set(k)} />
+          </label>
+        ))}
+        <div className="flex justify-end gap-2 pt-1">
+          <button className="btn-outline text-sm" onClick={onClose}>ביטול</button>
+          <ActionButton onClick={save}>הוספה</ActionButton>
+        </div>
+      </div>
     </div>
   );
 }
@@ -403,7 +518,8 @@ function ReviewTab({
       {error && <ErrorBox message={error} />}
       <p className="text-sm text-gray-500">
         {items.length} יישובים ללא רשות וטרינרית משויכת (בעיקר יישובי יו״ש, פזורה בדואית ויישובים שאינם
-        ברשימת הרשויות). בחר רשות ושייך.
+        ברשימת הרשויות). בחר רשות ושייך. אם הרשות המתאימה אינה מופיעה ברשימה — הוסף אותה תחילה בלשונית
+        «רשויות» (כפתור «+ הוסף רשות»).
       </p>
       <div className="card overflow-x-auto p-0">
         <table className="min-w-full text-right text-sm">

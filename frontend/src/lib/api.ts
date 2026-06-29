@@ -1045,6 +1045,23 @@ export async function updateMunicipality(
   return authPatch<Municipality>(`/api/v1/municipalities/${id}`, token, payload);
 }
 
+export type MunicipalityCreate = {
+  city_name: string;
+  authority_name?: string | null;
+  district?: string | null;
+  vet_name?: string | null;
+  license_number?: string | null;
+  email?: string | null;
+  phone?: string | null;
+};
+
+export async function createMunicipality(
+  token: string,
+  payload: MunicipalityCreate
+): Promise<Municipality> {
+  return authPost<Municipality>("/api/v1/municipalities", token, payload);
+}
+
 export async function listLocalities(
   token: string,
   params: { search?: string; needs_review?: boolean; offset?: number; limit?: number } = {}
