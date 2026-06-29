@@ -10,6 +10,7 @@ const NAV: { href: string; label: string }[] = [
   { href: "/admin/adoption-cases", label: "תיקי אימוץ" },
   { href: "/admin/dogs", label: "כלבים" },
   { href: "/admin/ownership-transfers", label: "העברות בעלות" },
+  { href: "/admin/authorities", label: "רשויות וטרינריות" },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

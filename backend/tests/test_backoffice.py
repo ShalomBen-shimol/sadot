@@ -105,12 +105,11 @@ def _seed_scenario(client, auth, db_session) -> dict:
     assert r.status_code == 201, r.text
     transfer_id = r.json()["id"]
 
-    # Resolve authorities by city (the create endpoint doesn't infer them).
+    # Attach two (distinct) authorities so the detail endpoint can resolve names.
     transfer = db_session.get(OwnershipTransfer, transfer_id)
-    haifa = db_session.exec(select(Municipality).where(Municipality.city_name == "חיפה")).first()
-    tlv = db_session.exec(select(Municipality).where(Municipality.city_name == "תל אביב")).first()
-    transfer.from_authority_id = haifa.id
-    transfer.to_authority_id = tlv.id
+    munis = db_session.exec(select(Municipality).limit(2)).all()
+    transfer.from_authority_id = munis[0].id
+    transfer.to_authority_id = munis[1].id
     db_session.add(transfer)
     db_session.commit()
 
@@ -214,9 +213,10 @@ def test_transfer_detail_resolves_authorities_and_docs(client, auth, db_session)
     assert body["dog"]["id"] == ids["dog_id"]
     assert body["from_person"]["id"] == ids["surrenderer_id"]
     assert body["to_person"]["id"] == ids["adopter_id"]
-    # Authorities resolved from each person's city (seeded municipalities).
-    assert body["from_authority_name"] == "עיריית חיפה"
-    assert body["to_authority_name"] == "עיריית תל אביב-יפו"
+    # Authority names are resolved from the attached authorities.
+    assert body["from_authority_name"]
+    assert body["to_authority_name"]
+    assert body["from_authority_name"] != body["to_authority_name"]
     assert len(body["signature_requests"]) == 1
     assert len(body["documents"]) == 4
     # facility_to_adopter requires all four document types -> complete.

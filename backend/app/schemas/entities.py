@@ -208,6 +208,8 @@ class MunicipalityCreate(BaseModel):
     authority_name: str | None = None
     district: str | None = None
     vet_department_name: str | None = None
+    vet_name: str | None = None
+    license_number: str | None = None
     email: str | None = None
     phone: str | None = None
     website: str | None = None
@@ -217,6 +219,11 @@ class MunicipalityCreate(BaseModel):
 
 class MunicipalityUpdate(MunicipalityCreate):
     city_name: str | None = None
+
+
+class LocalityAssign(BaseModel):
+    municipality_id: int | None = None
+    needs_review: bool | None = None
 
 
 # ---------- Public lead intake ----------

@@ -1,0 +1,2351 @@
+[
+ {
+  "city_name": "אבו גוש",
+  "authority_body": "מועצה מקומית אבו גוש",
+  "district": "השפלה וההר",
+  "vet_name": "ברזילי עמוס",
+  "license_number": "486",
+  "email": "amosb@m-yehuda.org.il",
+  "phone": "02-9900905"
+ },
+ {
+  "city_name": "אבו סנאן",
+  "authority_body": "מועצה מקומית אבו סנאן",
+  "district": "גליל מערבי",
+  "vet_name": "חורי אנדראוס",
+  "license_number": "692",
+  "email": "huri1@barak.net.il",
+  "phone": "04-9568801"
+ },
+ {
+  "city_name": "אבן יהודה",
+  "authority_body": "מועצה מקומית אבן יהודה",
+  "district": "השרון",
+  "vet_name": "זהרוני אהוד (אודי)",
+  "license_number": "1075",
+  "email": "zaharoni.udi@gmail.com",
+  "phone": "09-8991500"
+ },
+ {
+  "city_name": "אום אל-פחם",
+  "authority_body": "עירית אום אל-פחם",
+  "district": "השרון",
+  "vet_name": "מחאמיד ראתב",
+  "license_number": "1102",
+  "email": "drrateb@uefmail.com",
+  "phone": "04-6111801"
+ },
+ {
+  "city_name": "אופקים",
+  "authority_body": "איגוד ערים אשכול רשויות נגב",
+  "district": "הנגב",
+  "vet_name": "בר-קמה מיכאל",
+  "license_number": "2500",
+  "email": "miki@westnegev.org.il",
+  "phone": "073-72691274"
+ },
+ {
+  "city_name": "אור יהודה",
+  "authority_body": "איגוד ערים גוש דן",
+  "district": "השפלה וההר",
+  "vet_name": "רפלוביץ משה",
+  "license_number": "873",
+  "email": "animals@vet-dan.com",
+  "phone": "03-6312222"
+ },
+ {
+  "city_name": "אור עקיבא",
+  "authority_body": "איגוד ערים אזור השומרון",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "אורנית",
+  "authority_body": "מועצה מקומית אורנית",
+  "district": "השרון",
+  "vet_name": "פלינט ערן שלמה",
+  "license_number": "1650",
+  "email": "eran56@013.net",
+  "phone": "03-9360465"
+ },
+ {
+  "city_name": "אזור",
+  "authority_body": "איגוד ערים גוש דן",
+  "district": "השפלה וההר",
+  "vet_name": "רפלוביץ משה",
+  "license_number": "873",
+  "email": "animals@vet-dan.com",
+  "phone": "03-6312222"
+ },
+ {
+  "city_name": "אילת",
+  "authority_body": "עירית אילת",
+  "district": "הנגב",
+  "vet_name": "אברמוביץ אורן",
+  "license_number": "1776",
+  "email": "goldi@eilat.muni.il; calbanim@eilat.muni.il",
+  "phone": "08-6367356"
+ },
+ {
+  "city_name": "אכסאל",
+  "authority_body": "מועצה מקומית אכסאל",
+  "district": "העמקים",
+  "vet_name": "עבד אל חאלק לריסה",
+  "license_number": "756",
+  "email": "laresaa@walla.co.il",
+  "phone": "04-6554339"
+ },
+ {
+  "city_name": "אל-בטוף – מועצה אזורית",
+  "authority_body": "מועצה אזורית אל-בטוף",
+  "district": "גליל מערבי",
+  "vet_name": "פלאח מוהנד",
+  "license_number": "3319",
+  "email": "falahmohanad@gmail.com",
+  "phone": "04-6518855"
+ },
+ {
+  "city_name": "אלונה – מועצה אזורית",
+  "authority_body": "איגוד ערים מ.א. אלונה",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "אליכין",
+  "authority_body": "מועצה מקומית אליכין",
+  "district": "השרון",
+  "vet_name": "ולטר יורם",
+  "license_number": "750",
+  "email": "miwal@walla.co.il",
+  "phone": "052-2820874"
+ },
+ {
+  "city_name": "אלעד",
+  "authority_body": "מועצה מקומית עיריית אלעד",
+  "district": "השפלה וההר",
+  "vet_name": "מיקולשיק הילה",
+  "license_number": "1484",
+  "email": "veterinar@kiryat4.org.il",
+  "phone": "02-9969551"
+ },
+ {
+  "city_name": "אלפי מנשה",
+  "authority_body": "מועצה מקומית אלפי מנשה",
+  "district": "השרון",
+  "vet_name": "אפשטיין (לוי) רעות",
+  "license_number": "2768",
+  "email": "hachzaka@alfe-menashe.muni.il",
+  "phone": "09-7925111"
+ },
+ {
+  "city_name": "אלקנה",
+  "authority_body": "מועצה מקומית אלקנה",
+  "district": "השרון",
+  "vet_name": "שוורץ גבריאל",
+  "license_number": "1162",
+  "email": "vetshomron@gmail.com",
+  "phone": "03-9061192"
+ },
+ {
+  "city_name": "אעבלין",
+  "authority_body": "מועצה מקומית אעבלין",
+  "district": "גליל מערבי",
+  "vet_name": "מוויס ויורקה",
+  "license_number": "1104",
+  "email": "levin_l2@netvision.net.il",
+  "phone": "04-9866387"
+ },
+ {
+  "city_name": "באקה אל-גרביה",
+  "authority_body": "איגוד ערים אזור השומרון (מטבח)",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "באר טוביה – מועצה אזורית",
+  "authority_body": "מועצה אזורית באר טוביה",
+  "district": "השפלה וההר",
+  "vet_name": "איסקוביץ ודים",
+  "license_number": "1276",
+  "email": "ruts@beer-tuvia.org.il",
+  "phone": "08-8509804"
+ },
+ {
+  "city_name": "באר יעקב",
+  "authority_body": "מועצה מקומית באר יעקב",
+  "district": "השפלה וההר",
+  "vet_name": "אבן שני",
+  "license_number": "3286",
+  "email": "shanie@b-y.org.il",
+  "phone": "08-9282516"
+ },
+ {
+  "city_name": "באר שבע",
+  "authority_body": "עירית באר שבע",
+  "district": "הנגב",
+  "vet_name": "זינגר רומן",
+  "license_number": "919",
+  "email": "morant2@br7.org.il",
+  "phone": "08-6840434"
+ },
+ {
+  "city_name": "בוסתן אל-מארג – מועצה אזורית",
+  "authority_body": "מועצה אזורית בוסתן אל-מארג",
+  "district": "העמקים",
+  "vet_name": "כנאנה חוסאם",
+  "license_number": "866",
+  "email": "hosam_k@walla.com",
+  "phone": "04-6557555"
+ },
+ {
+  "city_name": "בועיינה-נוג'ידאת",
+  "authority_body": "מועצה מקומית בועיינה-נוג'ידאת",
+  "district": "העמקים",
+  "vet_name": "עבד אל חאלק לריסה",
+  "license_number": "756",
+  "email": "laresaa@walla.co.il",
+  "phone": "04-6730522"
+ },
+ {
+  "city_name": "בוקעאתא",
+  "authority_body": "איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "ביר אל-מכסור",
+  "authority_body": "מועצה מקומית ביר אל-מכסור",
+  "district": "גליל מערבי",
+  "vet_name": "חורייה עימאד",
+  "license_number": "760",
+  "email": "dottkhourieh@walla.com",
+  "phone": "04-9860720"
+ },
+ {
+  "city_name": "בית אל",
+  "authority_body": "מועצה מקומית בית אל",
+  "district": "השפלה וההר",
+  "vet_name": "קרן אפרים",
+  "license_number": "880",
+  "email": "yaaral@bet-el.muni.il",
+  "phone": "02-9700517"
+ },
+ {
+  "city_name": "בית אריה",
+  "authority_body": "מועצה מקומית בית אריה",
+  "district": "השרון",
+  "vet_name": "שאפירו מיכאל",
+  "license_number": "2735",
+  "email": "shmiki@gmail.com",
+  "phone": "08-9127001"
+ },
+ {
+  "city_name": "בית ג'ן",
+  "authority_body": "מועצה מקומית בית ג'ן",
+  "district": "גליל מערבי",
+  "vet_name": "בשארה ריאד",
+  "license_number": "754",
+  "email": "riadbishara@hotmail.com",
+  "phone": "04-9802220"
+ },
+ {
+  "city_name": "בית דגן",
+  "authority_body": "מועצה מקומית בית דגן",
+  "district": "השפלה וההר",
+  "vet_name": "תורג'מן אדם",
+  "license_number": "3380",
+  "email": "lishka@beitdagan.muni.il",
+  "phone": "03-9602122"
+ },
+ {
+  "city_name": "בית שאן",
+  "authority_body": "עירית בית שאן",
+  "district": "העמקים",
+  "vet_name": "מחאג'נה עבד אללטיף",
+  "license_number": "2869",
+  "email": "dr.abedma@gmail.com;rafih@bet-shean.org.il",
+  "phone": "04-6584704"
+ },
+ {
+  "city_name": "בית שמש",
+  "authority_body": "עירית בית שמש",
+  "district": "השפלה וההר",
+  "vet_name": "עבד אל רחמאן ראני",
+  "license_number": "2622",
+  "email": "vet@bshemesh.co.il",
+  "phone": "02-9909999"
+ },
+ {
+  "city_name": "ביתר עילית",
+  "authority_body": "עירית ביתר עילית",
+  "district": "השפלה וההר",
+  "vet_name": "דיין אילן",
+  "license_number": "1942",
+  "email": "eland@012.net.il",
+  "phone": "02-5807775"
+ },
+ {
+  "city_name": "בני ברק",
+  "authority_body": "איגוד ערים גוש דן",
+  "district": "השרון",
+  "vet_name": "רפלוביץ משה",
+  "license_number": "873",
+  "email": "animals@vet-dan.com",
+  "phone": "03-6312222"
+ },
+ {
+  "city_name": "בני עי\"ש",
+  "authority_body": "מועצה מקומית בני עי\"ש",
+  "district": "השפלה וההר",
+  "vet_name": "נבו יצחק",
+  "license_number": "1799",
+  "email": "veterinar@bney-ayish.muni.il",
+  "phone": "08-8595119"
+ },
+ {
+  "city_name": "בנימינה",
+  "authority_body": "איגוד ערים אזור השומרון (מטבח)",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "בסמ\"ה",
+  "authority_body": "מועצה מקומית בסמ\"ה",
+  "district": "השרון",
+  "vet_name": "מחמוד ריאד",
+  "license_number": "1134",
+  "email": null,
+  "phone": "04-6357112"
+ },
+ {
+  "city_name": "בסמת טבעון",
+  "authority_body": "מועצה מקומית בסמת טבעון",
+  "district": "גליל מערבי",
+  "vet_name": "פלאח מוהנד",
+  "license_number": "3319",
+  "email": "falahmohanad@gmail.com",
+  "phone": "04-9832403"
+ },
+ {
+  "city_name": "בענה",
+  "authority_body": "מועצה מקומית בענה",
+  "district": "גליל מערבי",
+  "vet_name": "מווויס גיריס",
+  "license_number": "829",
+  "email": "jeries.mwais64@gmail.com",
+  "phone": null
+ },
+ {
+  "city_name": "ברנר – מועצה אזורית",
+  "authority_body": "מועצה אזורית ברנר",
+  "district": "השפלה וההר",
+  "vet_name": "איבגי יעקב",
+  "license_number": "1280",
+  "email": "vet@brener.org.il",
+  "phone": "08-9399999"
+ },
+ {
+  "city_name": "בת ים",
+  "authority_body": "עירית בת ים",
+  "district": "השפלה וההר",
+  "vet_name": "פרי קורל דקלה",
+  "license_number": "3124",
+  "email": "osnatr@bat-yam.muni.il;koral_79@walla.com",
+  "phone": "03-6586658"
+ },
+ {
+  "city_name": "גבעת-עדה",
+  "authority_body": "איגוד ערים אזור השומרון (מטבח)",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "גבעת זאב",
+  "authority_body": "מועצה מקומית גבעת זאב",
+  "district": "השפלה וההר",
+  "vet_name": "הכהן גיל צבי",
+  "license_number": "2396",
+  "email": "vetrinar@givat-zeev.muni.il",
+  "phone": "02-5360165"
+ },
+ {
+  "city_name": "גבעת שמואל",
+  "authority_body": "איגוד ערים גוש דן",
+  "district": "השפלה וההר",
+  "vet_name": "רפלוביץ משה",
+  "license_number": "873",
+  "email": "animals@vet-dan.com",
+  "phone": "03-6312222"
+ },
+ {
+  "city_name": "גבעתיים",
+  "authority_body": "איגוד ערים גוש דן",
+  "district": "השפלה וההר",
+  "vet_name": "רפלוביץ משה",
+  "license_number": "873",
+  "email": "animals@vet-dan.com",
+  "phone": "03-6312222"
+ },
+ {
+  "city_name": "גדיידה-מכר",
+  "authority_body": "מועצה מקומית ג'דיידה-מכר",
+  "district": "גליל מערבי",
+  "vet_name": "חורי אנדראוס",
+  "license_number": "692",
+  "email": "huri1@barak.net.il",
+  "phone": "04-9964094"
+ },
+ {
+  "city_name": "גדרה",
+  "authority_body": "מועצה מקומית גדרה",
+  "district": "השפלה וההר",
+  "vet_name": "כהן בראשי שרון",
+  "license_number": "1971",
+  "email": "Sharon.cohen.barashi@gedera.muni.il",
+  "phone": "08-8593554"
+ },
+ {
+  "city_name": "גדרות – מועצה אזורית",
+  "authority_body": "מועצה אזורית גדרות",
+  "district": "השפלה וההר",
+  "vet_name": "הרשקוביץ כרמי",
+  "license_number": "666",
+  "email": "carmivet@walla.com",
+  "phone": "08-8592950"
+ },
+ {
+  "city_name": "ג'ולס",
+  "authority_body": "מועצה מקומית ג'ולס",
+  "district": "גליל מערבי",
+  "vet_name": "חורי אנדראוס",
+  "license_number": "692",
+  "email": "huri1@barak.net.il",
+  "phone": "04-9963453"
+ },
+ {
+  "city_name": "גוש עציון – מועצה אזורית",
+  "authority_body": "מועצה אזורית גוש עציון",
+  "district": "השפלה וההר",
+  "vet_name": "מרגלית רן",
+  "license_number": "1531",
+  "email": "veterinar@gush-etzion.org.il",
+  "phone": "02-9939957"
+ },
+ {
+  "city_name": "גזר – מועצה אזורית",
+  "authority_body": "מועצה אזורית גזר",
+  "district": "השפלה וההר",
+  "vet_name": "הרשקוביץ כרמי",
+  "license_number": "666",
+  "email": "carmi@Gezer-region.muni.il",
+  "phone": "08-9274040"
+ },
+ {
+  "city_name": "ג'לג'וליה",
+  "authority_body": "מועצה מקומית ג'לג'וליה",
+  "district": "השרון",
+  "vet_name": "עאמר באהר",
+  "license_number": "1919",
+  "email": "amerybaher@yahoo.it",
+  "phone": "03-9397493"
+ },
+ {
+  "city_name": "גן יבנה",
+  "authority_body": "מועצה מקומית גן יבנה",
+  "district": "השפלה וההר",
+  "vet_name": "איבגי יעקב",
+  "license_number": "1280",
+  "email": "Vetrinar@gan-yavne.co.il",
+  "phone": "08-6225501"
+ },
+ {
+  "city_name": "גן רווה – מועצה אזורית",
+  "authority_body": "מועצה אזורית גן רווה",
+  "district": "השפלה וההר",
+  "vet_name": "הרשקוביץ כרמי",
+  "license_number": "666",
+  "email": "carmivet@walla.com",
+  "phone": "08-9408230"
+ },
+ {
+  "city_name": "גני תקווה",
+  "authority_body": "איגוד ערים גוש דן",
+  "district": "השפלה וההר",
+  "vet_name": "רפלוביץ משה",
+  "license_number": "873",
+  "email": "animals@vet-dan.com",
+  "phone": "03-6312222"
+ },
+ {
+  "city_name": "ג'סר א-זרקא",
+  "authority_body": "איגוד ערים אזור השומרון (מטבח)",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "גש (גוש חלב)",
+  "authority_body": "איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "גת",
+  "authority_body": "איגוד ערים אזור השומרון (מטבח)",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "דאלית אל-כרמל",
+  "authority_body": "מועצה מקומית דאלית אל-כרמל",
+  "district": "השרון",
+  "vet_name": "קבהה סלאח אל דין",
+  "license_number": "2863",
+  "email": "Salah_kabha88@hotmail.com",
+  "phone": "04-8396102"
+ },
+ {
+  "city_name": "דבורייה",
+  "authority_body": "מועצה מקומית דבורייה",
+  "district": "העמקים",
+  "vet_name": null,
+  "license_number": null,
+  "email": null,
+  "phone": "04-6702243"
+ },
+ {
+  "city_name": "דייר חנא",
+  "authority_body": "מועצה מקומית דייר חנא",
+  "district": "גליל מערבי",
+  "vet_name": "יאסין עאסם",
+  "license_number": "1240",
+  "email": "asima.vet@hotmail.com",
+  "phone": "04-6782039"
+ },
+ {
+  "city_name": "דימונה",
+  "authority_body": "עירית דימונה",
+  "district": "הנגב",
+  "vet_name": "פורוסט נטליה",
+  "license_number": "1573",
+  "email": "natavet@Dimona.muni.il;lilian@dimona.muni.il",
+  "phone": "073-2756175"
+ },
+ {
+  "city_name": "דיר אל-אסד",
+  "authority_body": "מועצה מקומית דיר אל-אסד",
+  "district": "גליל מערבי",
+  "vet_name": "מווויס גיריס",
+  "license_number": "829",
+  "email": "haifaassadi@gmail.com",
+  "phone": "04-9886655"
+ },
+ {
+  "city_name": "דרום השרון – מועצה אזורית",
+  "authority_body": "איגוד ערים דרום השרון",
+  "district": "השרון",
+  "vet_name": "רפלוביץ משה",
+  "license_number": "873",
+  "email": "animals@vet-dan.com",
+  "phone": "03-6312222"
+ },
+ {
+  "city_name": "הגלבוע – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. הגלבוע",
+  "district": "העמקים",
+  "vet_name": "רודריג שי",
+  "license_number": "1563",
+  "email": "shayrod@hagilboa.org.il",
+  "phone": "04-6081547"
+ },
+ {
+  "city_name": "הגליל העליון – מועצה אזורית",
+  "authority_body": "איגוד ערים הגליל העליון",
+  "district": "גליל גולן",
+  "vet_name": "ישראלי רון",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "הגליל התחתון – מועצה אזורית",
+  "authority_body": "מועצה אזורית הגליל התחתון",
+  "district": "גליל גולן",
+  "vet_name": "מרום סמדר",
+  "license_number": "1444",
+  "email": "vetrinargl@iula.org.il",
+  "phone": "04-6628223"
+ },
+ {
+  "city_name": "הוד השרון",
+  "authority_body": "עירית הוד השרון",
+  "district": "השרון",
+  "vet_name": "מויאל אופירה",
+  "license_number": "1404",
+  "email": "ofiram@hod-hasharon.muni.il",
+  "phone": "09-7759590"
+ },
+ {
+  "city_name": "הכפר הירוק",
+  "authority_body": "עירית הכפר הירוק",
+  "district": "השרון",
+  "vet_name": "שפר גילי",
+  "license_number": "2276",
+  "email": "gili_s@ramat-hasharon.muni.il",
+  "phone": "03-5489313"
+ },
+ {
+  "city_name": "הערבה התיכונה – מועצה אזורית",
+  "authority_body": "מועצה אזורית הערבה התיכונה",
+  "district": "הנגב",
+  "vet_name": "ולרשטיין עדי",
+  "license_number": "1787",
+  "email": "adiv@arava.co.il",
+  "phone": "08-6592206"
+ },
+ {
+  "city_name": "הר אדר",
+  "authority_body": "מועצה מקומית הר אדר",
+  "district": "השפלה וההר",
+  "vet_name": "גרנט דוד",
+  "license_number": "3532",
+  "email": "davidgrantvet@gmail.com",
+  "phone": "02-6293120"
+ },
+ {
+  "city_name": "הר חברון – מועצה אזורית",
+  "authority_body": "מועצה אזורית הר חברון",
+  "district": "הנגב",
+  "vet_name": "ורנבסקי מיכאל",
+  "license_number": "1218",
+  "email": "mihaelv@hrhevron.co.il",
+  "phone": "02-9969162"
+ },
+ {
+  "city_name": "הרצליה",
+  "authority_body": "עירית הרצליה",
+  "district": "השרון",
+  "vet_name": "מורדוך יוסי",
+  "license_number": "1789",
+  "email": "Yossi_m@herzliya.muni.il",
+  "phone": "09-9566056"
+ },
+ {
+  "city_name": "זבולון – מועצה אזורית",
+  "authority_body": "מועצה אזורית זבולון",
+  "district": "גליל מערבי",
+  "vet_name": "וויץ עינת",
+  "license_number": "2638",
+  "email": "veterinar@zvulun.co.il",
+  "phone": "04-8478111"
+ },
+ {
+  "city_name": "זכרון יעקב",
+  "authority_body": "איגוד ערים אזור השומרון (מטבח)",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "זמר",
+  "authority_body": "מועצה מקומית זמר",
+  "district": "השרון",
+  "vet_name": "אגבריה ג'מאל",
+  "license_number": "1379",
+  "email": null,
+  "phone": "09-8743302"
+ },
+ {
+  "city_name": "זרזיר",
+  "authority_body": "מועצה מקומית זרזיר",
+  "district": "העמקים",
+  "vet_name": "מחאג'נה עבד אללטיף",
+  "license_number": "2869",
+  "email": "dr.abedma@gmail.com",
+  "phone": "04-6415522"
+ },
+ {
+  "city_name": "חבל אילות – מועצה אזורית",
+  "authority_body": "מועצה אזורית חבל אילות",
+  "district": "הנגב",
+  "vet_name": "זבירין אילן",
+  "license_number": "2037",
+  "email": "merav@eilot.org.il",
+  "phone": "08-6355846"
+ },
+ {
+  "city_name": "חבל יבנה – מועצה אזורית",
+  "authority_body": "מועצה אזורית חבל יבנה",
+  "district": "השפלה וההר",
+  "vet_name": "הרשקוביץ כרמי",
+  "license_number": "666",
+  "email": "carmivet@walla.com",
+  "phone": "08-8561707"
+ },
+ {
+  "city_name": "חבל מודיעין – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. חבל מודיעין",
+  "district": "השפלה וההר",
+  "vet_name": "מרגלית לוי מעיין",
+  "license_number": "3193",
+  "email": "Vet@Modiin-Region.Muni.il",
+  "phone": "03-9722842"
+ },
+ {
+  "city_name": "חדרה",
+  "authority_body": "עירית חדרה",
+  "district": "השרון",
+  "vet_name": "ולטר יורם",
+  "license_number": "750",
+  "email": "vetrinar@Hadera.muni.il",
+  "phone": "04-6331675"
+ },
+ {
+  "city_name": "חולון",
+  "authority_body": "עירית חולון",
+  "district": "השפלה וההר",
+  "vet_name": "חדד ויקטור",
+  "license_number": "1845",
+  "email": "ruhamaa@holon.muni.il",
+  "phone": "03-5027139"
+ },
+ {
+  "city_name": "חוף אשקלון – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. חוף אשקלון",
+  "district": "הנגב",
+  "vet_name": "איסקוביץ ודים",
+  "license_number": "1276",
+  "email": "ruts@beer-tuvia.org.il",
+  "phone": "08-8509804"
+ },
+ {
+  "city_name": "חוף הכרמל – מועצה אזורית",
+  "authority_body": "מועצה אזורית חוף הכרמל",
+  "district": "השרון",
+  "vet_name": "שרגנהיים מיכאל",
+  "license_number": "660",
+  "email": "vet@hcarmel.org.il",
+  "phone": "04-8136210"
+ },
+ {
+  "city_name": "חוף השרון – מועצה אזורית",
+  "authority_body": "מועצה אזורית חוף השרון",
+  "district": "השרון",
+  "vet_name": "כץ סיתוונית",
+  "license_number": "1424",
+  "email": "vet@hof-hasharon.co.il",
+  "phone": "09-9596528"
+ },
+ {
+  "city_name": "חורה",
+  "authority_body": "מועצה מקומית חורה",
+  "district": "הנגב",
+  "vet_name": "אבו סיאם עסמן",
+  "license_number": "3053",
+  "email": "avib@mail.makif.omer.k12.il",
+  "phone": "08-6510991"
+ },
+ {
+  "city_name": "חורפיש",
+  "authority_body": "מועצה מקומית חורפיש",
+  "district": "גליל מערבי",
+  "vet_name": "עמיאל שלמה",
+  "license_number": "1178",
+  "email": "dr_tahsin@hotmail.com",
+  "phone": "04-9977473"
+ },
+ {
+  "city_name": "חיפה",
+  "authority_body": "עירית חיפה",
+  "district": "גליל מערבי",
+  "vet_name": "וייס יאיר",
+  "license_number": "802",
+  "email": "Yairw@haifa.muni.il",
+  "phone": "04-8236566"
+ },
+ {
+  "city_name": "חצור הגלילית",
+  "authority_body": "איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "חריש",
+  "authority_body": "איגוד ערים אזור השומרון (מטבח)",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "טבריה",
+  "authority_body": "עירית טבריה",
+  "district": "גליל גולן",
+  "vet_name": "פלג פלורינה-דבורה",
+  "license_number": "1467",
+  "email": "florina@tiberias.muni.il",
+  "phone": "04-6737661"
+ },
+ {
+  "city_name": "טובא-זנגרייה",
+  "authority_body": "איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "טורעאן",
+  "authority_body": "מועצה מקומית טורעאן",
+  "district": "העמקים",
+  "vet_name": "חמאיסי עבד",
+  "license_number": "1200",
+  "email": "kerenb@moag.gov.il",
+  "phone": "04-6414000"
+ },
+ {
+  "city_name": "טייבה",
+  "authority_body": "עירית טייבה",
+  "district": "השרון",
+  "vet_name": "אבו ראס עדנאן",
+  "license_number": "596",
+  "email": "adnanrass@gumail.com",
+  "phone": "09-7991161"
+ },
+ {
+  "city_name": "טירה",
+  "authority_body": "עירית טירה",
+  "district": "השרון",
+  "vet_name": "אגבריה ג'מאל",
+  "license_number": "1379",
+  "email": null,
+  "phone": "09-7751414"
+ },
+ {
+  "city_name": "טירת כרמל",
+  "authority_body": "עירית טירת כרמל",
+  "district": "השרון",
+  "vet_name": "שיאון עידו",
+  "license_number": "1640",
+  "email": "vet@tirat-carmel.muni.il",
+  "phone": "04-8576282"
+ },
+ {
+  "city_name": "טמרה",
+  "authority_body": "עירית טמרה",
+  "district": "גליל מערבי",
+  "vet_name": "מלשה יוסף",
+  "license_number": "1039",
+  "email": null,
+  "phone": "04-9943868"
+ },
+ {
+  "city_name": "יאנוח-ג'ת",
+  "authority_body": "מועצה מקומית יאנוח-ג'ת",
+  "district": "גליל מערבי",
+  "vet_name": "ח'ורי סילביה",
+  "license_number": "3284",
+  "email": "khourisilvia2511@gmail.com",
+  "phone": "04-9979072"
+ },
+ {
+  "city_name": "יבנאל – מועצה אזורית",
+  "authority_body": "מועצה אזורית יבנאל",
+  "district": "גליל גולן",
+  "vet_name": "מרום סמדר",
+  "license_number": "1444",
+  "email": "vetrinargl@iula.org.il",
+  "phone": "04-6628223"
+ },
+ {
+  "city_name": "יבנה",
+  "authority_body": "עירית יבנה",
+  "district": "השפלה וההר",
+  "vet_name": "קמחי מאיה",
+  "license_number": "2687",
+  "email": "mayak@yavne.muni.il",
+  "phone": "08-9433359"
+ },
+ {
+  "city_name": "יהוד",
+  "authority_body": "עירית יהוד",
+  "district": "השפלה וההר",
+  "vet_name": "הלוי זהר",
+  "license_number": "3023",
+  "email": "drhalevy@ye-mo.org.il",
+  "phone": "03-5391212"
+ },
+ {
+  "city_name": "יואב – מועצה אזורית",
+  "authority_body": "מועצה אזורית יואב",
+  "district": "השפלה וההר",
+  "vet_name": "איסקוביץ ודים",
+  "license_number": "1276",
+  "email": "ruts@beer-tuvia.org.il",
+  "phone": "08-8509804"
+ },
+ {
+  "city_name": "יסוד המעלה",
+  "authority_body": "איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "יפיע",
+  "authority_body": "מועצה מקומית יפיע",
+  "district": "העמקים",
+  "vet_name": "כנאנה חוסאם",
+  "license_number": "866",
+  "email": "hosam_k@walla.com",
+  "phone": "04-6557555"
+ },
+ {
+  "city_name": "יקנעם עילית",
+  "authority_body": "עירית יקנעם עילית",
+  "district": "העמקים",
+  "vet_name": "סאבו אריה",
+  "license_number": "1539",
+  "email": "ariehs@yoqneam.org.il",
+  "phone": "04-9596028"
+ },
+ {
+  "city_name": "ירוחם",
+  "authority_body": "מועצה מקומית ירוחם",
+  "district": "הנגב",
+  "vet_name": "ולרשטיין עדי",
+  "license_number": "1787",
+  "email": "adiwall@walla.co.il",
+  "phone": "08-6589417"
+ },
+ {
+  "city_name": "ירושלים",
+  "authority_body": "עירית ירושלים",
+  "district": "השפלה וההר",
+  "vet_name": "בריל אסף",
+  "license_number": "1533",
+  "email": "doctorat@jerusalem.muni.il",
+  "phone": "1700-701777"
+ },
+ {
+  "city_name": "ירכא",
+  "authority_body": "מועצה מקומית ירכא",
+  "district": "גליל מערבי",
+  "vet_name": "מסרי סמיר",
+  "license_number": "1261",
+  "email": "naim48@gmail.com",
+  "phone": "04-9568111"
+ },
+ {
+  "city_name": "כאבול",
+  "authority_body": "מועצה מקומית כאבול",
+  "district": "גליל מערבי",
+  "vet_name": "זיאדני מהאוש",
+  "license_number": "1445",
+  "email": null,
+  "phone": "04-9946396"
+ },
+ {
+  "city_name": "כאוכב אבו אל-",
+  "authority_body": "מועצה מקומית כאוכב אבו אל-",
+  "district": "גליל מערבי",
+  "vet_name": "חמזה בדראן",
+  "license_number": "1384",
+  "email": null,
+  "phone": "04-9998624"
+ },
+ {
+  "city_name": "כוכב יאיר-צור יגאל",
+  "authority_body": "מועצה מקומית כוכב יאיר",
+  "district": "השרון",
+  "vet_name": "אלוני-רוזן טלי",
+  "license_number": "1430",
+  "email": "tal@kyair.org.il",
+  "phone": "09-7640211"
+ },
+ {
+  "city_name": "כוכב יאיר",
+  "authority_body": "מועצה מקומית כוכב יאיר",
+  "district": "השרון",
+  "vet_name": "אלוני-רוזן טלי",
+  "license_number": "1430",
+  "email": "tal@kyair.org.il",
+  "phone": "09-7640211"
+ },
+ {
+  "city_name": "כסיפה",
+  "authority_body": "מועצה מקומית כסיפה",
+  "district": "הנגב",
+  "vet_name": "מליצקי מיה",
+  "license_number": "1030",
+  "email": "avib@mail.makif.omer.k12.il",
+  "phone": "08-9972710"
+ },
+ {
+  "city_name": "כסרא-סמיע",
+  "authority_body": "מועצה מקומית כסרא-סמיע",
+  "district": "גליל מערבי",
+  "vet_name": "בשארה ריאד",
+  "license_number": "754",
+  "email": "riadbishara@hotmail.com",
+  "phone": "04-9872488"
+ },
+ {
+  "city_name": "כעביה-טבאש-חג'אג'רה",
+  "authority_body": "מועצה מקומית כעביה-טבאש-חג'אג'רה",
+  "district": "גליל מערבי",
+  "vet_name": "גזאלין ח'דר",
+  "license_number": "1380",
+  "email": null,
+  "phone": "04-9531748"
+ },
+ {
+  "city_name": "כפר-אזר",
+  "authority_body": "עירית מ.א. אפעל",
+  "district": "השרון",
+  "vet_name": "מלמן שי",
+  "license_number": "1177",
+  "email": "avi-shap@ramat-gan.muni.il",
+  "phone": "03-6758418"
+ },
+ {
+  "city_name": "כפר ברא",
+  "authority_body": "מועצה מקומית כפר ברא",
+  "district": "השרון",
+  "vet_name": "אגבריה ג'מאל",
+  "license_number": "1379",
+  "email": null,
+  "phone": "03-9389173"
+ },
+ {
+  "city_name": "כפר ורדים",
+  "authority_body": "מועצה מקומית כפר ורדים",
+  "district": "גליל מערבי",
+  "vet_name": "ברזילי אבנר",
+  "license_number": "521",
+  "email": "vetrinar@k-vradim.org.il",
+  "phone": "04-9977142"
+ },
+ {
+  "city_name": "כפר יאסיף",
+  "authority_body": "מועצה מקומית כפר יאסיף",
+  "district": "גליל מערבי",
+  "vet_name": "חורי אנדראוס",
+  "license_number": "692",
+  "email": "huri1@barak.net.il",
+  "phone": "04-9961715"
+ },
+ {
+  "city_name": "כפר יונה",
+  "authority_body": "מועצה מקומית כפר יונה",
+  "district": "השרון",
+  "vet_name": "זהרוני אהוד (אודי)",
+  "license_number": "1075",
+  "email": "zaharoni.udi@gmail.com",
+  "phone": "09-8971111"
+ },
+ {
+  "city_name": "כפר כמא",
+  "authority_body": "מועצה מקומית כפר כמא",
+  "district": "גליל גולן",
+  "vet_name": "כריים נעים",
+  "license_number": "1294",
+  "email": "naim48@gmail.com",
+  "phone": "04-6628223"
+ },
+ {
+  "city_name": "כפר כנא",
+  "authority_body": "מועצה מקומית כפר כנא",
+  "district": "העמקים",
+  "vet_name": "חמאיסי עבד",
+  "license_number": "1200",
+  "email": "a.kamaisi.vet@gmail.com",
+  "phone": "04-6517741"
+ },
+ {
+  "city_name": "כפר מנדא",
+  "authority_body": "מועצה מקומית כפר מנדא",
+  "district": "גליל מערבי",
+  "vet_name": "זיאדני מהאוש",
+  "license_number": "1445",
+  "email": null,
+  "phone": "04-9864710"
+ },
+ {
+  "city_name": "כפר סבא",
+  "authority_body": "עירית כפר סבא",
+  "district": "השרון",
+  "vet_name": "וילדר רוני",
+  "license_number": "1811",
+  "email": "vet-serv@raanana.muni.il;ronnyw@raanana.muni.il",
+  "phone": "09-7722158"
+ },
+ {
+  "city_name": "כפר סירקין",
+  "authority_body": "איגוד ערים דרום השרון",
+  "district": "השפלה וההר",
+  "vet_name": "רפלוביץ משה",
+  "license_number": "873",
+  "email": "animals@vet-dan.com",
+  "phone": "03-6312222"
+ },
+ {
+  "city_name": "כפר קאסם",
+  "authority_body": "עירית כפר קאסם",
+  "district": "השרון",
+  "vet_name": "עאמר באהר",
+  "license_number": "1919",
+  "email": "amerybaher@yahoo.it",
+  "phone": "03-9370548"
+ },
+ {
+  "city_name": "כפר קרע",
+  "authority_body": "מועצה מקומית כפר קרע",
+  "district": "השרון",
+  "vet_name": "מחמוד ריאד",
+  "license_number": "1134",
+  "email": null,
+  "phone": "04-6356730"
+ },
+ {
+  "city_name": "כפר שמריהו",
+  "authority_body": "מועצה מקומית כפר שמריהו",
+  "district": "השרון",
+  "vet_name": "כץ סיתוונית",
+  "license_number": "1424",
+  "email": "vet@hof-hasharon.co.il",
+  "phone": "09-9505385"
+ },
+ {
+  "city_name": "כפר תבור – מועצה אזורית",
+  "authority_body": "מועצה אזורית כפר תבור",
+  "district": "גליל גולן",
+  "vet_name": "מרום סמדר",
+  "license_number": "1444",
+  "email": "vetrinargl@iula.org.il",
+  "phone": "04-6628223"
+ },
+ {
+  "city_name": "כרמיאל",
+  "authority_body": "עירית כרמיאל",
+  "district": "גליל מערבי",
+  "vet_name": "בקר קנת אדם",
+  "license_number": "3255",
+  "email": "vetkarmiel@karmiel.muni.il",
+  "phone": "04-9085722"
+ },
+ {
+  "city_name": "לב השרון – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. לב השרון",
+  "district": "השרון",
+  "vet_name": "שני יונתן",
+  "license_number": "1327",
+  "email": "IRIT@LEV-HASHARON.COM",
+  "phone": "09-7960253"
+ },
+ {
+  "city_name": "להבים",
+  "authority_body": "מועצה מקומית להבים",
+  "district": "הנגב",
+  "vet_name": "ולרטשטיין עדי",
+  "license_number": "1787",
+  "email": "elip@lehavim.muni.il",
+  "phone": "08-9554777"
+ },
+ {
+  "city_name": "לוד",
+  "authority_body": "עירית עירית לוד",
+  "district": "השפלה וההר",
+  "vet_name": "אסיף טל",
+  "license_number": "2709",
+  "email": "davids@lod.muni.il;tala@lod.muni.il",
+  "phone": "08-9279934"
+ },
+ {
+  "city_name": "לכיש – מועצה אזורית",
+  "authority_body": "מועצה אזורית לכיש",
+  "district": "הנגב",
+  "vet_name": "איסקוביץ ודים",
+  "license_number": "1276",
+  "email": "ruts@beer-tuvia.org.il",
+  "phone": "08-8509804"
+ },
+ {
+  "city_name": "לקיה",
+  "authority_body": "מועצה מקומית לקיה",
+  "district": "הנגב",
+  "vet_name": "מליצקי מיה",
+  "license_number": "1030",
+  "email": "avib@mail.makif.omer.k12.il",
+  "phone": "08-6512361"
+ },
+ {
+  "city_name": "מבואות החרמון – מועצה אזורית",
+  "authority_body": "איגוד ערים מבואות החרמון",
+  "district": "גליל גולן",
+  "vet_name": "ישראלי רון",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "מבשרת ציון",
+  "authority_body": "מועצה מקומית מבשרת ציון",
+  "district": "השפלה וההר",
+  "vet_name": "הכהן גיל צבי",
+  "license_number": "2396",
+  "email": "Gabia@m-zion.org.il",
+  "phone": "02-5348589"
+ },
+ {
+  "city_name": "מגאר",
+  "authority_body": "מועצה מקומית מגאר",
+  "district": "גליל מערבי",
+  "vet_name": "מווויס ויורקה",
+  "license_number": "1104",
+  "email": "jm.vetnet@yahoo.com",
+  "phone": "04-6786333"
+ },
+ {
+  "city_name": "מג'ד אל-כרום",
+  "authority_body": "מועצה מקומית מג'ד אל-כרום",
+  "district": "גליל מערבי",
+  "vet_name": "מווויס גיריס",
+  "license_number": "829",
+  "email": "viorica.vet@gmail.com",
+  "phone": "04-9883750"
+ },
+ {
+  "city_name": "מגדל – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. מ. מגדל",
+  "district": "גליל גולן",
+  "vet_name": "מרום סמדר",
+  "license_number": "1444",
+  "email": "vetrinargl@iula.org.il",
+  "phone": "04-6628223"
+ },
+ {
+  "city_name": "מגדל העמק",
+  "authority_body": "עירית מגדל העמק",
+  "district": "העמקים",
+  "vet_name": "גליל חרבוש",
+  "license_number": null,
+  "email": "Jalilk@migdal-haemeq.muni.il",
+  "phone": "04-65078056"
+ },
+ {
+  "city_name": "מגדל שמס",
+  "authority_body": "איגוד ערים איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "מגידו – מועצה אזורית",
+  "authority_body": "מועצה אזורית מגידו",
+  "district": "העמקים",
+  "vet_name": "סאבו אריה",
+  "license_number": "1539",
+  "email": "veterinar@megido.org.il",
+  "phone": "04-9598486"
+ },
+ {
+  "city_name": "מגילות ים המלח – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. מגילות ים המלח",
+  "district": "השפלה וההר",
+  "vet_name": "שמחון יוסף",
+  "license_number": "671",
+  "email": "simhonj@gmail.com",
+  "phone": "08-9951608"
+ },
+ {
+  "city_name": "מודיעין-מכבים-רעות",
+  "authority_body": "עירית מודיעין-מכבים-רעות",
+  "district": "השפלה וההר",
+  "vet_name": "עינב עופר",
+  "license_number": "1173",
+  "email": "dr_einav@modiin.muni.il",
+  "phone": "08-9726179"
+ },
+ {
+  "city_name": "מודיעין עילית",
+  "authority_body": "עירית מודיעין עילית",
+  "district": "השפלה וההר",
+  "vet_name": "מרסיאנו לשקוביץ ליזה עליזה",
+  "license_number": "2119",
+  "email": "veterinar@MODIL.ORG.IL",
+  "phone": "08-9140913"
+ },
+ {
+  "city_name": "מועצה אזורית בני שמעון",
+  "authority_body": "איגוד ערים בני שמעון",
+  "district": "הנגב",
+  "vet_name": "שהרבני עזרא",
+  "license_number": "2500",
+  "email": "miki@westnegev.org.il",
+  "phone": "073-72691274"
+ },
+ {
+  "city_name": "מועצה אזורית גולן",
+  "authority_body": "איגוד ערים גולן",
+  "district": "גליל גולן",
+  "vet_name": "צור דניאל",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "מזכרת בתיה",
+  "authority_body": "מועצה מקומית מזכרת בתיה",
+  "district": "השפלה וההר",
+  "vet_name": "איבגי יעקב",
+  "license_number": "1280",
+  "email": "vet@mazkeret-batya.muni.il",
+  "phone": "08-9371122"
+ },
+ {
+  "city_name": "מזרעה – מועצה אזורית",
+  "authority_body": "מועצה אזורית מזרעה",
+  "district": "גליל מערבי",
+  "vet_name": "גולדן שי ישראל",
+  "license_number": "2826",
+  "email": "shayg@mta.org.il",
+  "phone": "04-9879658"
+ },
+ {
+  "city_name": "מטה אשר – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. מטה אשר",
+  "district": "גליל מערבי",
+  "vet_name": "גולדן שי ישראל",
+  "license_number": "2826",
+  "email": "shayg@mta.org.il",
+  "phone": "04-9879658"
+ },
+ {
+  "city_name": "מטה בנימין – מועצה אזורית",
+  "authority_body": "מועצה אזורית מטה בנימין",
+  "district": "השפלה וההר",
+  "vet_name": "שפירא חובב",
+  "license_number": "1962",
+  "email": "shappira@binyamin.org.il;vtb106@binyamin.org.il",
+  "phone": "02-9400334"
+ },
+ {
+  "city_name": "מטה יהודה – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. מטה יהודה",
+  "district": "השפלה וההר",
+  "vet_name": "הכהן גיל צבי",
+  "license_number": "2396",
+  "email": "Office.vet@m-yehuda.org.il",
+  "phone": "02-9958906"
+ },
+ {
+  "city_name": "מטולה",
+  "authority_body": "מועצה מקומית מטולה",
+  "district": "גליל גולן",
+  "vet_name": "ישראלי רון",
+  "license_number": "768",
+  "email": "israelir@netvision.net.il",
+  "phone": "04-6818053"
+ },
+ {
+  "city_name": "מיתר",
+  "authority_body": "מועצה מקומית מיתר",
+  "district": "הנגב",
+  "vet_name": "מיקולשיק הילה",
+  "license_number": "1484",
+  "email": "hila@metar.muni.il",
+  "phone": "08-6684008"
+ },
+ {
+  "city_name": "מכבים/רעות",
+  "authority_body": "עירית מכבים-רעות",
+  "district": "השפלה וההר",
+  "vet_name": "עינב עופר",
+  "license_number": "1173",
+  "email": "dr_einav@modiin.muni.il",
+  "phone": "08-9726179"
+ },
+ {
+  "city_name": "מנשה – מועצה אזורית",
+  "authority_body": "איגוד ערים מנשה",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "מסעדה",
+  "authority_body": "איגוד ערים איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "מעיליא",
+  "authority_body": "מועצה מקומית מעיליא",
+  "district": "גליל מערבי",
+  "vet_name": "עמיאל שלמה",
+  "license_number": "1178",
+  "email": "mailya@iula.org.il",
+  "phone": "04-9979522"
+ },
+ {
+  "city_name": "מעלה אדומים",
+  "authority_body": "עירית מעלה אדומים",
+  "district": "השפלה וההר",
+  "vet_name": "ציבן (ציצאשוילי) אדי",
+  "license_number": "598",
+  "email": "zedi@maale-adummim.muni.il",
+  "phone": "02-5354585"
+ },
+ {
+  "city_name": "מעלה אפרים",
+  "authority_body": "מועצה מקומית מעלה אפרים",
+  "district": "השפלה וההר",
+  "vet_name": "טרומפר פביאן",
+  "license_number": "853",
+  "email": "fabitrumper@gmail.com",
+  "phone": "02-9941223"
+ },
+ {
+  "city_name": "מעלה יוסף – מועצה אזורית",
+  "authority_body": "מועצה אזורית מעלה יוסף",
+  "district": "גליל מערבי",
+  "vet_name": "ירום אסף",
+  "license_number": "1535",
+  "email": "vetrinar@myosef.org.il",
+  "phone": "04-9105561"
+ },
+ {
+  "city_name": "מעלה עירון",
+  "authority_body": "מועצה מקומית מעלה עירון",
+  "district": "השרון",
+  "vet_name": "מחמוד ריאד",
+  "license_number": "1134",
+  "email": null,
+  "phone": "04-6401369"
+ },
+ {
+  "city_name": "מעלות-תרשיחא",
+  "authority_body": "עירית עירית מעלות תרשיחא",
+  "district": "גליל מערבי",
+  "vet_name": "בשארה ריאד",
+  "license_number": "754",
+  "email": "riadbishara@hotmail.com",
+  "phone": "04-9578952"
+ },
+ {
+  "city_name": "מצפה רמון",
+  "authority_body": "מועצה מקומית מצפה רמון",
+  "district": "הנגב",
+  "vet_name": "לרנר (בראל) סימונה",
+  "license_number": "1488",
+  "email": "vetrinar@MZP.org.il",
+  "phone": "08-6588106"
+ },
+ {
+  "city_name": "מרום הגליל – מועצה אזורית",
+  "authority_body": "איגוד ערים מ. א. מרום הגליל",
+  "district": "גליל גולן",
+  "vet_name": "חליחל עמאר",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "מרחבים – מועצה אזורית",
+  "authority_body": "איגוד ערים מ. א. מרחבים",
+  "district": "הנגב",
+  "vet_name": "ורנבסקי מיכאל",
+  "license_number": "2500",
+  "email": "miki@westnegev.org.il",
+  "phone": "073-72691274"
+ },
+ {
+  "city_name": "משגב – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. משגב",
+  "district": "גליל מערבי",
+  "vet_name": "קליגלר איתן",
+  "license_number": "2746",
+  "email": "eitank@misgav.org.il",
+  "phone": "04-9902317"
+ },
+ {
+  "city_name": "משהד",
+  "authority_body": "מועצה מקומית משהד",
+  "district": "העמקים",
+  "vet_name": "עלי-אחמד סמיר",
+  "license_number": "1298",
+  "email": null,
+  "phone": "04-6519092"
+ },
+ {
+  "city_name": "נ. אפרים-מונסון",
+  "authority_body": "עירית נווה אפרים",
+  "district": "השפלה וההר",
+  "vet_name": "הלוי זהר",
+  "license_number": "3023",
+  "email": "drhalevy@ye-mo.org.il",
+  "phone": "03-5391212"
+ },
+ {
+  "city_name": "נאות חובב",
+  "authority_body": "מועצה מקומית נאות חובב",
+  "district": "הנגב",
+  "vet_name": null,
+  "license_number": null,
+  "email": null,
+  "phone": null
+ },
+ {
+  "city_name": "נהריה",
+  "authority_body": "עירית נהריה",
+  "district": "גליל מערבי",
+  "vet_name": "אמיתי (ריכטמן) אייל",
+  "license_number": "1164",
+  "email": "vet@nahariya.muni.il",
+  "phone": "04-98798412"
+ },
+ {
+  "city_name": "נווה מדבר – מועצה אזורית",
+  "authority_body": "מועצה אזורית נווה מדבר",
+  "district": "הנגב",
+  "vet_name": "אל סאנע סלימן",
+  "license_number": "1559",
+  "email": "sliman@nevemidbar.org.il",
+  "phone": "050-2681690"
+ },
+ {
+  "city_name": "נוף הגליל",
+  "authority_body": "עירית עיריית נוף הגליל",
+  "district": "העמקים",
+  "vet_name": "בריק עסאם",
+  "license_number": "1433",
+  "email": "vet-med-brik@nallit.org.il",
+  "phone": "04-6478822"
+ },
+ {
+  "city_name": "נחל שורק – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. נחל שורק",
+  "district": "השפלה וההר",
+  "vet_name": "טל אסף",
+  "license_number": "2324",
+  "email": "asaft@ma-soreq.org.il;riki@ma-soreq.org.il",
+  "phone": "08-8594172"
+ },
+ {
+  "city_name": "נחף",
+  "authority_body": "עירית נחף",
+  "district": "גליל מערבי",
+  "vet_name": "חיג'אזי מוחמד",
+  "license_number": "3136",
+  "email": "mazkira-vet@akko.muni.il;mohammed@akko.muni.il",
+  "phone": "04-9956203"
+ },
+ {
+  "city_name": "נס ציונה",
+  "authority_body": "עירית נס ציונה",
+  "district": "השפלה וההר",
+  "vet_name": "נסינג יוסי",
+  "license_number": "1127",
+  "email": "nessing@ness-ziona.muni.il",
+  "phone": "08-9406467"
+ },
+ {
+  "city_name": "נצרת",
+  "authority_body": "עירית נצרת",
+  "district": "העמקים",
+  "vet_name": "עונאללה בילאל",
+  "license_number": "1103",
+  "email": "bilalonallah@gmail.com",
+  "phone": "04-6554156"
+ },
+ {
+  "city_name": "נשר",
+  "authority_body": "עירית נשר",
+  "district": "גליל מערבי",
+  "vet_name": "מלר לואיס",
+  "license_number": "467",
+  "email": "kmaler@internet.co.il",
+  "phone": "04-8299249"
+ },
+ {
+  "city_name": "נתיבות",
+  "authority_body": "איגוד ערים איגוד ערים אשכול רשויות נגב מ",
+  "district": "הנגב",
+  "vet_name": "בר-קמה מיכאל",
+  "license_number": "2500",
+  "email": "miki@westnegev.org.il",
+  "phone": "073-72691274"
+ },
+ {
+  "city_name": "נתניה",
+  "authority_body": "עירית עירית נתניה",
+  "district": "השרון",
+  "vet_name": "מלמן שי",
+  "license_number": "1642",
+  "email": "vet-serv@netanya.muni.il;shay.mel@netanya.muni.il",
+  "phone": "09-8333837"
+ },
+ {
+  "city_name": "סאג'ור",
+  "authority_body": "מועצה מקומית סאג'ור",
+  "district": "גליל מערבי",
+  "vet_name": "שיבאן אשרף",
+  "license_number": "3143",
+  "email": "ashraf.sheban@windowslive.com",
+  "phone": "04-9886880"
+ },
+ {
+  "city_name": "סביון",
+  "authority_body": "מועצה מקומית סביון",
+  "district": "השפלה וההר",
+  "vet_name": "בלעום סעיד",
+  "license_number": "3315",
+  "email": "saeed200.sb@gmail.com",
+  "phone": "052-6929349"
+ },
+ {
+  "city_name": "סחנין",
+  "authority_body": "עירית סחנין",
+  "district": "גליל מערבי",
+  "vet_name": "בשיר אחמד",
+  "license_number": "1295",
+  "email": "basheer700@yahoo.com",
+  "phone": "04-6788814"
+ },
+ {
+  "city_name": "ע'ג'ר",
+  "authority_body": "איגוד ערים איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "עומר",
+  "authority_body": "מועצה מקומית עומר",
+  "district": "הנגב",
+  "vet_name": "מליצקי מיה",
+  "license_number": "1030",
+  "email": "mayomeromer@gmail.com",
+  "phone": "08-6291127"
+ },
+ {
+  "city_name": "עילבון – מועצה אזורית",
+  "authority_body": "מועצה אזורית עילבון",
+  "district": "העמקים",
+  "vet_name": "מרום סמדר",
+  "license_number": "1444",
+  "email": "vetrinargl@iula.org.il",
+  "phone": "04-6628223"
+ },
+ {
+  "city_name": "עילוט",
+  "authority_body": "מועצה מקומית עילוט",
+  "district": "העמקים",
+  "vet_name": "עלי-אחמד סמיר",
+  "license_number": "1298",
+  "email": "samirabo@walla.co.il",
+  "phone": "04-6565115"
+ },
+ {
+  "city_name": "עין מאהל",
+  "authority_body": "מועצה מקומית עין מאהל",
+  "district": "העמקים",
+  "vet_name": "אבוליל השאם",
+  "license_number": "1543",
+  "email": null,
+  "phone": "04-6450617"
+ },
+ {
+  "city_name": "עין קנייא",
+  "authority_body": "איגוד ערים איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "עכו",
+  "authority_body": "עירית עירית עכו",
+  "district": "גליל מערבי",
+  "vet_name": "חיג'אזי מוחמד",
+  "license_number": "3136",
+  "email": "mazkira-vet@akko.muni.il;mohammed@akko.muni.il",
+  "phone": "04-9956203"
+ },
+ {
+  "city_name": "עמנואל",
+  "authority_body": "מועצה מקומית עמנואל",
+  "district": "השרון",
+  "vet_name": "זכרין יהונתן",
+  "license_number": "1205",
+  "email": "veterinar@emanuel.muni.il",
+  "phone": "09-7921448"
+ },
+ {
+  "city_name": "עמק הירדן – מועצה אזורית",
+  "authority_body": "מועצה אזורית עמק הירדן",
+  "district": "גליל גולן",
+  "vet_name": "בן שמחון גיא",
+  "license_number": "1717",
+  "email": "vet@j-v.org.il",
+  "phone": "04-6757642"
+ },
+ {
+  "city_name": "עמק המעיינות – מועצה אזורית",
+  "authority_body": "מועצה אזורית מועצה אזורית עמק המעיינות",
+  "district": "העמקים",
+  "vet_name": "וולוך גרי",
+  "license_number": "2747",
+  "email": "vet@maianot.co.il",
+  "phone": "04-6065850"
+ },
+ {
+  "city_name": "עמק חפר – מועצה אזורית",
+  "authority_body": "מועצה אזורית עמק חפר",
+  "district": "השרון",
+  "vet_name": "גונן שרון",
+  "license_number": "2377",
+  "email": "galina@hefer.org.il",
+  "phone": "09-8981670"
+ },
+ {
+  "city_name": "עמק יזרעאל – מועצה אזורית",
+  "authority_body": "מועצה אזורית עמק יזרעאל",
+  "district": "העמקים",
+  "vet_name": "וונדר גלית",
+  "license_number": "2208",
+  "email": "Galitw@eyz.org.il",
+  "phone": "04-65200987"
+ },
+ {
+  "city_name": "עספיא",
+  "authority_body": "מועצה מקומית עספיא",
+  "district": "השרון",
+  "vet_name": "פלאח מוהנד",
+  "license_number": "3319",
+  "email": "falahmohanad@gmail.com",
+  "phone": "04-8396102"
+ },
+ {
+  "city_name": "עפולה",
+  "authority_body": "עירית עפולה",
+  "district": "העמקים",
+  "vet_name": "בנט יואל",
+  "license_number": "2011",
+  "email": "yoelb@afula.muni.il",
+  "phone": "04-6484213"
+ },
+ {
+  "city_name": "עראבה",
+  "authority_body": "מועצה מקומית עראבה",
+  "district": "גליל מערבי",
+  "vet_name": "יאסון מריה",
+  "license_number": "1363",
+  "email": null,
+  "phone": "04-6744208"
+ },
+ {
+  "city_name": "ערבות הירדן – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. ערבות הירדן",
+  "district": "העמקים",
+  "vet_name": "טרומפר פביאן",
+  "license_number": "853",
+  "email": "fabitrumper@gmail.com",
+  "phone": "02-9946603"
+ },
+ {
+  "city_name": "ערד",
+  "authority_body": "עירית עירית ערד",
+  "district": "הנגב",
+  "vet_name": "קורול יאנה",
+  "license_number": "2054",
+  "email": "veterinary@arad.muni.il",
+  "phone": "08-9951608"
+ },
+ {
+  "city_name": "ערערה",
+  "authority_body": "איגוד ערים איגוד ערים אזור השומרון (מטבח",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "ערערה-בנגב",
+  "authority_body": "מועצה מקומית ערערה-בנגב",
+  "district": "הנגב",
+  "vet_name": "בראילובסקי נונה",
+  "license_number": "1572",
+  "email": "Nonnabr68@gmail.com",
+  "phone": "08-9959110"
+ },
+ {
+  "city_name": "פוריידיס",
+  "authority_body": "איגוד ערים איגוד ערים אזור השומרון (מטבח",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "פסוטה",
+  "authority_body": "מועצה מקומית פסוטה",
+  "district": "גליל מערבי",
+  "vet_name": "עמיאל שלמה",
+  "license_number": "1178",
+  "email": "amiel_n@netvision.net.il",
+  "phone": "04-9871040"
+ },
+ {
+  "city_name": "פקיעין (בוקיי",
+  "authority_body": "מועצה מקומית פקיעין (בוקיי",
+  "district": "גליל מערבי",
+  "vet_name": "בשארה ריאד",
+  "license_number": "754",
+  "email": null,
+  "phone": "04-9976105"
+ },
+ {
+  "city_name": "פרדס חנה-כרכור",
+  "authority_body": "איגוד ערים איגוד ערים אזור השומרון (מטבח",
+  "district": "השרון",
+  "vet_name": "בדראן ריאד",
+  "license_number": "1352",
+  "email": "igud@vet-shomron.co.il",
+  "phone": "04-6373094"
+ },
+ {
+  "city_name": "פרדסייה",
+  "authority_body": "מועצה מקומית פרדסייה",
+  "district": "השרון",
+  "vet_name": "כץ סיתוונית",
+  "license_number": "1424",
+  "email": "vet@pardesia.muni.il",
+  "phone": "09-8945687"
+ },
+ {
+  "city_name": "פתח תקווה",
+  "authority_body": "עירית עירית פתח תקוה",
+  "district": "השפלה וההר",
+  "vet_name": "מתיא(בר און) תיקה",
+  "license_number": "1096",
+  "email": "vet@ptikva.org.il",
+  "phone": "03-9303647"
+ },
+ {
+  "city_name": "צורן",
+  "authority_body": "מועצה מקומית צורן",
+  "district": "השרון",
+  "vet_name": "זהרוני אהוד(אודי)",
+  "license_number": "1075",
+  "email": "zaharoni.udi@gmail.com",
+  "phone": "09-8902900"
+ },
+ {
+  "city_name": "צפת",
+  "authority_body": "איגוד ערים איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "קדומים",
+  "authority_body": "מועצה מקומית קדומים",
+  "district": "השרון",
+  "vet_name": "שוורץ גבריאל",
+  "license_number": "1162",
+  "email": "vetshomron@gmail.com",
+  "phone": "09-7922072"
+ },
+ {
+  "city_name": "קדימה-צורן",
+  "authority_body": "מועצה מקומית קדימה-צורן",
+  "district": "השרון",
+  "vet_name": "זהרוני אהוד(אודי)",
+  "license_number": "1075",
+  "email": "zaharoni.udi@gmail.com",
+  "phone": "09-8902900"
+ },
+ {
+  "city_name": "קלנסווה",
+  "authority_body": "עירית קלנסווה",
+  "district": "השרון",
+  "vet_name": "אבו ראס עדנאן",
+  "license_number": "596",
+  "email": "adnanrass@gmail.com",
+  "phone": "09-7991161"
+ },
+ {
+  "city_name": "קצרין",
+  "authority_body": "איגוד ערים איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "קריית אונו",
+  "authority_body": "איגוד ערים גוש דן",
+  "district": "השפלה וההר",
+  "vet_name": "רפלוביץ משה",
+  "license_number": "873",
+  "email": "animals@vet-dan.com",
+  "phone": "03-6312222"
+ },
+ {
+  "city_name": "קריית ארבע",
+  "authority_body": "מועצה מקומית קריית ארבע",
+  "district": "הנגב",
+  "vet_name": "מיקולשיק הילה",
+  "license_number": "1484",
+  "email": "veterinar@kiryat4.org.il",
+  "phone": "02-9969551"
+ },
+ {
+  "city_name": "קריית אתא",
+  "authority_body": "עירית קרית אתא",
+  "district": "גליל מערבי",
+  "vet_name": "מלר לואיס",
+  "license_number": "467",
+  "email": "MALER@KIRYAT-ATA.MUNI.IL",
+  "phone": "04-8446563"
+ },
+ {
+  "city_name": "קריית ביאליק",
+  "authority_body": "עירית קרית ביאליק",
+  "district": "גליל מערבי",
+  "vet_name": "דדיה דוד",
+  "license_number": "1195",
+  "email": "alexsandra@qbialik.org.il",
+  "phone": "04-8711924"
+ },
+ {
+  "city_name": "קריית גת",
+  "authority_body": "עירית קרית גת",
+  "district": "הנגב",
+  "vet_name": "אושרי אפרת",
+  "license_number": "2373",
+  "email": "vetrinar@Qiryat-gat.muni.il",
+  "phone": "08-6874756"
+ },
+ {
+  "city_name": "קריית טבעון",
+  "authority_body": "מועצה מקומית קריית טבעון",
+  "district": "גליל מערבי",
+  "vet_name": "צורי צחי",
+  "license_number": "1174",
+  "email": "vettivon@kiryat-tivon.muni.il",
+  "phone": "04-9537173"
+ },
+ {
+  "city_name": "קריית ים",
+  "authority_body": "עירית קרית ים",
+  "district": "גליל מערבי",
+  "vet_name": "דדיה דוד",
+  "license_number": "1195",
+  "email": "alexsandra@qbialik.org.il",
+  "phone": "04-8711924"
+ },
+ {
+  "city_name": "קריית מוצקין",
+  "authority_body": "עירית קרית מוצקין",
+  "district": "גליל מערבי",
+  "vet_name": "דדיה דוד",
+  "license_number": "1195",
+  "email": "alexsandra@qbialik.org.il",
+  "phone": "04-8711924"
+ },
+ {
+  "city_name": "קריית מלאכי",
+  "authority_body": "עירית קרית מלאכי",
+  "district": "השפלה וההר",
+  "vet_name": "ארצי ולנטינה",
+  "license_number": "898",
+  "email": "valentina@k-m.org.il",
+  "phone": "08-8500887"
+ },
+ {
+  "city_name": "קריית עקרון",
+  "authority_body": "מועצה מקומית קריית עקרון",
+  "district": "השפלה וההר",
+  "vet_name": "איבגי יעקב",
+  "license_number": "1280",
+  "email": "KOBI-I@ekron.org.il",
+  "phone": "08-9411075"
+ },
+ {
+  "city_name": "קריית שמונה",
+  "authority_body": "איגוד ערים איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "קרית חיים",
+  "authority_body": "עירית קרית חיים",
+  "district": "גליל מערבי",
+  "vet_name": "וייס יאיר",
+  "license_number": "802",
+  "email": "Yairw@haifa.muni.il",
+  "phone": "04-8236566"
+ },
+ {
+  "city_name": "קרני שומרון",
+  "authority_body": "מועצה מקומית קרני שומרון",
+  "district": "השרון",
+  "vet_name": "אבן שני",
+  "license_number": "3286",
+  "email": "shanie@b-y.org.il",
+  "phone": "09-7940308"
+ },
+ {
+  "city_name": "ראמה",
+  "authority_body": "מועצה מקומית ראמה",
+  "district": "גליל מערבי",
+  "vet_name": "מוויס גיריס",
+  "license_number": "829",
+  "email": "viorica.vet@gmail.com;jeries.mwais64@gmail.com",
+  "phone": "04-9884812"
+ },
+ {
+  "city_name": "ראש העין",
+  "authority_body": "עירית ראש העין",
+  "district": "השרון",
+  "vet_name": "זכרין יהונתן",
+  "license_number": "1205",
+  "email": "yhonatan.z@rosh.org.il;ilanit.m@rosh.org.il",
+  "phone": "03-5479245"
+ },
+ {
+  "city_name": "ראש פינה",
+  "authority_body": "איגוד ערים איגוד ערים אשכול רשויות גליל",
+  "district": "גליל גולן",
+  "vet_name": "דוידסון רועי",
+  "license_number": "1998",
+  "email": "Vet3@eastgalil.org.il",
+  "phone": "04-6427095"
+ },
+ {
+  "city_name": "ראשון לציון",
+  "authority_body": "עירית עירית ראשון לציון",
+  "district": "השפלה וההר",
+  "vet_name": "אבן צור(פלטנשט יהונתן",
+  "license_number": "779",
+  "email": "veterinar@rishonlezion.muni.il",
+  "phone": "03-9682444"
+ },
+ {
+  "city_name": "רהט",
+  "authority_body": "עירית רהט",
+  "district": "הנגב",
+  "vet_name": "יונס אחמד",
+  "license_number": "1301",
+  "email": "drahmad@iula.org.il",
+  "phone": "08-9914877"
+ },
+ {
+  "city_name": "רחובות",
+  "authority_body": "עירית עירית רחובות",
+  "district": "השפלה וההר",
+  "vet_name": "צרפתי אבי-אברהם",
+  "license_number": "1106",
+  "email": "limor_sh@rehovot.muni.il",
+  "phone": "08-9362790"
+ },
+ {
+  "city_name": "ריינה",
+  "authority_body": "מועצה מקומית ריינה",
+  "district": "העמקים",
+  "vet_name": "חמאיסי עבד",
+  "license_number": "1200",
+  "email": null,
+  "phone": "04-6015003"
+ },
+ {
+  "city_name": "רכסים",
+  "authority_body": "מועצה מקומית רכסים",
+  "district": "גליל מערבי",
+  "vet_name": "מלר לואיס",
+  "license_number": "467",
+  "email": "kmaler@internet.co.il;vetrinar@rekhasim.muni.il",
+  "phone": "04-8446563"
+ },
+ {
+  "city_name": "רמלה",
+  "authority_body": "עירית עירית רמלה",
+  "district": "השפלה וההר",
+  "vet_name": "אורבך רויטל",
+  "license_number": "2300",
+  "email": "vet@ramla.muni.il",
+  "phone": "08-9771691"
+ },
+ {
+  "city_name": "רמת-אפעל",
+  "authority_body": "עירית מ. א. אפעל",
+  "district": "השרון",
+  "vet_name": "מלמן שי",
+  "license_number": "1177",
+  "email": "avi-shap@ramat-gan.muni.il",
+  "phone": "03-6758418"
+ },
+ {
+  "city_name": "רמת-פנקס",
+  "authority_body": "עירית מ. א. אפעל",
+  "district": "השפלה וההר",
+  "vet_name": "מלמן שי",
+  "license_number": "1177",
+  "email": "avi-shap@ramat-gan.muni.il",
+  "phone": "03-6758418"
+ },
+ {
+  "city_name": "רמת גן",
+  "authority_body": "עירית עירית רמת גן",
+  "district": "השרון",
+  "vet_name": "שפירא אברהם",
+  "license_number": "1177",
+  "email": "avi-shap@ramat-gan.muni.il",
+  "phone": "03-6758418"
+ },
+ {
+  "city_name": "רמת הנגב – מועצה אזורית",
+  "authority_body": "מועצה אזורית רמת הנגב",
+  "district": "הנגב",
+  "vet_name": "לרנר (בראל) סימונה",
+  "license_number": "1488",
+  "email": "veterinar@rng.org.il",
+  "phone": "08-6564113"
+ },
+ {
+  "city_name": "רמת השרון",
+  "authority_body": "עירית רמת השרון",
+  "district": "השרון",
+  "vet_name": "שפר גילי",
+  "license_number": "2276",
+  "email": "gili_s@ramat-hasharon.muni.il",
+  "phone": "03-5489313"
+ },
+ {
+  "city_name": "רמת ישי",
+  "authority_body": "מועצה מקומית רמת ישי",
+  "district": "העמקים",
+  "vet_name": "סמארה דינה",
+  "license_number": "3228",
+  "email": "dina@ramat-yishay.co.il",
+  "phone": "04-9830220"
+ },
+ {
+  "city_name": "רעננה",
+  "authority_body": "עירית עירית רעננה",
+  "district": "השרון",
+  "vet_name": "וילדר רוני",
+  "license_number": "1811",
+  "email": "vet-serv@raanana.muni.il;ronnyw@raanana.muni.il",
+  "phone": "09-7722158"
+ },
+ {
+  "city_name": "שבלי – אום אל",
+  "authority_body": "מועצה מקומית שבלי – אום אל",
+  "district": "העמקים",
+  "vet_name": "מחאמיד ראתב",
+  "license_number": "1102",
+  "email": "Mahmuda@moag.gov.il",
+  "phone": "04-6765091"
+ },
+ {
+  "city_name": "שגב-שלום",
+  "authority_body": "מועצה מקומית שגב-שלום",
+  "district": "הנגב",
+  "vet_name": "בביאוב ניקולאי",
+  "license_number": "1453",
+  "email": "nikoletti173@mail.ru",
+  "phone": "08-6287737"
+ },
+ {
+  "city_name": "שדות דן – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. שדות דן",
+  "district": "השפלה וההר",
+  "vet_name": "אקשטיין אייל",
+  "license_number": "1149",
+  "email": "bosmatd@sdan.org.il",
+  "phone": "073-2230629"
+ },
+ {
+  "city_name": "שדות נגב – מועצה אזורית",
+  "authority_body": "איגוד ערים שדות נגב",
+  "district": "הנגב",
+  "vet_name": "שביט רואי",
+  "license_number": "2500",
+  "email": "miki@westnegev.org.il",
+  "phone": "073-72691274"
+ },
+ {
+  "city_name": "שדרות",
+  "authority_body": "איגוד ערים איגוד ערים אשכול רשויות נגב מ",
+  "district": "הנגב",
+  "vet_name": "בר-קמה מיכאל",
+  "license_number": "2500",
+  "email": "miki@westnegev.org.il",
+  "phone": "073-72691274"
+ },
+ {
+  "city_name": "שוהם",
+  "authority_body": "איגוד ערים גוש דן",
+  "district": "השפלה וההר",
+  "vet_name": "רפלוביץ משה",
+  "license_number": "873",
+  "email": "animals@vet-dan.com",
+  "phone": "03-6312222"
+ },
+ {
+  "city_name": "שומרון – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. שומרון",
+  "district": "השרון",
+  "vet_name": "שוורץ גבריאל",
+  "license_number": "1162",
+  "email": "vetunit@shomron.org.il",
+  "phone": "03-9061195"
+ },
+ {
+  "city_name": "שלומי",
+  "authority_body": "מועצה מקומית שלומי",
+  "district": "גליל מערבי",
+  "vet_name": "ברזילי אבנר",
+  "license_number": "521",
+  "email": "vetrinar@myosef.org.il",
+  "phone": "04-9950943"
+ },
+ {
+  "city_name": "שני – מועצה אזורית",
+  "authority_body": "מועצה אזורית שני",
+  "district": "הנגב",
+  "vet_name": "ורנבסקי מיכאל",
+  "license_number": "1218",
+  "email": "mihaelv@hrhevron.co.il",
+  "phone": "02-9969162"
+ },
+ {
+  "city_name": "שעב",
+  "authority_body": "מועצה מקומית שעב",
+  "district": "גליל מערבי",
+  "vet_name": "מלשה יוסף",
+  "license_number": "1039",
+  "email": null,
+  "phone": "04-9883437"
+ },
+ {
+  "city_name": "שער הנגב – מועצה אזורית",
+  "authority_body": "מועצה אזורית מ. א. שער הנגב",
+  "district": "הנגב",
+  "vet_name": "איסקוביץ ודים",
+  "license_number": "1276",
+  "email": "ruts@beer-tuvia.org.il",
+  "phone": "08-8509804"
+ },
+ {
+  "city_name": "שפיר – מועצה אזורית",
+  "authority_body": "מועצה אזורית שפיר",
+  "district": "הנגב",
+  "vet_name": "איסקוביץ ודים",
+  "license_number": "1276",
+  "email": "ruts@beer-tuvia.org.il",
+  "phone": "08-8509804"
+ },
+ {
+  "city_name": "שפרעם",
+  "authority_body": "עירית שפרעם",
+  "district": "גליל מערבי",
+  "vet_name": "יאסון מריה",
+  "license_number": "1363",
+  "email": "maria.yassin@gmail.com",
+  "phone": "052-6810223"
+ },
+ {
+  "city_name": "תל אביב -יפו",
+  "authority_body": "עירית עירית תל-אביב-יפו",
+  "district": "השרון",
+  "vet_name": "גלין צבי",
+  "license_number": "569",
+  "email": "HOLZMAN_I@MAIL.TEL-AVIV.GOV.IL",
+  "phone": "03-7247870"
+ },
+ {
+  "city_name": "תל מונד",
+  "authority_body": "מועצה מקומית תל מונד",
+  "district": "השרון",
+  "vet_name": "זהרוני אהוד(אודי)",
+  "license_number": "1075",
+  "email": "zaharoni.udi@gmail.com",
+  "phone": "09-7774100"
+ },
+ {
+  "city_name": "תל שבע",
+  "authority_body": "מועצה מקומית תל שבע",
+  "district": "הנגב",
+  "vet_name": "מליצקי מיה",
+  "license_number": "1030",
+  "email": "avib@mail.makif.omer.k12.il",
+  "phone": "08-6460711"
+ },
+ {
+  "city_name": "תמר – מועצה אזורית",
+  "authority_body": "מועצה אזורית תמר",
+  "district": "הנגב",
+  "vet_name": "מרום חיליק",
+  "license_number": "1498",
+  "email": "vet@ma-tamar.co.il",
+  "phone": "08-6688837"
+ }
+]

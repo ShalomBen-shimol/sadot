@@ -291,11 +291,36 @@ export type Municipality = {
   authority_name: string | null;
   district: string | null;
   vet_department_name: string | null;
+  vet_name: string | null;
+  license_number: string | null;
   email: string | null;
   phone: string | null;
   website: string | null;
   notes: string | null;
   is_active: boolean;
+};
+
+export type Locality = {
+  id: number;
+  name: string;
+  name_normalized: string;
+  symbol: string | null;
+  subdistrict: string | null;
+  district: string | null;
+  municipality_id: number | null;
+  needs_review: boolean;
+};
+
+export type LocalityListResponse = {
+  total: number;
+  items: Locality[];
+};
+
+export type LocalityResolveResponse = {
+  query: string;
+  locality: Locality | null;
+  authority: Municipality | null;
+  resolved: boolean;
 };
 
 export type DocumentRecord = {
@@ -986,6 +1011,60 @@ export async function markSignatureSigned(
     `/api/v1/signatures/${signatureId}/mark-signed`,
     token
   );
+}
+
+// ============================================================================
+// Authorities (municipalities) + localities directory
+// ============================================================================
+export async function listMunicipalities(
+  token: string,
+  params: { offset?: number; limit?: number } = {}
+): Promise<Municipality[]> {
+  return authGet<Municipality[]>(`/api/v1/municipalities${qs({ limit: 500, ...params })}`, token);
+}
+
+export type MunicipalityUpdate = {
+  city_name?: string | null;
+  authority_name?: string | null;
+  district?: string | null;
+  vet_department_name?: string | null;
+  vet_name?: string | null;
+  license_number?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  website?: string | null;
+  notes?: string | null;
+  is_active?: boolean;
+};
+
+export async function updateMunicipality(
+  token: string,
+  id: number,
+  payload: MunicipalityUpdate
+): Promise<Municipality> {
+  return authPatch<Municipality>(`/api/v1/municipalities/${id}`, token, payload);
+}
+
+export async function listLocalities(
+  token: string,
+  params: { search?: string; needs_review?: boolean; offset?: number; limit?: number } = {}
+): Promise<LocalityListResponse> {
+  return authGet<LocalityListResponse>(`/api/v1/localities${qs(params)}`, token);
+}
+
+export async function resolveLocality(
+  token: string,
+  city: string
+): Promise<LocalityResolveResponse> {
+  return authGet<LocalityResolveResponse>(`/api/v1/localities/resolve${qs({ city })}`, token);
+}
+
+export async function assignLocality(
+  token: string,
+  localityId: number,
+  payload: { municipality_id?: number | null; needs_review?: boolean | null }
+): Promise<Locality> {
+  return authPatch<Locality>(`/api/v1/localities/${localityId}`, token, payload);
 }
 
 // ============================================================================

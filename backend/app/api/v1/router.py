@@ -8,6 +8,7 @@ from app.api.v1 import (
     dashboard,
     documents,
     dogs,
+    localities,
     ownership,
     public,
     qr,
@@ -37,6 +38,7 @@ api_router.include_router(surrender.router)
 api_router.include_router(adoption.router)
 api_router.include_router(ownership.router)
 api_router.include_router(municipalities_router)
+api_router.include_router(localities.router)
 api_router.include_router(tasks_router)
 api_router.include_router(documents.router)
 api_router.include_router(signatures.router)
