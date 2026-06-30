@@ -119,6 +119,7 @@ def _seed_scenario(client, auth, db_session) -> dict:
         DocumentType.id_card_surrenderer,
         DocumentType.receiver_approval_form,
         DocumentType.id_card_receiver,
+        DocumentType.adopter_with_dog_photo,
     ):
         db_session.add(
             Document(
@@ -218,13 +219,15 @@ def test_transfer_detail_resolves_authorities_and_docs(client, auth, db_session)
     assert body["to_authority_name"]
     assert body["from_authority_name"] != body["to_authority_name"]
     assert len(body["signature_requests"]) == 1
-    assert len(body["documents"]) == 4
-    # facility_to_adopter requires all four document types -> complete.
+    assert len(body["documents"]) == 5
+    # facility_to_adopter requires all five document types (incl. the new-owner
+    # photo) -> complete.
     assert set(body["required_documents"]) == {
         "ownership_transfer_form",
         "id_card_surrenderer",
         "receiver_approval_form",
         "id_card_receiver",
+        "adopter_with_dog_photo",
     }
     assert body["documents_complete"] is True
 
