@@ -13,7 +13,9 @@ class Settings(BaseSettings):
     app_name: str = "Sadot Dogs CRM"
     environment: str = "development"
     secret_key: str = "change-me"
-    access_token_expire_minutes: int = 720
+    # 7 days. Back-office staff tool — a 12h session logged people out mid-day.
+    # Override per-environment via ACCESS_TOKEN_EXPIRE_MINUTES.
+    access_token_expire_minutes: int = 10080
     algorithm: str = "HS256"
 
     # Database

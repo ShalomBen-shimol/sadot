@@ -42,8 +42,11 @@ class CRUDRepository(Generic[ModelT]):
         return obj
 
     def update(self, session: Session, obj: ModelT, data: dict) -> ModelT:
+        # `data` comes from `model_dump(exclude_unset=True)`, so it contains only
+        # the fields the client actually sent. Apply them all — including explicit
+        # nulls — so a field can be cleared back to empty, not just overwritten.
         for key, value in data.items():
-            if value is not None and hasattr(obj, key):
+            if hasattr(obj, key):
                 setattr(obj, key, value)
         return self.save(session, obj)
 
