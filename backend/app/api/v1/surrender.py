@@ -3,12 +3,29 @@ from fastapi import APIRouter, HTTPException, Query, status
 from app.api.deps import CurrentUser, SessionDep
 from app.models.enums import SurrenderStatus, SurrenderType
 from app.models.surrender import SubscriptionPayment, SurrenderCase
+from app.models.support import Document
 from app.repositories.base import CRUDRepository
 from app.schemas.entities import SurrenderCreate, SurrenderUpdate
+from app.services import forms as forms_service
 from app.services import surrender as surrender_service
 
 router = APIRouter(prefix="/surrender-cases", tags=["surrender"])
 repo = CRUDRepository(SurrenderCase)
+
+
+def _get_case_or_404(case_id: int, session: SessionDep) -> SurrenderCase:
+    case = repo.get(session, case_id)
+    if not case:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Surrender case not found")
+    return case
+
+
+@router.post("/{case_id}/generate-form", response_model=Document, status_code=status.HTTP_201_CREATED)
+def generate_surrender_form(case_id: int, session: SessionDep, user: CurrentUser):
+    """Produce the signed forfeit form (PDF) + open the signature request and a
+    follow-up task to collect the signed form and the owner's ID photo."""
+    case = _get_case_or_404(case_id, session)
+    return forms_service.generate_surrender_form(session, case, actor_user_id=user.id)
 
 
 @router.get("", response_model=list[SurrenderCase])

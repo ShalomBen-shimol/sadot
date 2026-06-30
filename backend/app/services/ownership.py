@@ -52,7 +52,13 @@ def required_documents(transfer: OwnershipTransfer) -> list[DocumentType]:
         DocumentType.id_card_surrenderer,
     ]
     if transfer.transfer_type != TransferType.surrender_to_facility:
-        docs += [DocumentType.receiver_approval_form, DocumentType.id_card_receiver]
+        # Transfer between two individuals: receiver's approval + ID, plus the
+        # for-the-record photo of the new owner with the dog.
+        docs += [
+            DocumentType.receiver_approval_form,
+            DocumentType.id_card_receiver,
+            DocumentType.adopter_with_dog_photo,
+        ]
     return docs
 
 

@@ -24,6 +24,11 @@ class Settings(BaseSettings):
     # Object storage (local filesystem in phase 1; relative to the backend cwd)
     media_root: str = "media"
 
+    # TTF with Hebrew glyphs for PDF form generation. The prod image installs
+    # fonts-dejavu-core at this path; if absent, forms fall back to a Latin core
+    # font (the PDF is still produced, Hebrew just won't shape correctly).
+    pdf_font_path: str = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+
     # First admin (seeded on startup if missing)
     first_admin_email: str = "admin@sadot.local"
     first_admin_password: str = "admin1234"
