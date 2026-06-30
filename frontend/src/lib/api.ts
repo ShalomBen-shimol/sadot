@@ -544,6 +544,21 @@ export async function authPatch<T>(
   );
 }
 
+export async function authPut<T>(
+  path: string,
+  token: string,
+  body: unknown
+): Promise<T> {
+  return handleAuthed(
+    await fetch(`${API_URL}${path}`, {
+      method: "PUT",
+      headers: { ...authHeaders(token), "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+      cache: "no-store",
+    })
+  );
+}
+
 export async function authDelete(path: string, token: string): Promise<void> {
   const res = await fetch(`${API_URL}${path}`, {
     method: "DELETE",
@@ -1109,6 +1124,54 @@ export async function assignLocality(
   payload: { municipality_id?: number | null; needs_review?: boolean | null }
 ): Promise<Locality> {
   return authPatch<Locality>(`/api/v1/localities/${localityId}`, token, payload);
+}
+
+// ============================================================================
+// Integrations — outbound email settings (admin)
+// ============================================================================
+export type EmailSettings = {
+  provider: string;
+  host: string;
+  port: number;
+  use_tls: boolean;
+  username: string | null;
+  from_name: string | null;
+  from_email: string | null;
+  enabled: boolean;
+  password_set: boolean;
+  updated_at: string;
+};
+
+export type EmailSettingsUpdate = {
+  host?: string;
+  port?: number;
+  use_tls?: boolean;
+  username?: string | null;
+  // Write-only: send a value to set/replace, "" to clear, omit to keep.
+  password?: string | null;
+  from_name?: string | null;
+  from_email?: string | null;
+  enabled?: boolean;
+};
+
+export type EmailTestResult = { status: string; detail: string };
+
+export async function getEmailSettings(token: string): Promise<EmailSettings> {
+  return authGet<EmailSettings>("/api/v1/integrations/email", token);
+}
+
+export async function updateEmailSettings(
+  token: string,
+  payload: EmailSettingsUpdate
+): Promise<EmailSettings> {
+  return authPut<EmailSettings>("/api/v1/integrations/email", token, payload);
+}
+
+export async function sendTestEmail(
+  token: string,
+  to: string
+): Promise<EmailTestResult> {
+  return authPost<EmailTestResult>("/api/v1/integrations/email/test", token, { to });
 }
 
 // ============================================================================

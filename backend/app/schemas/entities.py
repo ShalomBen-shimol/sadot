@@ -226,6 +226,44 @@ class LocalityAssign(BaseModel):
     needs_review: bool | None = None
 
 
+# ---------- Email (outbound) settings ----------
+class EmailSettingsRead(BaseModel):
+    """Email account config for the admin UI. Never exposes the password —
+    only whether one is stored."""
+    provider: str
+    host: str
+    port: int
+    use_tls: bool
+    username: str | None
+    from_name: str | None
+    from_email: str | None
+    enabled: bool
+    password_set: bool
+    updated_at: datetime
+
+
+class EmailSettingsUpdate(BaseModel):
+    host: str | None = None
+    port: int | None = None
+    use_tls: bool | None = None
+    username: str | None = None
+    # Write-only. Send a non-empty value to set/replace; omit/null to keep the
+    # existing password; send "" to clear it.
+    password: str | None = None
+    from_name: str | None = None
+    from_email: str | None = None
+    enabled: bool | None = None
+
+
+class EmailTestRequest(BaseModel):
+    to: str
+
+
+class EmailTestResult(BaseModel):
+    status: str  # "sent" / "failed"
+    detail: str
+
+
 # ---------- Public lead intake ----------
 class SurrenderLeadIn(BaseModel):
     # surrenderer

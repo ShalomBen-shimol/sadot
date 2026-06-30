@@ -4,6 +4,7 @@ from app.models.dog import Dog, DogPhoto
 from app.models.municipality import Locality, Municipality
 from app.models.ownership import OwnershipTransfer
 from app.models.person import Person
+from app.models.settings import EmailSettings
 from app.models.support import (
     AuditLog,
     Document,
@@ -21,6 +22,7 @@ __all__ = [
     "Dog",
     "DogPhoto",
     "Document",
+    "EmailSettings",
     "Locality",
     "Message",
     "Municipality",

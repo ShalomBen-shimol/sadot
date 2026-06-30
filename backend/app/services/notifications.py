@@ -29,7 +29,15 @@ def send_whatsapp(session: Session, person: Person, content: str, intent: str | 
     return msg
 
 
-def send_email(to: str, subject: str, body: str, attachments: list[str] | None = None) -> str:
-    provider = get_email_provider()
+def send_email(
+    to: str,
+    subject: str,
+    body: str,
+    attachments: list[str] | None = None,
+    session: Session | None = None,
+) -> str:
+    # Pass the request session so provider selection reads the same DB the
+    # admin configured (in production it's the global engine either way).
+    provider = get_email_provider(session)
     result = provider.send(to, subject, body, attachments)
     return result.provider_reference

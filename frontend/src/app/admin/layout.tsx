@@ -11,6 +11,7 @@ const NAV: { href: string; label: string }[] = [
   { href: "/admin/dogs", label: "כלבים" },
   { href: "/admin/ownership-transfers", label: "העברות בעלות" },
   { href: "/admin/authorities", label: "רשויות וטרינריות" },
+  { href: "/admin/settings", label: "הגדרות" },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
