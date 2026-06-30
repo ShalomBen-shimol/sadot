@@ -1,0 +1,82 @@
+name: E2E
+
+# Dockerized Playwright UI smoke against an ephemeral full stack (db + backend +
+# frontend) brought up with docker-compose. Runs on branches/PRs like CI; does
+# NOT deploy. The live-site variant is run on demand from aiserver (e2e/run-live.sh).
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+  workflow_dispatch: {}
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Base compose references ./backend/.env (gitignored, server-only). Provide
+      # CI defaults so the admin seeds as admin@sadot.local / admin1234.
+      - name: Write backend/.env for CI
+        run: |
+          cat > backend/.env <<'EOF'
+          SECRET_KEY=ci-test-secret-not-for-prod
+          ENVIRONMENT=development
+          FIRST_ADMIN_EMAIL=admin@sadot.local
+          FIRST_ADMIN_PASSWORD=admin1234
+          FIRST_ADMIN_NAME=Admin
+          BACKEND_CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+          EOF
+
+      - name: Bring up the stack
+        run: docker compose up -d --build
+
+      - name: Wait for backend + frontend to be ready
+        run: |
+          for i in $(seq 1 60); do
+            if curl -fsS http://localhost:8000/health >/dev/null 2>&1; then
+              echo "backend ready"; break
+            fi
+            echo "waiting for backend ($i)"; sleep 3
+          done
+          curl -fsS http://localhost:8000/health
+          for i in $(seq 1 60); do
+            if curl -fsS http://localhost:3000/crm >/dev/null 2>&1; then
+              echo "frontend ready"; break
+            fi
+            echo "waiting for frontend ($i)"; sleep 3
+          done
+          curl -fsS -o /dev/null http://localhost:3000/crm
+
+      - name: Build E2E image
+        run: docker build -t sadot-e2e ./e2e
+
+      # --network host so the in-container browser reaches the compose ports
+      # published on the runner (localhost:3000 frontend, localhost:8000 API,
+      # which is what NEXT_PUBLIC_API_URL is baked to).
+      - name: Run Playwright
+        run: |
+          docker run --rm --network host \
+            -e CI=1 \
+            -e E2E_BASE_URL=http://localhost:3000 \
+            -e E2E_ADMIN_EMAIL=admin@sadot.local \
+            -e E2E_ADMIN_PASSWORD=admin1234 \
+            -v "$PWD/e2e/playwright-report:/e2e/playwright-report" \
+            -v "$PWD/e2e/test-results:/e2e/test-results" \
+            sadot-e2e
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: e2e/playwright-report
+          retention-days: 14
+
+      - name: Dump stack logs on failure
+        if: failure()
+        run: docker compose logs --no-color --tail=200
+
+      - name: Tear down
+        if: always()
+        run: docker compose down -v
