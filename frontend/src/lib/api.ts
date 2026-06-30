@@ -472,12 +472,38 @@ async function handle<T>(res: Response): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+// Token key + login path must match _components/ui.tsx and next.config.js basePath.
+const TOKEN_KEY = "sadot_token";
+const LOGIN_PATH = "/crm/admin/login";
+
+// When an authenticated request is rejected (expired/invalid token, or the user
+// no longer exists), drop the dead token and bounce to login. Without this the
+// admin pages just render the raw "Could not validate credentials" 401 with no
+// way back in. No-op during SSR and when already on the login screen.
+function handleUnauthorized(): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(TOKEN_KEY);
+  } catch {
+    /* localStorage unavailable */
+  }
+  if (!window.location.pathname.endsWith("/admin/login")) {
+    window.location.href = LOGIN_PATH;
+  }
+}
+
+// Like handle(), but auto-recovers from 401 by clearing the token + redirecting.
+async function handleAuthed<T>(res: Response): Promise<T> {
+  if (res.status === 401) handleUnauthorized();
+  return handle<T>(res);
+}
+
 function authHeaders(token: string): HeadersInit {
   return { Authorization: `Bearer ${token}` };
 }
 
 export async function authGet<T>(path: string, token: string): Promise<T> {
-  return handle(
+  return handleAuthed(
     await fetch(`${API_URL}${path}`, {
       headers: authHeaders(token),
       cache: "no-store",
@@ -490,7 +516,7 @@ export async function authPost<T>(
   token: string,
   body?: unknown
 ): Promise<T> {
-  return handle(
+  return handleAuthed(
     await fetch(`${API_URL}${path}`, {
       method: "POST",
       headers: {
@@ -508,7 +534,7 @@ export async function authPatch<T>(
   token: string,
   body: unknown
 ): Promise<T> {
-  return handle(
+  return handleAuthed(
     await fetch(`${API_URL}${path}`, {
       method: "PATCH",
       headers: { ...authHeaders(token), "Content-Type": "application/json" },
@@ -524,6 +550,7 @@ export async function authDelete(path: string, token: string): Promise<void> {
     headers: authHeaders(token),
     cache: "no-store",
   });
+  if (res.status === 401) handleUnauthorized();
   if (!res.ok) {
     const text = await res.text();
     throw new Error(text || `Request failed (${res.status})`);
@@ -537,7 +564,7 @@ export async function authUpload<T>(
   token: string,
   form: FormData
 ): Promise<T> {
-  return handle(
+  return handleAuthed(
     await fetch(`${API_URL}${path}`, {
       method: "POST",
       headers: authHeaders(token),
