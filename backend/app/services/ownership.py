@@ -93,6 +93,7 @@ def send_to_authority(
                 to=authority.email,
                 subject=f"בקשת העברת בעלות על כלב — תיק #{transfer.id}",
                 body="מצורפים מסמכי העברת הבעלות. נא לאשר קליטה ועדכון במאגר השבבים.",
+                session=session,
             )
 
     transfer.sent_to_authority_at = now

@@ -8,6 +8,7 @@ from app.api.v1 import (
     dashboard,
     documents,
     dogs,
+    integrations,
     localities,
     ownership,
     public,
@@ -44,6 +45,7 @@ api_router.include_router(documents.router)
 api_router.include_router(signatures.router)
 api_router.include_router(messages_router)
 api_router.include_router(qr.router)
+api_router.include_router(integrations.router)
 
 # Back-office aggregate case-file endpoints (people/dogs/transfers)
 api_router.include_router(backoffice.router)
