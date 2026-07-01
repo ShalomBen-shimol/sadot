@@ -50,8 +50,10 @@
 </div>
 
 <style>
-  #sadot-adopt, #sa-modal { --sa: #2f6f4e; --sa-dark: #234f39; --sa-light: #e7f1eb; }
-  #sadot-adopt { font-family: "Heebo", Arial, sans-serif; color: #1f2937; max-width: 1100px; margin: 0 auto; }
+  @import url("https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap");
+  /* Brand palette taken from the original basadot design (Elementor). */
+  #sadot-adopt, #sa-modal { --sa: #96C64B; --sa-dark: #6f9a34; --sa-light: #eef6e2; --ink: #252526; }
+  #sadot-adopt { font-family: "Assistant", "Heebo", Arial, sans-serif; color: #1f2937; max-width: 1100px; margin: 0 auto; }
   #sadot-adopt *, #sa-modal * { box-sizing: border-box; }
   .sa-hero { position: relative; border-radius: 20px; overflow: hidden; margin: 0 0 22px;
     background: var(--sa-dark); min-height: 300px; display: flex; align-items: center; justify-content: center; text-align: center; }
@@ -89,15 +91,17 @@
   .sa-photo { height: 190px; background: var(--sa-light); background-size: cover; background-position: center;
     display: flex; align-items: center; justify-content: center; font-size: 42px; }
   .sa-body { padding: 14px 16px 16px; display: flex; flex-direction: column; flex: 1; }
-  .sa-name { font-size: 18px; font-weight: 700; color: var(--sa-dark); margin: 0; }
+  .sa-name { font-size: 18px; font-weight: 800; color: var(--ink); margin: 0; }
   .sa-meta { font-size: 13px; color: #6b7280; margin: 4px 0 0; }
   .sa-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
   .sa-chip { background: var(--sa-light); color: var(--sa-dark); border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
   .sa-chips { margin-bottom: 14px; }
+  /* Matches the original "TAKE ME HOME" button: lime #96C64B, dark text, pill. */
   .sa-cta { display: inline-flex; align-items: center; justify-content: center; width: 100%; margin-top: auto;
-    background: var(--sa); color: #fff; border: 0; border-radius: 10px; padding: 10px 14px;
-    font: inherit; font-weight: 700; cursor: pointer; }
-  .sa-card:hover .sa-cta, .sa-cta:hover { background: var(--sa-dark); }
+    background: var(--sa); color: var(--ink); border: 0; border-radius: 50px; padding: 11px 22px;
+    font-family: "Assistant","Heebo",Arial,sans-serif; font-size: 15px; font-weight: 700;
+    letter-spacing: .2px; cursor: pointer; }
+  .sa-card:hover .sa-cta, .sa-cta:hover { background: var(--sa-dark); color: #000; }
   .sa-muted { color: #6b7280; font-size: 15px; }
   .sa-empty { grid-column: 1 / -1; text-align: center; background: #fff; border: 1px solid #f0f1f3;
     border-radius: 16px; padding: 32px; color: #6b7280; }
@@ -107,7 +111,7 @@
   .sa-modal[hidden] { display: none; }
   .sa-modal-backdrop { position: absolute; inset: 0; background: rgba(17,24,39,.55); }
   .sa-modal-card { position: relative; background: #fff; border-radius: 18px; width: 100%; max-width: 560px;
-    max-height: 90vh; overflow: auto; padding: 22px; font-family: "Heebo", Arial, sans-serif; direction: rtl; }
+    max-height: 90vh; overflow: auto; padding: 22px; font-family: "Assistant", "Heebo", Arial, sans-serif; direction: rtl; }
   .sa-modal-x { position: absolute; inset-inline-start: 14px; top: 12px; border: 0; background: transparent;
     font-size: 18px; cursor: pointer; color: #6b7280; }
   .sa-m-photo { height: 220px; border-radius: 12px; background: var(--sa-light) center/cover no-repeat;
@@ -178,7 +182,7 @@
           '<p class="sa-meta">' + esc(meta) + "</p>" +
           (d.public_area ? '<p class="sa-meta">אזור: ' + esc(d.public_area) + "</p>" : "") +
           (chips ? '<div class="sa-chips">' + chips + "</div>" : "") +
-          '<button class="sa-cta" type="button">קחו אותי הביתה 🏡</button>' +
+          '<button class="sa-cta" type="button">TAKE ME HOME</button>' +
         "</div></div>";
     }).join("");
   }
