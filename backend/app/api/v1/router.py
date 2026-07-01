@@ -16,6 +16,7 @@ from app.api.v1 import (
     qr,
     signatures,
     surrender,
+    workflows,
 )
 from app.api.v1.generic_routers import (
     messages_router,
@@ -48,6 +49,7 @@ api_router.include_router(messages_router)
 api_router.include_router(qr.router)
 api_router.include_router(integrations.router)
 api_router.include_router(chat.router)
+api_router.include_router(workflows.router)
 
 # Back-office aggregate case-file endpoints (people/dogs/transfers)
 api_router.include_router(backoffice.router)

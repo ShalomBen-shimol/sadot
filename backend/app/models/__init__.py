@@ -15,6 +15,7 @@ from app.models.support import (
 )
 from app.models.surrender import SubscriptionPayment, SurrenderCase
 from app.models.user import User
+from app.models.workflow import TransferWorkflow
 
 __all__ = [
     "AdoptionCase",
@@ -36,5 +37,6 @@ __all__ = [
     "SubscriptionPayment",
     "SurrenderCase",
     "Task",
+    "TransferWorkflow",
     "User",
 ]

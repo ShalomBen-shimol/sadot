@@ -122,6 +122,10 @@ def seed(session: Session) -> None:
     seed_localities(session)
     seed_bot_config(session)
 
+    from app.services.workflow import seed_workflows
+
+    seed_workflows(session)
+
     # Demo dogs only outside production.
     if settings.environment != "production" and not session.exec(select(Dog)).first():
         for d in DEMO_DOGS:
