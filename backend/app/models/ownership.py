@@ -27,4 +27,6 @@ class OwnershipTransfer(SQLModel, table=True):
     last_followup_at: datetime | None = None
     next_followup_at: datetime | None = Field(default=None, index=True)
     notes: str | None = None
+    # Index of the current step in the active TransferWorkflow for this type.
+    workflow_step: int = Field(default=0)
     created_at: datetime = Field(default_factory=utcnow)

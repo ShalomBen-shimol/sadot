@@ -7,9 +7,30 @@ from app.repositories.base import CRUDRepository
 from app.schemas.entities import OwnershipTransferCreate
 from app.services import forms as forms_service
 from app.services import ownership as ownership_service
+from app.services import workflow as workflow_service
 
 router = APIRouter(prefix="/ownership-transfers", tags=["ownership"])
 repo = CRUDRepository(OwnershipTransfer)
+
+
+@router.get("/{transfer_id}/workflow")
+def get_transfer_workflow(transfer_id: int, session: SessionDep, _: CurrentUser):
+    t = repo.get(session, transfer_id)
+    if not t:
+        raise HTTPException(status_code=404, detail="Transfer not found")
+    return workflow_service.status(session, t)
+
+
+@router.post("/{transfer_id}/advance")
+def advance_transfer_workflow(
+    transfer_id: int, session: SessionDep, _: CurrentUser, run_action: bool = False
+):
+    """Advance the configurable workflow: pass any newly-satisfied gates, and if
+    `run_action` fire the current manual action (e.g. send to authority)."""
+    t = repo.get(session, transfer_id)
+    if not t:
+        raise HTTPException(status_code=404, detail="Transfer not found")
+    return workflow_service.advance(session, t, run_current_action=run_action)
 
 
 @router.post(

@@ -43,6 +43,12 @@ def create_transfer(
     session.add(transfer)
     session.commit()
     session.refresh(transfer)
+    # Kick off the configurable workflow (advances through any leading auto steps,
+    # then stops at the first gate — normally document collection).
+    from app.services import workflow as workflow_service
+
+    workflow_service.advance(session, transfer)
+    session.refresh(transfer)
     return transfer
 
 
@@ -170,6 +176,10 @@ def confirm(session: Session, transfer: OwnershipTransfer, actor_user_id: int | 
         entity_type="ownership_transfer",
         entity_id=transfer.id,
     )
+    # Confirmation satisfies the await_confirmation gate — let the workflow finish.
+    from app.services import workflow as workflow_service
+
+    workflow_service.advance(session, transfer)
     session.refresh(transfer)
     return transfer
 
