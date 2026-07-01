@@ -1216,3 +1216,97 @@ export async function getQrLinks(
 ): Promise<QrLinks> {
   return authGet<QrLinks>(`/api/v1/qr/links${qs({ dog_id: dogId })}`, token);
 }
+
+// ============================================================================
+// Chatbot
+// ============================================================================
+export type ChatReply = { conversation_id: number; reply: string; status: string };
+
+export type ConversationRow = {
+  id: number;
+  channel: "web" | "whatsapp";
+  goal: "surrender" | "adopt" | "general";
+  status: "active" | "lead_created" | "escalated" | "closed";
+  external_id: string | null;
+  person_id: number | null;
+  surrender_case_id: number | null;
+  escalated: boolean;
+  summary: string | null;
+  collected: Record<string, unknown>;
+  created_at: string;
+  updated_at: string;
+};
+
+export type ChatMessageRow = {
+  id: number;
+  conversation_id: number;
+  role: string;
+  content: string;
+  tool_name: string | null;
+  created_at: string;
+};
+
+export type ConversationDetail = { conversation: ConversationRow; messages: ChatMessageRow[] };
+
+export type BotConfig = {
+  version: number;
+  persona: string;
+  knowledgebase: string;
+  model: string;
+  provider: string; // "claude" | "mock"
+};
+
+export type BotConfigUpdate = {
+  persona?: string;
+  knowledgebase?: string;
+  model?: string;
+};
+
+// Public — no auth. Omit conversationId to start a new thread.
+export async function sendChatMessage(
+  message: string,
+  conversationId?: number
+): Promise<ChatReply> {
+  return handle(
+    await fetch(`${API_URL}/api/v1/chat/message`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message, conversation_id: conversationId ?? null }),
+    })
+  );
+}
+
+export async function listConversations(token: string): Promise<ConversationRow[]> {
+  return authGet<ConversationRow[]>("/api/v1/chat/conversations", token);
+}
+
+export async function getConversation(
+  token: string,
+  id: number
+): Promise<ConversationDetail> {
+  return authGet<ConversationDetail>(`/api/v1/chat/conversations/${id}`, token);
+}
+
+export async function getBotConfig(token: string): Promise<BotConfig> {
+  return authGet<BotConfig>("/api/v1/chat/bot-config", token);
+}
+
+export async function updateBotConfig(
+  token: string,
+  payload: BotConfigUpdate
+): Promise<BotConfig> {
+  return authPut<BotConfig>("/api/v1/chat/bot-config", token, payload);
+}
+
+export async function previewBotConfig(
+  token: string,
+  payload: {
+    persona: string;
+    knowledgebase: string;
+    model: string;
+    message: string;
+    history: { role: string; content: string }[];
+  }
+): Promise<{ reply: string }> {
+  return authPost<{ reply: string }>("/api/v1/chat/bot-config/preview", token, payload);
+}
