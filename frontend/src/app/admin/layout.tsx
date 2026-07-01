@@ -11,6 +11,8 @@ const NAV: { href: string; label: string }[] = [
   { href: "/admin/dogs", label: "כלבים" },
   { href: "/admin/ownership-transfers", label: "העברות בעלות" },
   { href: "/admin/authorities", label: "רשויות וטרינריות" },
+  { href: "/admin/conversations", label: "שיחות צ'אט" },
+  { href: "/admin/chatbot", label: "ניהול הבוט" },
   { href: "/admin/settings", label: "הגדרות" },
 ];
 

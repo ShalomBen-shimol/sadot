@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from sqlmodel import Session, select
 
 from app.adapters.ai import get_ai_provider
+from app.core.config import settings
 from app.models.chat import BotConfig, ChatMessage, Conversation
 from app.models.dog import Dog
 from app.models.enums import (
@@ -149,6 +150,45 @@ def _create_lead(session: Session, conv: Conversation) -> str:
     session.add(conv)
     session.commit()
     return f"lead created (surrender case #{case.id})"
+
+
+def provider_name() -> str:
+    """Which engine is active: real Claude (key set) or the deterministic Mock."""
+    return "claude" if (settings.anthropic_api_key or "") else "mock"
+
+
+def preview(persona: str, knowledgebase: str, model: str, message: str, history: list[dict]) -> str:
+    """Run a candidate config against a message without persisting anything —
+    the owner-console test sandbox. Tools are no-ops here."""
+    config = BotConfig(persona=persona, knowledgebase=knowledgebase, model=model or "claude-opus-4-8")
+    provider = get_ai_provider(config.model)
+    turns = [{"role": m.get("role"), "content": m.get("content")} for m in history]
+    turns.append({"role": "user", "content": message})
+
+    def noop_tool(name: str, inp: dict) -> str:
+        return "ok"
+
+    result = provider.respond(build_system_prompt(config), turns, {}, noop_tool)
+    return result.reply or "…"
+
+
+def get_or_start_by_external(
+    session: Session, channel: ConversationChannel, external_id: str
+) -> Conversation:
+    """Find the open conversation for a channel key (e.g. a WhatsApp phone), or
+    start a new one."""
+    conv = session.exec(
+        select(Conversation)
+        .where(
+            Conversation.channel == channel,
+            Conversation.external_id == external_id,
+            Conversation.status == ConversationStatus.active,
+        )
+        .order_by(Conversation.id.desc())
+    ).first()
+    if conv:
+        return conv
+    return start_conversation(session, channel=channel, external_id=external_id)
 
 
 def handle_message(session: Session, conv: Conversation, text: str) -> ChatMessage:

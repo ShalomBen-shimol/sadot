@@ -81,3 +81,46 @@ def test_bot_config_get_and_versioned_update(
     actives = db_session.exec(select(BotConfig).where(BotConfig.is_active == True)).all()  # noqa: E712
     assert len(actives) == 1
     assert actives[0].version == updated["version"]
+    assert updated["provider"] == "mock"  # no ANTHROPIC_API_KEY in tests
+
+
+def test_bot_config_preview_does_not_persist(
+    client: TestClient, auth: dict[str, str], db_session: Session
+):
+    before = len(db_session.exec(select(Conversation)).all())
+    r = client.post(
+        "/api/v1/chat/bot-config/preview",
+        json={"persona": "טון בדיקה", "knowledgebase": "", "message": "היי"},
+        headers=auth,
+    )
+    assert r.status_code == 200, r.text
+    assert r.json()["reply"]
+    # No conversation/lead was created by the sandbox.
+    assert len(db_session.exec(select(Conversation)).all()) == before
+
+
+def test_whatsapp_webhook_verify_and_inbound(client: TestClient, db_session: Session):
+    # Verification handshake (default verify token is "").
+    ok = client.get(
+        "/api/v1/chat/whatsapp/webhook",
+        params={"hub.mode": "subscribe", "hub.verify_token": "", "hub.challenge": "42"},
+    )
+    assert ok.status_code == 200 and ok.text == "42"
+    bad = client.get(
+        "/api/v1/chat/whatsapp/webhook",
+        params={"hub.mode": "subscribe", "hub.verify_token": "wrong", "hub.challenge": "42"},
+    )
+    assert bad.status_code == 403
+
+    # Inbound message creates a WhatsApp conversation and the engine replies.
+    payload = {
+        "entry": [
+            {"changes": [{"value": {"messages": [{"from": "972500000000", "text": {"body": "היי"}}]}}]}
+        ]
+    }
+    r = client.post("/api/v1/chat/whatsapp/webhook", json=payload)
+    assert r.status_code == 200 and r.json()["handled"] == 1
+    conv = db_session.exec(
+        select(Conversation).where(Conversation.external_id == "972500000000")
+    ).first()
+    assert conv is not None and conv.channel.value == "whatsapp"

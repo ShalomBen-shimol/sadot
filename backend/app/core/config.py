@@ -45,6 +45,7 @@ class Settings(BaseSettings):
     # External integration tokens (empty -> use mock adapters)
     anthropic_api_key: str = ""  # empty -> chatbot uses the deterministic Mock provider
     whatsapp_api_token: str = ""
+    whatsapp_verify_token: str = ""  # Meta webhook verification challenge token
     payment_provider_key: str = ""
     signature_provider_key: str = ""
     smtp_host: str = ""

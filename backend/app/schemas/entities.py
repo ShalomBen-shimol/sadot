@@ -281,12 +281,26 @@ class BotConfigRead(BaseModel):
     persona: str
     knowledgebase: str
     model: str
+    provider: str  # "claude" (real, key set) or "mock"
 
 
 class BotConfigUpdate(BaseModel):
     persona: str | None = None
     knowledgebase: str | None = None
     model: str | None = None
+
+
+class BotConfigPreviewIn(BaseModel):
+    """Try a candidate config against a message WITHOUT persisting anything."""
+    persona: str = ""
+    knowledgebase: str = ""
+    model: str = "claude-opus-4-8"
+    message: str
+    history: list[dict] = []
+
+
+class BotConfigPreviewOut(BaseModel):
+    reply: str
 
 
 # ---------- Public lead intake ----------
