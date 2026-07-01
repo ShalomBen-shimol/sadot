@@ -1,5 +1,6 @@
 """Import all models so SQLModel.metadata is fully populated."""
 from app.models.adoption import AdoptionCase, AdoptionLead
+from app.models.chat import BotConfig, ChatMessage, Conversation
 from app.models.dog import Dog, DogPhoto
 from app.models.municipality import Locality, Municipality
 from app.models.ownership import OwnershipTransfer
@@ -19,6 +20,9 @@ __all__ = [
     "AdoptionCase",
     "AdoptionLead",
     "AuditLog",
+    "BotConfig",
+    "ChatMessage",
+    "Conversation",
     "Dog",
     "DogPhoto",
     "Document",

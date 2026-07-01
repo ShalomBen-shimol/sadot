@@ -80,6 +80,30 @@ def seed_localities(session: Session) -> int:
     return len(rows)
 
 
+def seed_bot_config(session: Session) -> None:
+    """Seed a starter (editable) chatbot config if none exists."""
+    from app.models.chat import BotConfig
+
+    if session.exec(select(BotConfig)).first():
+        return
+    session.add(
+        BotConfig(
+            version=1,
+            is_active=True,
+            persona=(
+                "דבר/י בעברית, בגובה העיניים ובחום. הדגש/י שהמטרה היא למצוא לכלב בית טוב, "
+                "ושיש גם אפשרות של \"מסירה מהבית\" שבה הכלב נשאר עם הבעלים בינתיים."
+            ),
+            knowledgebase=(
+                "מסלולים: מסירה לפנסיון, או 'מסירה מהבית' — מנוי חודשי של 1,000 ₪ שבו הכלב נשאר "
+                "בבית הבעלים ומוצג לאימוץ; לאחר כ-7 חודשים אפשר להמיר למסירה מלאה לפנסיון."
+            ),
+            model="claude-opus-4-8",
+        )
+    )
+    session.commit()
+
+
 def seed(session: Session) -> None:
     # First admin
     admin = session.exec(select(User).where(User.email == settings.first_admin_email)).first()
@@ -96,6 +120,7 @@ def seed(session: Session) -> None:
 
     seed_authorities(session)
     seed_localities(session)
+    seed_bot_config(session)
 
     # Demo dogs only outside production.
     if settings.environment != "production" and not session.exec(select(Dog)).first():

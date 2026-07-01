@@ -43,6 +43,7 @@ class Settings(BaseSettings):
     frontend_base_path: str = "/crm"
 
     # External integration tokens (empty -> use mock adapters)
+    anthropic_api_key: str = ""  # empty -> chatbot uses the deterministic Mock provider
     whatsapp_api_token: str = ""
     payment_provider_key: str = ""
     signature_provider_key: str = ""

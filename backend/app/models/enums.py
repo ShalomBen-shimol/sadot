@@ -160,6 +160,25 @@ class MessageChannel(str, Enum):
     email = "email"
     sms = "sms"
     system = "system"
+    web = "web"  # website chat widget
+
+
+class ConversationChannel(str, Enum):
+    web = "web"
+    whatsapp = "whatsapp"
+
+
+class ConversationStatus(str, Enum):
+    active = "active"              # bot is handling it
+    lead_created = "lead_created"  # produced a surrender lead
+    escalated = "escalated"        # handed to a human
+    closed = "closed"
+
+
+class ConversationGoal(str, Enum):
+    surrender = "surrender"        # owner wants to give a dog away
+    adopt = "adopt"
+    general = "general"
 
 
 class MessageDirection(str, Enum):
