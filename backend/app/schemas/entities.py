@@ -264,6 +264,31 @@ class EmailTestResult(BaseModel):
     detail: str
 
 
+# ---------- Chatbot ----------
+class ChatMessageIn(BaseModel):
+    conversation_id: int | None = None
+    message: str
+
+
+class ChatReply(BaseModel):
+    conversation_id: int
+    reply: str
+    status: str
+
+
+class BotConfigRead(BaseModel):
+    version: int
+    persona: str
+    knowledgebase: str
+    model: str
+
+
+class BotConfigUpdate(BaseModel):
+    persona: str | None = None
+    knowledgebase: str | None = None
+    model: str | None = None
+
+
 # ---------- Public lead intake ----------
 class SurrenderLeadIn(BaseModel):
     # surrenderer

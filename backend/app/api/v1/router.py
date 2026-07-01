@@ -5,6 +5,7 @@ from app.api.v1 import (
     adoption,
     auth,
     backoffice,
+    chat,
     dashboard,
     documents,
     dogs,
@@ -46,6 +47,7 @@ api_router.include_router(signatures.router)
 api_router.include_router(messages_router)
 api_router.include_router(qr.router)
 api_router.include_router(integrations.router)
+api_router.include_router(chat.router)
 
 # Back-office aggregate case-file endpoints (people/dogs/transfers)
 api_router.include_router(backoffice.router)
