@@ -17,13 +17,19 @@
   window.SADOT_API_BASE = "https://sadot.lavit.io" before this block.
 -->
 <div id="sadot-adopt" dir="rtl">
-  <div class="sa-intro">
-    <h2>אמצו כלב</h2>
-    <p>אנחנו מזמינים אתכם להיות משפחה חמה ואוהבת לאחד מהכלבים הנמצאים אצלנו בפנסיון בשדות וממתינים שתאמצו אותם.</p>
-    <p class="sa-days">ימי אימוץ בפנסיון — יום שישי בין השעות 09:00–13:00.</p>
+  <div class="sa-hero">
+    <img class="sa-hero-img" src="https://sadot.lavit.io/wp-content/uploads/2022/10/17.jpg" alt="">
+    <div class="sa-hero-inner">
+      <h2>אמצו כלב</h2>
+      <p>אנחנו מזמינים אתכם להיות משפחה חמה ואוהבת לאחד מהכלבים הממתינים אצלנו בפנסיון בשדות.</p>
+      <p class="sa-days">ימי אימוץ בפנסיון — יום שישי בין השעות 09:00–13:00.</p>
+      <a class="sa-hero-btn" href="#sa-catalog">בחרו כלב לאימוץ ←</a>
+    </div>
   </div>
 
-  <div class="sa-toolbar">
+  <h3 class="sa-section-title">מה אתם מחפשים?</h3>
+
+  <div class="sa-toolbar" id="sa-catalog">
     <label>גודל
       <select id="sa-f-size">
         <option value="all">הכול</option>
@@ -68,10 +74,18 @@
   #sadot-adopt, #sa-modal { --sa: #2f6f4e; --sa-dark: #234f39; --sa-light: #e7f1eb; }
   #sadot-adopt { font-family: "Heebo", Arial, sans-serif; color: #1f2937; max-width: 1100px; margin: 0 auto; }
   #sadot-adopt *, #sa-modal * { box-sizing: border-box; }
-  .sa-intro { text-align: center; margin: 0 auto 24px; max-width: 720px; }
-  .sa-intro h2 { color: var(--sa-dark); font-size: 30px; font-weight: 800; margin: 0 0 8px; }
-  .sa-intro p { color: #4b5563; font-size: 16px; line-height: 1.7; margin: 4px 0; }
-  .sa-intro .sa-days { color: var(--sa); font-weight: 700; }
+  .sa-hero { position: relative; border-radius: 20px; overflow: hidden; margin: 0 0 22px;
+    background: var(--sa-dark); min-height: 300px; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .sa-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .42; }
+  .sa-hero-inner { position: relative; color: #fff; padding: 44px 24px; max-width: 720px; }
+  .sa-hero-inner h2 { font-size: 42px; font-weight: 800; margin: 0 0 10px; text-shadow: 0 2px 8px rgba(0,0,0,.25); }
+  .sa-hero-inner p { font-size: 17px; line-height: 1.7; margin: 4px 0; color: rgba(255,255,255,.93); }
+  .sa-hero-inner .sa-days { font-weight: 700; }
+  .sa-hero-btn { display: inline-block; margin-top: 18px; background: #fff; color: var(--sa-dark);
+    border-radius: 999px; padding: 12px 30px; font-weight: 700; text-decoration: none; }
+  .sa-hero-btn:hover { background: var(--sa-light); }
+  .sa-section-title { text-align: center; color: var(--sa-dark); font-size: 26px; font-weight: 800; margin: 0 0 14px; }
+  #sa-catalog { scroll-margin-top: 90px; }
   .sa-faq { margin-top: 36px; }
   .sa-faq h2 { color: var(--sa-dark); font-size: 26px; font-weight: 800; text-align: center; margin-bottom: 16px; }
   .sa-faq details { background: #fff; border: 1px solid #f0f1f3; border-radius: 12px; padding: 12px 16px; margin-bottom: 10px; }
