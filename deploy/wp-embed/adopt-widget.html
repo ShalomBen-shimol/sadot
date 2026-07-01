@@ -1,0 +1,246 @@
+<!--
+  Sadot adoption catalog — in-page widget for the WordPress /אימוץ page.
+
+  HOW TO USE
+  1. Edit the WordPress "אימוץ" page.
+  2. Remove the old adoption content (or the old dog listing).
+  3. Add a "Custom HTML" block and paste this ENTIRE file into it. Update.
+  (If a security plugin strips <script> from the block, paste instead via a
+   Code Snippets plugin, or enqueue as a small plugin — the markup is identical.)
+
+  It renders the live dogs from the CRM (GET /api/v1/public/dogs, same origin as
+  the WP site) with the basadot header/menu/footer still around it, and opens an
+  inquiry form that posts to /api/v1/public/leads/adoption. Nothing here depends
+  on the standalone /crm app, so it feels native to the site.
+
+  Override the API origin (only if the API is on another host) by setting
+  window.SADOT_API_BASE = "https://sadot.lavit.io" before this block.
+-->
+<div id="sadot-adopt" dir="rtl">
+  <div class="sa-toolbar">
+    <label>גודל
+      <select id="sa-f-size">
+        <option value="all">הכול</option>
+        <option value="small">קטן</option>
+        <option value="medium">בינוני</option>
+        <option value="large">גדול</option>
+        <option value="xlarge">גדול מאוד</option>
+      </select>
+    </label>
+    <label>אזור
+      <select id="sa-f-area"><option value="all">כל האזורים</option></select>
+    </label>
+    <label class="sa-check"><input type="checkbox" id="sa-f-kids"> מתאים לילדים</label>
+    <label class="sa-check"><input type="checkbox" id="sa-f-dogs"> מסתדר עם כלבים</label>
+    <span id="sa-count" class="sa-count"></span>
+  </div>
+
+  <div id="sa-grid" class="sa-grid" aria-live="polite">
+    <p class="sa-muted">טוען כלבים…</p>
+  </div>
+</div>
+
+<!-- Inquiry modal -->
+<div id="sa-modal" class="sa-modal" hidden>
+  <div class="sa-modal-backdrop" data-close></div>
+  <div class="sa-modal-card" role="dialog" aria-modal="true" aria-labelledby="sa-m-name">
+    <button class="sa-modal-x" type="button" data-close aria-label="סגירה">✕</button>
+    <div id="sa-modal-body"></div>
+  </div>
+</div>
+
+<style>
+  #sadot-adopt, #sa-modal { --sa: #2f6f4e; --sa-dark: #234f39; --sa-light: #e7f1eb; }
+  #sadot-adopt { font-family: "Heebo", Arial, sans-serif; color: #1f2937; max-width: 1100px; margin: 0 auto; }
+  #sadot-adopt *, #sa-modal * { box-sizing: border-box; }
+  .sa-toolbar { display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+    background: #fff; border: 1px solid #eef0f2; border-radius: 14px; padding: 14px 16px; margin-bottom: 20px; }
+  .sa-toolbar label { font-size: 14px; color: #4b5563; display: flex; flex-direction: column; gap: 4px; }
+  .sa-toolbar select { border: 1px solid #d1d5db; border-radius: 9px; padding: 8px 10px; font-size: 15px; background: #fff; }
+  .sa-toolbar .sa-check { flex-direction: row; align-items: center; gap: 8px; padding-top: 18px; }
+  .sa-count { margin-inline-start: auto; font-size: 13px; color: #6b7280; }
+  .sa-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .sa-card { display: flex; flex-direction: column; background: #fff; border: 1px solid #f0f1f3;
+    border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.04); text-align: start;
+    cursor: pointer; transition: transform .15s, box-shadow .15s; padding: 0; }
+  .sa-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+  .sa-photo { height: 190px; background: var(--sa-light); background-size: cover; background-position: center;
+    display: flex; align-items: center; justify-content: center; font-size: 42px; }
+  .sa-body { padding: 14px 16px 16px; display: flex; flex-direction: column; flex: 1; }
+  .sa-name { font-size: 18px; font-weight: 700; color: var(--sa-dark); margin: 0; }
+  .sa-meta { font-size: 13px; color: #6b7280; margin: 4px 0 0; }
+  .sa-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .sa-chip { background: var(--sa-light); color: var(--sa-dark); border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 600; }
+  .sa-btn { margin-top: auto; }
+  .sa-cta { display: inline-flex; align-items: center; justify-content: center; width: 100%; margin-top: 14px;
+    background: var(--sa); color: #fff; border: 0; border-radius: 10px; padding: 10px 14px;
+    font: inherit; font-weight: 700; cursor: pointer; }
+  .sa-card:hover .sa-cta, .sa-cta:hover { background: var(--sa-dark); }
+  .sa-muted { color: #6b7280; font-size: 15px; }
+  .sa-empty { grid-column: 1 / -1; text-align: center; background: #fff; border: 1px solid #f0f1f3;
+    border-radius: 16px; padding: 32px; color: #6b7280; }
+
+  /* Modal */
+  .sa-modal { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 16px; }
+  .sa-modal[hidden] { display: none; }
+  .sa-modal-backdrop { position: absolute; inset: 0; background: rgba(17,24,39,.55); }
+  .sa-modal-card { position: relative; background: #fff; border-radius: 18px; width: 100%; max-width: 560px;
+    max-height: 90vh; overflow: auto; padding: 22px; font-family: "Heebo", Arial, sans-serif; direction: rtl; }
+  .sa-modal-x { position: absolute; inset-inline-start: 14px; top: 12px; border: 0; background: transparent;
+    font-size: 18px; cursor: pointer; color: #6b7280; }
+  .sa-m-photo { height: 220px; border-radius: 12px; background: var(--sa-light) center/cover no-repeat;
+    display: flex; align-items: center; justify-content: center; font-size: 52px; margin-bottom: 14px; }
+  .sa-m-name { font-size: 22px; font-weight: 800; color: var(--sa-dark); margin: 0; }
+  .sa-m-desc { color: #4b5563; font-size: 14px; line-height: 1.6; margin: 8px 0 4px; }
+  .sa-form { margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sa-form label { font-size: 13px; color: #4b5563; display: flex; flex-direction: column; gap: 4px; }
+  .sa-form .sa-wide { grid-column: 1 / -1; }
+  .sa-form input, .sa-form select, .sa-form textarea { border: 1px solid #d1d5db; border-radius: 9px;
+    padding: 9px 11px; font: inherit; font-size: 15px; width: 100%; }
+  .sa-consent { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #4b5563; }
+  .sa-submit { grid-column: 1 / -1; background: var(--sa); color: #fff; border: 0; border-radius: 10px;
+    padding: 12px; font: inherit; font-weight: 700; cursor: pointer; }
+  .sa-submit:disabled { opacity: .6; cursor: default; }
+  .sa-err { grid-column: 1 / -1; color: #dc2626; font-size: 14px; font-weight: 600; margin: 0; }
+  .sa-ok { text-align: center; padding: 20px 8px; }
+  .sa-ok h3 { color: var(--sa-dark); font-size: 20px; }
+  @media (max-width: 480px) { .sa-form { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+(function () {
+  var ROOT = document.getElementById("sadot-adopt");
+  if (!ROOT) return;
+  var API = (window.SADOT_API_BASE || "") + "/api/v1";
+  var SIZE = { small: "קטן", medium: "בינוני", large: "גדול", xlarge: "גדול מאוד" };
+  var dogs = [];
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function ageLabel(a) { if (a == null) return "גיל לא ידוע"; if (a < 1) return "גור"; return a === 1 ? "שנה" : a + " שנים"; }
+  function traits(d) {
+    var t = [];
+    if (d.good_with_children) t.push("מתאים לילדים");
+    if (d.good_with_dogs) t.push("מסתדר עם כלבים");
+    if (d.good_with_cats) t.push("מסתדר עם חתולים");
+    if (d.suitable_for_apartment) t.push("מתאים לדירה");
+    return t;
+  }
+  function photoStyle(d) {
+    return d.photos && d.photos[0] ? 'style="background-image:url(' + esc(d.photos[0]) + ')"' : "";
+  }
+
+  function render() {
+    var grid = document.getElementById("sa-grid");
+    var size = document.getElementById("sa-f-size").value;
+    var area = document.getElementById("sa-f-area").value;
+    var kids = document.getElementById("sa-f-kids").checked;
+    var withDogs = document.getElementById("sa-f-dogs").checked;
+    var list = dogs.filter(function (d) {
+      if (size !== "all" && d.size !== size) return false;
+      if (area !== "all" && d.public_area !== area) return false;
+      if (kids && d.good_with_children !== true) return false;
+      if (withDogs && d.good_with_dogs !== true) return false;
+      return true;
+    });
+    document.getElementById("sa-count").textContent =
+      list.length === dogs.length ? dogs.length + " כלבים זמינים" : "נמצאו " + list.length + " מתוך " + dogs.length;
+    if (!list.length) { grid.innerHTML = '<div class="sa-empty">לא נמצאו כלבים שמתאימים לסינון. נסו להרחיב את החיפוש 🐾</div>'; return; }
+    grid.innerHTML = list.map(function (d) {
+      var meta = [d.breed || "מעורב", ageLabel(d.age), SIZE[d.size] || ""].filter(Boolean).join(" · ");
+      var chips = traits(d).slice(0, 3).map(function (t) { return '<span class="sa-chip">' + esc(t) + "</span>"; }).join("");
+      return '<div class="sa-card" data-id="' + d.id + '">' +
+        '<div class="sa-photo" ' + photoStyle(d) + ">" + (d.photos && d.photos[0] ? "" : "🐾") + "</div>" +
+        '<div class="sa-body">' +
+          '<h3 class="sa-name">' + esc(d.name || "כלב ללא שם") + "</h3>" +
+          '<p class="sa-meta">' + esc(meta) + "</p>" +
+          (d.public_area ? '<p class="sa-meta">אזור: ' + esc(d.public_area) + "</p>" : "") +
+          (chips ? '<div class="sa-chips">' + chips + "</div>" : "") +
+          '<button class="sa-cta" type="button">קחו אותי הביתה 🏡</button>' +
+        "</div></div>";
+    }).join("");
+  }
+
+  function openModal(dog) {
+    var body = document.getElementById("sa-modal-body");
+    body.innerHTML =
+      '<div class="sa-m-photo" ' + photoStyle(dog) + ">" + (dog.photos && dog.photos[0] ? "" : "🐾") + "</div>" +
+      '<h3 class="sa-m-name" id="sa-m-name">' + esc(dog.name || "כלב ללא שם") + "</h3>" +
+      '<p class="sa-meta">' + esc([dog.breed || "מעורב", ageLabel(dog.age), SIZE[dog.size] || ""].filter(Boolean).join(" · ")) + "</p>" +
+      (dog.public_description ? '<p class="sa-m-desc">' + esc(dog.public_description) + "</p>" : "") +
+      '<form class="sa-form" id="sa-form">' +
+        '<label>שם פרטי *<input name="first_name" autocomplete="given-name"></label>' +
+        '<label>שם משפחה<input name="last_name" autocomplete="family-name"></label>' +
+        '<label>טלפון *<input name="phone" type="tel" inputmode="tel" placeholder="050-0000000" autocomplete="tel"></label>' +
+        '<label>אימייל<input name="email" type="email" autocomplete="email"></label>' +
+        '<label>יישוב<input name="city" autocomplete="address-level2"></label>' +
+        '<label>סוג מגורים<select name="home_type"><option value="apartment">דירה</option><option value="house">בית פרטי</option><option value="house_with_yard">בית עם חצר</option></select></label>' +
+        '<label class="sa-wide">הערות<textarea name="notes" rows="2"></textarea></label>' +
+        '<label class="sa-consent"><input type="checkbox" name="consent_privacy"> קראתי ואני מאשר/ת את הודעת הפרטיות *</label>' +
+        '<p class="sa-err" hidden></p>' +
+        '<button class="sa-submit" type="submit">שליחת פנייה</button>' +
+      "</form>";
+    document.getElementById("sa-form").addEventListener("submit", function (e) { submit(e, dog.id); });
+    document.getElementById("sa-modal").hidden = false;
+  }
+  function closeModal() { document.getElementById("sa-modal").hidden = true; }
+
+  function submit(e, dogId) {
+    e.preventDefault();
+    var f = e.target, err = f.querySelector(".sa-err"), btn = f.querySelector(".sa-submit");
+    function fail(m) { err.textContent = m; err.hidden = false; }
+    var first = f.first_name.value.trim();
+    var phone = f.phone.value.trim();
+    if (!first) return fail("נא למלא שם פרטי");
+    if (!/^0\d{8,9}$/.test(phone.replace(/\D/g, ""))) return fail("מספר הטלפון אינו תקין");
+    if (!f.consent_privacy.checked) return fail("יש לאשר את הודעת הפרטיות כדי לשלוח");
+    err.hidden = true; btn.disabled = true; btn.textContent = "שולח…";
+    fetch(API + "/public/leads/adoption", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        dog_id: dogId, first_name: first, last_name: f.last_name.value.trim() || null,
+        phone: phone, email: f.email.value.trim() || null, city: f.city.value.trim() || null,
+        home_type: f.home_type.value, notes: f.notes.value.trim() || null,
+        consent_privacy: true, consent_messages: true, source: "website"
+      })
+    }).then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+      .then(function () {
+        document.getElementById("sa-modal-body").innerHTML =
+          '<div class="sa-ok"><div style="font-size:46px">🐾</div><h3>פנייתך התקבלה!</h3>' +
+          '<p class="sa-muted">ניצור איתך קשר בקרוב לתיאום היכרות.</p></div>';
+      })
+      .catch(function () { btn.disabled = false; btn.textContent = "שליחת פנייה"; fail("אירעה שגיאה, נסו שוב"); });
+  }
+
+  // Events
+  document.getElementById("sa-grid").addEventListener("click", function (e) {
+    var card = e.target.closest(".sa-card"); if (!card) return;
+    var dog = dogs.find(function (d) { return d.id == card.getAttribute("data-id"); });
+    if (dog) openModal(dog);
+  });
+  ["sa-f-size", "sa-f-area", "sa-f-kids", "sa-f-dogs"].forEach(function (id) {
+    document.getElementById(id).addEventListener("change", render);
+  });
+  document.getElementById("sa-modal").addEventListener("click", function (e) {
+    if (e.target.hasAttribute("data-close")) closeModal();
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeModal(); });
+
+  // Load
+  fetch(API + "/public/dogs")
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      dogs = Array.isArray(data) ? data : [];
+      var areas = {}; dogs.forEach(function (d) { if (d.public_area) areas[d.public_area] = 1; });
+      var sel = document.getElementById("sa-f-area");
+      Object.keys(areas).sort(function (a, b) { return a.localeCompare(b, "he"); }).forEach(function (a) {
+        var o = document.createElement("option"); o.value = a; o.textContent = a; sel.appendChild(o);
+      });
+      render();
+    })
+    .catch(function () {
+      document.getElementById("sa-grid").innerHTML =
+        '<div class="sa-empty">לא ניתן לטעון את רשימת הכלבים כרגע. נסו לרענן בעוד מספר רגעים.</div>';
+    });
+})();
+</script>
