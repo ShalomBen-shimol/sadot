@@ -10,9 +10,12 @@ import {
   chargeSurrenderMonth,
   startFacilityTransfer,
   convertToFacility,
+  generateSurrenderForm,
   type SurrenderCase,
   type SubscriptionPayment,
+  type DocumentType,
 } from "@/lib/api";
+import DocumentsManager from "../../_components/DocumentsManager";
 import {
   useAdminToken,
   errorMessage,
@@ -30,6 +33,13 @@ import {
   surrenderTypeLabels,
   paymentStatusLabels,
 } from "../../_components/labels";
+
+const SURRENDER_DOC_TYPES: DocumentType[] = [
+  "surrender_form",
+  "id_card_surrenderer",
+  "adopter_with_dog_photo",
+  "other",
+];
 
 function paymentTone(status: SubscriptionPayment["status"]): "green" | "amber" | "red" | "gray" {
   if (status === "paid") return "green";
@@ -156,6 +166,16 @@ export default function SurrenderCaseDetail() {
               </ActionButton>
             </div>
           </div>
+
+          <DocumentsManager
+            token={token!}
+            entityType="surrender_case"
+            entityId={caseId}
+            uploadTypes={SURRENDER_DOC_TYPES}
+            required={["surrender_form", "id_card_surrenderer"]}
+            generate={{ label: "הפקת טופס מסירה", run: () => generateSurrenderForm(token!, caseId) }}
+            onChanged={load}
+          />
 
           <div className="card space-y-3">
             <h2 className="text-lg font-semibold text-brand-dark">תשלומים</h2>
