@@ -93,6 +93,36 @@ def test_list_returns_uploaded_document_filtered_by_entity(client, auth, media_r
     assert items[0]["related_entity_id"] == 42
 
 
+def test_list_filters_by_type_status_and_sensitivity(client, auth, media_root):
+    # Two different types under the same entity; one public, one sensitive.
+    _upload(client, auth, entity_type="dog", entity_id=7,
+            document_type="id_card_surrenderer", is_sensitive=True)
+    r_public = _upload(client, auth, entity_type="dog", entity_id=7,
+                       document_type="adopter_with_dog_photo", is_sensitive=False,
+                       filename="photo.png")
+
+    # Filter by document_type (central console use-case: across all entities).
+    by_type = client.get(
+        "/api/v1/documents", headers=auth,
+        params={"document_type": "adopter_with_dog_photo"},
+    )
+    assert by_type.status_code == 200
+    assert [d["document_type"] for d in by_type.json()] == ["adopter_with_dog_photo"]
+
+    # Filter by sensitivity.
+    sensitive = client.get("/api/v1/documents", headers=auth, params={"is_sensitive": "true"})
+    assert sensitive.status_code == 200
+    assert all(d["is_sensitive"] for d in sensitive.json())
+
+    # Filter by status (alias "status"): approve one, then query approved-only.
+    client.post(f"/api/v1/documents/{r_public.json()['id']}/approve", headers=auth)
+    approved = client.get("/api/v1/documents", headers=auth, params={"status": "approved"})
+    assert approved.status_code == 200
+    ids = [d["id"] for d in approved.json()]
+    assert r_public.json()["id"] in ids
+    assert all(d["status"] == "approved" for d in approved.json())
+
+
 def test_sensitive_flag_respected(client, auth, media_root):
     r_sensitive = _upload(client, auth, document_type="id_card_receiver", is_sensitive=True)
     r_public = _upload(

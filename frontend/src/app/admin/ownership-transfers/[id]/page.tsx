@@ -31,6 +31,7 @@ import {
   signatureTypeLabels,
 } from "../../_components/labels";
 import DocumentsManager from "../../_components/DocumentsManager";
+import WorkflowProgress from "../../_components/WorkflowProgress";
 
 const TRANSFER_DOC_TYPES: DocumentType[] = [
   "ownership_transfer_form",
@@ -169,6 +170,8 @@ export default function OwnershipTransferDetailPage() {
               </ActionButton>
             </div>
           </div>
+
+          <WorkflowProgress token={token!} transferId={transferId} onChanged={load} />
 
           <DocumentsManager
             token={token!}

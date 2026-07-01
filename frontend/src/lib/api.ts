@@ -989,6 +989,103 @@ export async function runTransferFollowups(
 }
 
 // ============================================================================
+// Configurable workflow engine
+// ============================================================================
+// One step in an ownership-transfer workflow. `config` is a free-form bag whose
+// keys depend on the step type (see the step-type vocabulary from the backend).
+export type WorkflowStep = {
+  type: string;
+  title?: string;
+  manual?: boolean;
+  config?: Record<string, unknown>;
+};
+
+export type WorkflowDef = {
+  transfer_type: TransferType;
+  version: number;
+  steps: WorkflowStep[];
+};
+
+// Vocabulary the builder renders its editors from (GET /workflows/step-types).
+export type WorkflowFieldSpec = {
+  name: string;
+  type: "documenttypes" | "signaturetypes" | "select" | "text" | "textarea" | "number";
+  label: string;
+  options?: string[];
+};
+
+export type WorkflowStepType = {
+  type: string;
+  label: string;
+  kind: "gate" | "action";
+  manual_default?: boolean;
+  fields: WorkflowFieldSpec[];
+};
+
+export type WorkflowVocabulary = {
+  step_types: WorkflowStepType[];
+  transfer_types: string[];
+  document_types: string[];
+  signature_types: string[];
+  priorities: string[];
+};
+
+// Live status of a single transfer's walk through its workflow.
+export type WorkflowStatus = {
+  step_index: number;
+  total: number;
+  current: WorkflowStep | null;
+  done: boolean;
+  blocking: string | null;
+  awaiting_action: boolean;
+  steps: WorkflowStep[];
+};
+
+export async function getTransferWorkflow(
+  token: string,
+  transferId: number
+): Promise<WorkflowStatus> {
+  return authGet<WorkflowStatus>(`/api/v1/ownership-transfers/${transferId}/workflow`, token);
+}
+
+// Advance the walk: pass newly-satisfied gates. Set runAction to fire the
+// current manual action (e.g. "send to authority").
+export async function advanceTransferWorkflow(
+  token: string,
+  transferId: number,
+  runAction = false
+): Promise<WorkflowStatus> {
+  return authPost<WorkflowStatus>(
+    `/api/v1/ownership-transfers/${transferId}/advance${qs({ run_action: runAction })}`,
+    token
+  );
+}
+
+export async function getWorkflowStepTypes(token: string): Promise<WorkflowVocabulary> {
+  return authGet<WorkflowVocabulary>("/api/v1/workflows/step-types", token);
+}
+
+export async function listWorkflows(token: string): Promise<WorkflowDef[]> {
+  return authGet<WorkflowDef[]>("/api/v1/workflows", token);
+}
+
+export async function getWorkflow(
+  token: string,
+  transferType: TransferType
+): Promise<WorkflowDef> {
+  return authGet<WorkflowDef>(`/api/v1/workflows/${transferType}`, token);
+}
+
+// Save a new active version of a transfer type's workflow.
+export async function updateWorkflow(
+  token: string,
+  transferType: TransferType,
+  steps: WorkflowStep[]
+): Promise<WorkflowDef> {
+  return authPut<WorkflowDef>(`/api/v1/workflows/${transferType}`, token, { steps });
+}
+
+// ============================================================================
 // Documents
 // ============================================================================
 export async function listDocuments(
@@ -996,6 +1093,9 @@ export async function listDocuments(
   params: {
     entity_type?: EntityType;
     entity_id?: number;
+    document_type?: DocumentType;
+    status?: DocumentStatus;
+    is_sensitive?: boolean;
     offset?: number;
     limit?: number;
   } = {}

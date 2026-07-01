@@ -43,10 +43,15 @@ def list_documents(
     _: CurrentUser,
     entity_type: EntityType | None = None,
     entity_id: int | None = None,
+    document_type: DocumentType | None = None,
+    document_status: DocumentStatus | None = Query(default=None, alias="status"),
+    is_sensitive: bool | None = None,
     offset: int = 0,
     limit: int = Query(default=100, le=500),
 ):
-    """List documents, optionally filtered by related entity."""
+    """List documents, optionally filtered by related entity, type, status, or
+    sensitivity. Powers both the per-case managers and the central documents
+    console (which filters across all entities)."""
     return repo.list(
         session,
         offset=offset,
@@ -54,6 +59,9 @@ def list_documents(
         filters={
             "related_entity_type": entity_type,
             "related_entity_id": entity_id,
+            "document_type": document_type,
+            "status": document_status,
+            "is_sensitive": is_sensitive,
         },
     )
 
