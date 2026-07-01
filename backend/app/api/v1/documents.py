@@ -66,6 +66,37 @@ def get_document(document_id: int, session: SessionDep, _: CurrentUser):
     return doc
 
 
+def _set_status(
+    document_id: int, new_status: DocumentStatus, session: SessionDep, user: CurrentUser
+) -> Document:
+    doc = repo.get(session, document_id)
+    if not doc:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Document not found")
+    doc.status = new_status
+    session.add(doc)
+    session.commit()
+    session.refresh(doc)
+    audit.log(
+        session,
+        action=f"document.{new_status.value}",
+        actor_user_id=user.id,
+        entity_type=doc.related_entity_type.value,
+        entity_id=doc.related_entity_id,
+        metadata={"document_id": doc.id, "document_type": doc.document_type.value},
+    )
+    return doc
+
+
+@router.post("/{document_id}/approve", response_model=Document)
+def approve_document(document_id: int, session: SessionDep, user: CurrentUser):
+    return _set_status(document_id, DocumentStatus.approved, session, user)
+
+
+@router.post("/{document_id}/reject", response_model=Document)
+def reject_document(document_id: int, session: SessionDep, user: CurrentUser):
+    return _set_status(document_id, DocumentStatus.rejected, session, user)
+
+
 @router.post("/upload", response_model=Document, status_code=status.HTTP_201_CREATED)
 async def upload_document(
     session: SessionDep,

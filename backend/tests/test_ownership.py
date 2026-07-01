@@ -49,6 +49,7 @@ def test_required_documents_for_adopter_transfer(client, auth, db_session):
     assert set(req["required"]) == {
         "ownership_transfer_form", "id_card_surrenderer",
         "receiver_approval_form", "id_card_receiver",
+        "adopter_with_dog_photo",
     }
 
 

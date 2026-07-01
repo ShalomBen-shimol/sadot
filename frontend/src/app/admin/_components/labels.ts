@@ -109,6 +109,7 @@ export const transferTypeLabels: Record<TransferType, string> = {
 };
 
 export const documentTypeLabels: Record<DocumentType, string> = {
+  surrender_form: "טופס מסירה",
   ownership_transfer_form: "טופס העברת בעלות",
   receiver_approval_form: "טופס אישור מקבל",
   id_card_surrenderer: "ת.ז. מוסר",

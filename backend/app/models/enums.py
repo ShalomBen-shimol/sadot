@@ -109,6 +109,7 @@ class OwnershipTransferStatus(str, Enum):
 
 
 class DocumentType(str, Enum):
+    surrender_form = "surrender_form"  # signed forfeit form with the owner's details
     ownership_transfer_form = "ownership_transfer_form"
     receiver_approval_form = "receiver_approval_form"
     id_card_surrenderer = "id_card_surrenderer"

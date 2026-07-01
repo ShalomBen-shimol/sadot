@@ -2,12 +2,27 @@ from fastapi import APIRouter, HTTPException, Query, status
 
 from app.api.deps import CurrentUser, SessionDep
 from app.models.ownership import OwnershipTransfer
+from app.models.support import Document
 from app.repositories.base import CRUDRepository
 from app.schemas.entities import OwnershipTransferCreate
+from app.services import forms as forms_service
 from app.services import ownership as ownership_service
 
 router = APIRouter(prefix="/ownership-transfers", tags=["ownership"])
 repo = CRUDRepository(OwnershipTransfer)
+
+
+@router.post(
+    "/{transfer_id}/generate-form", response_model=Document, status_code=status.HTTP_201_CREATED
+)
+def generate_transfer_form(transfer_id: int, session: SessionDep, user: CurrentUser):
+    """Produce the ownership-transfer form (PDF) + open the signature request and
+    a follow-up task. The required-documents checklist also asks for the new
+    owner's photo with the dog (for individual-to-individual transfers)."""
+    t = repo.get(session, transfer_id)
+    if not t:
+        raise HTTPException(status_code=404, detail="Transfer not found")
+    return forms_service.generate_transfer_form(session, t, actor_user_id=user.id)
 
 
 @router.get("", response_model=list[OwnershipTransfer])
