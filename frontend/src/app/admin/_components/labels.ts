@@ -14,7 +14,17 @@ import type {
   DocumentStatus,
   SignatureType,
   SignatureStatus,
+  EntityType,
 } from "@/lib/api";
+
+export const entityTypeLabels: Record<EntityType, string> = {
+  dog: "כלב",
+  person: "איש קשר",
+  surrender_case: "תיק מסירה",
+  adoption_case: "תיק אימוץ",
+  adoption_lead: "ליד אימוץ",
+  ownership_transfer: "העברת בעלות",
+};
 
 export const dogStatusLabels: Record<DogStatus, string> = {
   draft: "טיוטה",

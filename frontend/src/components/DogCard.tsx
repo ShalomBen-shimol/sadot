@@ -49,8 +49,8 @@ export default function DogCard({ dog }: { dog: DogPublic }) {
           </div>
         )}
 
-        <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand group-hover:underline">
-          לפרטים והשארת פנייה ←
+        <span className="btn-primary mt-4 w-full justify-center text-sm group-hover:bg-brand-dark">
+          קחו אותי הביתה 🏡
         </span>
       </div>
     </Link>

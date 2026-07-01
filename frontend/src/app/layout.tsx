@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BRAND } from "@/lib/brand";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,8 +14,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <header className="border-b bg-white">
           <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-            <Link href="/" className="text-xl font-bold text-brand">
-              🐾 פנסיון בשדות
+            <Link href="/" className="flex items-center gap-2 text-xl font-bold text-brand">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={BRAND.logo} alt="" className="h-9 w-9 rounded-full" />
+              {BRAND.name}
             </Link>
             <nav className="flex gap-4 text-sm">
               <Link href="/adopt" className="hover:text-brand">אימוץ כלב</Link>

@@ -10,6 +10,8 @@ const NAV: { href: string; label: string }[] = [
   { href: "/admin/adoption-cases", label: "תיקי אימוץ" },
   { href: "/admin/dogs", label: "כלבים" },
   { href: "/admin/ownership-transfers", label: "העברות בעלות" },
+  { href: "/admin/workflows", label: "מנוע אוטומציה" },
+  { href: "/admin/documents", label: "ניהול מסמכים" },
   { href: "/admin/authorities", label: "רשויות וטרינריות" },
   { href: "/admin/conversations", label: "שיחות צ'אט" },
   { href: "/admin/chatbot", label: "ניהול הבוט" },
