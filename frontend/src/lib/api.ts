@@ -92,6 +92,7 @@ export type OwnershipTransferStatus =
   | "stopped_manually";
 
 export type DocumentType =
+  | "surrender_form"
   | "ownership_transfer_form"
   | "receiver_approval_form"
   | "id_card_surrenderer"
@@ -1026,6 +1027,38 @@ export async function uploadDocument(
   form.append("document_type", args.document_type);
   form.append("is_sensitive", String(args.is_sensitive ?? false));
   return authUpload<DocumentRecord>("/api/v1/documents/upload", token, form);
+}
+
+export async function approveDocument(
+  token: string,
+  documentId: number
+): Promise<DocumentRecord> {
+  return authPost<DocumentRecord>(`/api/v1/documents/${documentId}/approve`, token);
+}
+
+export async function rejectDocument(
+  token: string,
+  documentId: number
+): Promise<DocumentRecord> {
+  return authPost<DocumentRecord>(`/api/v1/documents/${documentId}/reject`, token);
+}
+
+// Generate a pre-filled, signable PDF form (also opens a signature request + task).
+export async function generateSurrenderForm(
+  token: string,
+  caseId: number
+): Promise<DocumentRecord> {
+  return authPost<DocumentRecord>(`/api/v1/surrender-cases/${caseId}/generate-form`, token);
+}
+
+export async function generateTransferForm(
+  token: string,
+  transferId: number
+): Promise<DocumentRecord> {
+  return authPost<DocumentRecord>(
+    `/api/v1/ownership-transfers/${transferId}/generate-form`,
+    token
+  );
 }
 
 // ============================================================================

@@ -9,6 +9,7 @@ import {
   confirmTransfer,
   stopTransfer,
   runTransferFollowups,
+  generateTransferForm,
   type OwnershipTransferDetail,
   type DocumentType,
 } from "@/lib/api";
@@ -21,21 +22,26 @@ import {
   Badge,
   ActionButton,
   Field,
-  formatDate,
   formatDateTime,
 } from "../../_components/ui";
 import {
   ownershipTransferStatusLabels,
   transferTypeLabels,
-  documentTypeLabels,
-  documentStatusLabels,
   signatureStatusLabels,
   signatureTypeLabels,
 } from "../../_components/labels";
+import DocumentsManager from "../../_components/DocumentsManager";
 
-function docTypeLabel(value: string): string {
-  return documentTypeLabels[value as DocumentType] ?? value;
-}
+const TRANSFER_DOC_TYPES: DocumentType[] = [
+  "ownership_transfer_form",
+  "id_card_surrenderer",
+  "receiver_approval_form",
+  "id_card_receiver",
+  "adopter_with_dog_photo",
+  "authority_submission",
+  "authority_confirmation",
+  "other",
+];
 
 export default function OwnershipTransferDetailPage() {
   const token = useAdminToken();
@@ -75,13 +81,6 @@ export default function OwnershipTransferDetailPage() {
   }
 
   if (!data && !error) return <Spinner />;
-
-  // Which required document types already have an uploaded/approved record.
-  const presentDocTypes = new Set(
-    (data?.documents ?? [])
-      .filter((d) => d.status === "uploaded" || d.status === "approved")
-      .map((d) => d.document_type as string)
-  );
 
   const transfer = data?.transfer;
   const timeline: { label: string; value: string | null | undefined }[] = transfer
@@ -171,31 +170,16 @@ export default function OwnershipTransferDetailPage() {
             </div>
           </div>
 
-          <div className="card space-y-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-brand-dark">מסמכים נדרשים</h2>
-              <Badge tone={data.documents_complete ? "green" : "amber"}>
-                {data.documents_complete ? "כל המסמכים הושלמו" : "חסרים מסמכים"}
-              </Badge>
-            </div>
-            {data.required_documents.length === 0 ? (
-              <p className="text-sm text-gray-500">אין מסמכים נדרשים.</p>
-            ) : (
-              <ul className="space-y-1 text-sm">
-                {data.required_documents.map((dt) => {
-                  const present = presentDocTypes.has(dt);
-                  return (
-                    <li key={dt} className="flex items-center gap-2">
-                      <span className={present ? "text-green-600" : "text-gray-400"}>
-                        {present ? "✓" : "○"}
-                      </span>
-                      <span>{docTypeLabel(dt)}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
+          <DocumentsManager
+            token={token!}
+            entityType="ownership_transfer"
+            entityId={transferId}
+            uploadTypes={TRANSFER_DOC_TYPES}
+            required={data.required_documents}
+            documentsComplete={data.documents_complete}
+            generate={{ label: "הפקת טופס העברה", run: () => generateTransferForm(token!, transferId) }}
+            onChanged={load}
+          />
 
           <div className="card space-y-3">
             <h2 className="text-lg font-semibold text-brand-dark">ציר זמן סטטוס</h2>
@@ -208,28 +192,6 @@ export default function OwnershipTransferDetailPage() {
                 </li>
               ))}
             </ol>
-          </div>
-
-          <div className="card space-y-3">
-            <h2 className="text-lg font-semibold text-brand-dark">כל המסמכים</h2>
-            {data.documents.length === 0 ? (
-              <p className="text-sm text-gray-500">אין מסמכים.</p>
-            ) : (
-              <ul className="space-y-1 text-sm">
-                {data.documents.map((d) => (
-                  <li key={d.id} className="flex items-center gap-2">
-                    <span>{docTypeLabel(d.document_type)}</span>
-                    <Badge tone={d.status === "approved" ? "green" : "gray"}>{documentStatusLabels[d.status]}</Badge>
-                    {d.file_url && (
-                      <a href={d.file_url} target="_blank" rel="noreferrer" className="text-brand hover:underline">
-                        צפייה
-                      </a>
-                    )}
-                    <span className="text-gray-400">{formatDate(d.created_at)}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
 
           <div className="card space-y-3">
